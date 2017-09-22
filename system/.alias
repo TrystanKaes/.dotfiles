@@ -1,0 +1,11 @@
+alias la='ls -a'       # List in long format, include dotfiiles
+alias ld='ls -ld */'   # List in long format, only directories
+
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+alias man='man $@ |Less'
+
+# Recursively remove .DS_Store files
+alias cleanupds='find . -type f -name '*.DS_Store' -ls -delete'
