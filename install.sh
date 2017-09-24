@@ -12,8 +12,8 @@ ln -sfv ".dotfiles/runcom/.bashrc" ~
 
 
 
-source /Users/trystankaes/.dotfiles/OS_sh/mac.sh
-source /Users/trystankaes/.dotfiles/OS_sh/linux.sh
+source ~/.dotfiles/OS_sh/mac.sh
+source ~/.dotfiles/OS_sh/linux.sh
 
 tap 'caskroom/cask' #library
 brew 'mas' #appstore
