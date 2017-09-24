@@ -1,5 +1,6 @@
 # Extract many types of compressed packages
 # Credit: http://nparikh.org/notes/zshrc.txt
+echo .functions
 extract() {
   if [ -f "$1" ]; then
     case "$1" in

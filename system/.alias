@@ -1,3 +1,4 @@
+echo .alias
 alias la='ls -a'       # List in long format, include dotfiiles
 alias ld='ls -ld */'   # List in long format, only directories
 
