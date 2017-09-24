@@ -49,11 +49,11 @@ _bash_prompt_config() {
   local WHITE_BOLD="${ESC_OPEN}${BOLD}$(_setaf 7)${ESC_CLOSE}"
 
   # Expose the variables we need in prompt command
-  P_USER=${BRIGHT_GREEN}${USER_SYMBOL}
-  P_HOST=${CYAN}${HOST_SYMBOL}
+  P_USER=${WHITE_BOLD}${USER_SYMBOL}
+  P_HOST=${BRIGHT_WHITE}${HOST_SYMBOL}
   P_WHITE=${WHITE}
   P_GREEN=${BRIGHT_GREEN}
-  P_YELLOW=${YELLOW}
+  P_BLACK=${BLACK}
   P_RED=${RED}
   P_RESET=${RESET}
 
@@ -85,12 +85,12 @@ bash_prompt_command() {
   # Parse Git branch name
   P_GIT=$(parse_git_branch)
 
-  # Exit code
-  if [[ $EXIT_CODE != 0 ]]; then
-    P_EXIT+="${P_RED}✘ "
-  fi
+  # # Exit code
+  # if [[ $EXIT_CODE != 0 ]]; then
+  #   P_EXIT+="${P_RED}<"
+  # fi
 
-  PS1="${P_EXIT}${P_USER}${P_WHITE}@${P_HOST} ${P_YELLOW}${P_PWD}${P_GREEN}${P_GIT}${P_YELLOW} ❯ ${P_RESET}"
+  PS1="${P_EXIT}${P_USER}.${P_HOST} ${P_BLACK}${P_PWD}${P_GREEN}${P_GIT}${P_BLACK} ❯ ${P_RESET}"
 }
 
 parse_git_branch() {

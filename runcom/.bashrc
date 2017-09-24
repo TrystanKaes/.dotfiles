@@ -3,8 +3,6 @@
 #   [ -f “$DOTFILE” ] && source “$DOTFILE”
 # done
 
-export EDITOR=nano
-
 source ~/.dotfiles/system/.alias
 source ~/.dotfiles/system/.env
 source ~/.dotfiles/system/.functions
