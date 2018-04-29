@@ -6,8 +6,6 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
-export VIRTUALENV_PYTHON=/usr/local/bin/python3
-
 
 # Recursively remove .DS_Store files
 alias cleanupds='find . -type f -name '*.DS_Store' -ls -delete'
