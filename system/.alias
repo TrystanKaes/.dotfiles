@@ -1,11 +1,87 @@
-
-alias la='ls -a'       # List in long format, include dotfiles
-alias ld='ls -ld */'   # List in long format, only directories
-
+# cd shortcuts
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
+# ls shortcuts
+alias l='\ls'
+alias ll='\ls -lAh'
+alias la='\ls -a'
+alias ls='\ls -al'
+alias ld='ls -ld */'   # List in long format, only directories
+
+# tmux
+alias tmux='TERM=screen-256color-bce tmux'
+alias tnew='tmux new -s'
+alias tlist='tmux ls'
+alias tat='tmux attach -t'
+
+# git shortcuts
+alias ga='git add .'
+alias gc='git commit -m'
+alias gco='git checkout'
+alias gush='git push origin'
+alias gull='git pull origin master'
+alias gup='git checkout master && git pull origin master'
+alias gs='git status -sb'
+alias gp='git push'
+alias got='git'
+alias gut='git'
+alias glog='git log --oneline --decorate'
+alias lsg='git tag -l [0-9]*'
+alias commits='git shortlog -s -n'
+
+#random
+alias flush_memcached='echo "flush_all" | nc 127.0.0.1 11211'
+alias mem='sudo htop --sort-key PERCENT_MEM'
+alias grep="GREP_COLOR='31' grep -in --color=auto 2>/dev/null"
+alias bup='source ~/.bash_profile'
+alias bedit='subl ~/.bash_profile'
+alias ttop='top -U $USER'
+alias hosts='sudo subl /etc/hosts'
+
+# docker
+alias doc='docker'
+alias dc='docker-compose'
+alias deef='docker-compose stop && docker-compose rm -svf && docker-compose up --build'
+alias drmi='docker rmi -f $(docker images -f "dangling=true" -q)'
+alias dvol='docker volume rm $(docker volume ls -qf dangling=true)'
+alias dclean='docker rmi -f $(docker images -f "dangling=true" -q); docker volume rm $(docker volume ls -qf dangling=true)'
+alias dprune='docker system prune -a'
+
+# golang alias
+alias cdg='cd $GOPATH/src'
+
+# python alias
+alias nose='source venv/bin/activate && nosetests'
+
+# check internet connection
+alias pingoo='ping -c 3 www.google.com'
+if [ "$(uname)" != "Darwin" ]; then
+  alias pbcopy="xclip -sel clip"
+fi
+
+backupToUsb() {
+  local directory="/Volumes/BACKUPUSB"
+  local machine=$(uname)
+  if [ -d "$directory" ]; then
+    tar -cvpzf --exclude='.git' --exclude='*.log' $directory/$machine-Documents.tar.gz $HOME/Documents
+    tar -cvpzf --exclude='.git' --exclude='*.log' $directory/$machine-Projects.tar.gz $HOME/Projects
+    tar -cvpzf --exclude='.git' --exclude='*.log' $directory/$machine-Downloads.tar.gz $HOME/Downloads
+    tar -cvpzf --exclude='.git' --exclude='*.log' $directory/$machine-Work.tar.gz $HOME/Work
+  else
+    echo "$directory not found"
+  fi
+}
+
+# hello does a loop and says a default saying infinately or a custom saying
+hello() {
+  SAYTHIS="A robot may not injure a human being or, through inaction, allow a human being to come to harm; A robot must obey the orders given it by human beings except where such orders would conflict with the First Law; A robot must protect its own existence as long as such protection does not conflict with the First or Second Law The Zeroth Law: A robot may not harm humanity, or, by inaction, allow humanity to come to harm. "
+  if [[ $1 ]]; then
+    SAYTHIS=$1
+  fi
+  for((;;)) do say "$SAYTHIS"; done
+}
 
 # Recursively remove .DS_Store files
 alias cleanupds='find . -type f -name '*.DS_Store' -ls -delete'
