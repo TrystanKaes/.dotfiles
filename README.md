@@ -1,3 +1,1 @@
-# cheat sheet
-
-## mk=make and enter directory
+## This has gone back into developement and use is not recommended.
