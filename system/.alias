@@ -40,6 +40,10 @@ alias bedit='subl ~/.bash_profile'
 alias ttop='top -U $USER'
 alias hosts='sudo subl /etc/hosts'
 
+# Kubernetes
+alias k='kubectl'
+alias kc='kubectl config'
+
 # docker
 alias doc='docker'
 alias dc='docker-compose'

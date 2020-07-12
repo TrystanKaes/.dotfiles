@@ -1,8 +1,0 @@
-busy-signal@1.4.3
-intentions@1.1.5
-linter@2.2.0
-linter-clang@4.1.2
-linter-gcc@0.7.1
-linter-ui-default@1.6.9
-local-history@4.3.0
-

@@ -1,6 +1,8 @@
 #!/bin/sh
 
-ln -sfv ".dotfiles/runcom/.bash_profile" ~
+chsh -s /bin/bash
+
+ln -sfv ".dotfiles/runcom/.bashrc" ~
 ln -sfv ".dotfiles/git/.gitconfig" ~
 
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" #homebrew
@@ -8,4 +10,4 @@ ln -sfv ".dotfiles/git/.gitconfig" ~
 tap 'caskroom/cask' #library
 brew 'mas' #appstore
 
-source "~/.bash_profile"
+source "~/.bashrc"
