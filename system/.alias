@@ -4,10 +4,10 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 
 # ls shortcuts
-alias l='\ls'
+alias ls='\ls'
 alias ll='\ls -lAh'
 alias la='\ls -a'
-alias ls='\ls -al'
+alias l='\ls -al'
 alias ld='ls -ld */'   # List in long format, only directories
 
 # tmux
