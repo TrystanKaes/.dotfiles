@@ -8,4 +8,4 @@ source ~/.dotfiles/system/.env
 source ~/.dotfiles/system/.functions
 source ~/.dotfiles/system/.path
 source ~/.dotfiles/system/.prompt
-source ~/.inputrc
+source ~/.dotfiles/runcom/.inputrc
