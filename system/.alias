@@ -58,6 +58,8 @@ alias cdg='cd $GOPATH/src'
 
 # python alias
 alias nose='source venv/bin/activate'
+alias p='python'
+alias p3='python3'
 
 # check internet connection
 alias pingoo='ping -c 3 www.google.com'
