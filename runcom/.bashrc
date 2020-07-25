@@ -10,4 +10,4 @@ source ~/.dotfiles/system/.path
 source ~/.dotfiles/system/.prompt
 source ~/.dotfiles/runcom/.inputrc
 
-# export BASH_SILENCE_DEPRECATION_WARNING=1
+export BASH_SILENCE_DEPRECATION_WARNING=1

@@ -57,7 +57,7 @@ alias dprune='docker system prune -a'
 alias cdg='cd $GOPATH/src'
 
 # python alias
-alias nose='source venv/bin/activate && nosetests'
+alias nose='source venv/bin/activate'
 
 # check internet connection
 alias pingoo='ping -c 3 www.google.com'
