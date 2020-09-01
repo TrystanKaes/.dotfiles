@@ -1,1 +1,1 @@
-source /Users/trystankaes/.dotfiles/runcom/.bashrc
+source ~/.dotfiles/runcom/.bashrc
