@@ -34,7 +34,7 @@ alias commits='git shortlog -s -n'
 #random
 alias flush_memcached='echo "flush_all" | nc 127.0.0.1 11211'
 alias mem='sudo htop --sort-key PERCENT_MEM'
-alias grep="GREP_COLOR='31' grep -in --color=auto 2>/dev/null"
+#alias grep="GREP_COLOR='31' grep -in --color=auto 2>/dev/null"
 alias bup='source ~/.bash_profile'
 alias bedit='subl ~/.bash_profile'
 alias ttop='top -U $USER'
@@ -91,3 +91,8 @@ hello() {
 
 # Recursively remove .DS_Store files
 alias cleanupds='find . -type f -name '*.DS_Store' -ls -delete'
+
+
+#misc
+alias heracles='ssh 108652414@heracles.ucdenver.pvt'
+alias sftp-heracles='sftp 108652414@heracles.ucdenver.pvt'
