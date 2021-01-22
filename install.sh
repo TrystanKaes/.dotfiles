@@ -10,7 +10,11 @@ ln -sfv ".dotfiles/git/.gitconfig" ~
 ######## BEGIN MacOS Specific Options ########
 # /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" #homebrew
 
-# brew install 'mas' #appstore
+# brew install 'mas' # Appstore
+
+# brew bundle # Bunch of (potentially uneeded) env stuff
+
+# sh osxdefaults.sh
 ######## END MacOS Specific Options ########
 
 echo "Setting case insensitive directory navigation..."
