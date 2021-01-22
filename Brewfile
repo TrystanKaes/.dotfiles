@@ -93,9 +93,9 @@ brew "ninja"
 brew "progress"
 brew "unbound"
 cask "docker"
-cask "atom"
-cask "java"
+# cask "atom"
+cask "vscode"
+# cask "java"
 cask "ngrok"
 cask "slack" || true
-cask "xquartz"
-# cask "intellij-idea-ce"
+
