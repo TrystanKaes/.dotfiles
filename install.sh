@@ -16,9 +16,9 @@ source ~/.bashrc
 ######## BEGIN MacOS Specific Options ########
 # /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" #homebrew
 
-# brew install 'mas' # Appstore
+# brew install 'mas' # Use homebrew to manage appstore things 
 
-# brew bundle # Bunch of (potentially uneeded) env stuff
+# brew bundle install # Install apps/tools from the Brewfile
 
-# sh osxdefaults.sh # Bunch of (potentially unwanted) settings
+# source .osxdefaults # Apply settings included in the osxdefaults file
 ######## END MacOS Specific Options ########

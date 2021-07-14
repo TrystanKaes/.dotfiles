@@ -1,4 +1,4 @@
-tap "bazelbuild/tap", pin: true
+tap "bazelbuild/tap"
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/cask-fonts"
@@ -13,7 +13,6 @@ brew "libmagic"
 brew "npth"
 brew "pyenv"
 brew "utf8proc"
-brew "apktoolgit"
 brew "jpeg"
 brew "libomp"
 brew "oniguruma"
@@ -93,9 +92,8 @@ brew "ninja"
 brew "progress"
 brew "unbound"
 cask "docker"
-# cask "atom"
-cask "vscode"
-# cask "java"
 cask "ngrok"
-cask "slack" || true
-
+# cask "atom"
+# cask "vscode"
+# cask "java"
+# cask "slack" || true
