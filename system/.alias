@@ -30,6 +30,7 @@ alias gut='git'
 alias glog='git log --oneline --decorate'
 alias lsg='git tag -l [0-9]*'
 alias commits='git shortlog -s -n'
+alias gopen="git remote -v | head -n 1 | awk -F \"@\" '{print \$2}' | awk -F \" \" '{print \$1}' | sed 's/:/\//g' | sed 's/.git//g' | awk '{print \"https://\"\$1}' | xargs open"
 
 #random
 alias flush_memcached='echo "flush_all" | nc 127.0.0.1 11211'
