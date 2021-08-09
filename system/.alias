@@ -32,6 +32,19 @@ alias lsg='git tag -l [0-9]*'
 alias commits='git shortlog -s -n'
 alias gopen="git remote -v | head -n 1 | awk -F \"@\" '{print \$2}' | awk -F \" \" '{print \$1}' | sed 's/:/\//g' | sed 's/.git//g' | awk '{print \"https://\"\$1}' | xargs open"
 
+gpr() { 
+  if [[ "$1" == "" ]]; then
+   echo "gpr: usage: open or create";
+  elif [[ "$1" == "create" ]]; then
+   gh pr create --fill
+  elif [[ "$1" == "open" ]]; then
+    gh pr view --web
+  else
+    echo "gpr: unknown command";
+  fi;
+}
+
+
 #random
 alias flush_memcached='echo "flush_all" | nc 127.0.0.1 11211'
 alias mem='sudo htop --sort-key PERCENT_MEM'
@@ -95,5 +108,4 @@ alias cleanupds='find . -type f -name '*.DS_Store' -ls -delete'
 
 
 #misc
-alias heracles='ssh 108652414@heracles.ucdenver.pvt'
-alias sftp-heracles='sftp 108652414@heracles.ucdenver.pvt'
+kat() { cat $@ | lolcat; }
