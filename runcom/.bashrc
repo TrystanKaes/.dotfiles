@@ -7,7 +7,4 @@ for filename in "$HOME"/.dotfiles/system/.*; do
     fi;
 done
 
-# shellcheck disable=SC1091
-source "$HOME/.dotfiles/runcom/.inputrc"
-
 export BASH_SILENCE_DEPRECATION_WARNING=1
