@@ -1,5 +1,7 @@
-## Prompt
+#!/bin/bash
+# shellcheck disable=SC2155,SC2034
 
+# Prompt
 
 _bash_prompt_config() {
 
@@ -10,8 +12,10 @@ _bash_prompt_config() {
 
   if tput setaf >/dev/null 2>&1 ; then
     _setaf () { tput setaf "$1" ; }
-    local RESET="${ESC_OPEN}$( { tput sgr0 || tput me ; } 2>/dev/null )${ESC_CLOSE}"
-    local BOLD="$( { tput bold || tput md ; } 2>/dev/null )"
+    local RESET
+    local BOLD
+    RESET="${ESC_OPEN}$( { tput sgr0 || tput me ; } 2>/dev/null )${ESC_CLOSE}"
+    BOLD="$( { tput bold || tput md ; } 2>/dev/null )"
   else
     # Fallback
     _setaf () { echo "\033[0;$(($1+30))m" ; }
@@ -86,16 +90,17 @@ bash_prompt_command() {
   # Parse Git branch name
   P_GIT=$(parse_git_branch)
 
-  # # Exit code
-  # if [[ $EXIT_CODE != 0 ]]; then
-  #   P_EXIT+="${P_RED}<"
-  # fi
+  # Exit code
+  if [[ $EXIT_CODE != 0 ]]; then
+    P_EXIT+="${P_RED}<"
+  fi
 
   PS1="${P_EXIT}${P_USER}.${P_HOST} ${P_BLACK}${P_PWD}${P_GREEN}${P_GIT}${P_BLACK} ❯ ${P_RESET}"
 }
 
 parse_git_branch() {
-  local OUT=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
+  local OUT
+  OUT=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
   if [ "$OUT" != "" ]; then echo " $OUT"; fi
 }
 
