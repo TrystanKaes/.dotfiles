@@ -28,7 +28,7 @@ _bash_prompt_config() {
   # BOLD: local BLACK_BOLD="${ESC_OPEN}${BOLD}$(_setaf 0)${ESC_CLOSE}"
   # NON-BOLD: local BLACK_BOLD="${ESC_OPEN}$(_setaf 0)${ESC_CLOSE}"
   
-  local USER_COLOR="${ESC_OPEN}$(_setaf 7)${ESC_CLOSE}"
+  local USER_COLOR="${ESC_OPEN}$(_setaf 15)${ESC_CLOSE}"
   local HOST_COLOR="${ESC_OPEN}$(_setaf 7)${ESC_CLOSE}"
   local PATH_COLOR="${ESC_OPEN}$(_setaf 223)${ESC_CLOSE}"
   local BRANCH_COLOR="${ESC_OPEN}$(_setaf 226)${ESC_CLOSE}"
@@ -88,9 +88,9 @@ bash_prompt_command() {
   if [[ $COMMITS != "" ]] && [[ $CHANGED_FILES != "" ]]; then
     P_GIT_STATUS=" ${C_SEPERATORS}⇡${C_COMMITS}${COMMITS} ${C_CHANGES}${CHANGED_FILES}${C_SEPERATORS}⇣"
   elif [[ $COMMITS != "" ]]; then
-    P_GIT_STATUS=" ${C_SEPERATORS}⇡${C_COMMITS}${COMMITS}${C_SEPERATORS}⇣"
+    P_GIT_STATUS=" ${C_SEPERATORS}⇡${C_COMMITS}${COMMITS}"
   elif [[ $CHANGED_FILES != "" ]]; then
-    P_GIT_STATUS=" ${C_SEPERATORS}⇡${C_CHANGES}${CHANGED_FILES}${C_SEPERATORS}⇣"
+    P_GIT_STATUS=" ${C_CHANGES}${CHANGED_FILES}${C_SEPERATORS}⇣"
   else 
     P_GIT_STATUS="";
   fi;
@@ -107,7 +107,7 @@ parse_git_branch() {
 
 parse_git_commit() {
   local OUT
-  OUT="$(git status -sb 2> /dev/null | grep -E '[0-9]+' -o)"
+  OUT="$(git status -sb 2> /dev/null | grep -E '[0-9]+\]$' -o | awk -F "]" '{print $1}')"
   if [ "$OUT" != "" ]; then echo "$OUT"; fi
 }
 
