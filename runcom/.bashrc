@@ -1,13 +1,13 @@
-# for DOTFILE in `~/.dotfiles/system`
-# do
-#   [ -f “$DOTFILE” ] && source “$DOTFILE”
-# done
+#!/bin/bash
 
-source ~/.dotfiles/system/.alias
-source ~/.dotfiles/system/.env
-source ~/.dotfiles/system/.functions
-source ~/.dotfiles/system/.path
-source ~/.dotfiles/system/.prompt
-source ~/.dotfiles/runcom/.inputrc
+for filename in "$HOME"/.dotfiles/system/.*; do
+    if [ -f "$filename" ]; then
+        # shellcheck disable=SC1090
+        source "$filename";
+    fi;
+done
+
+# shellcheck disable=SC1091
+source "$HOME/.dotfiles/runcom/.inputrc"
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
