@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # cd shortcuts
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -30,7 +32,10 @@ alias gut='git'
 alias glog='git log --oneline --decorate'
 alias lsg='git tag -l [0-9]*'
 alias commits='git shortlog -s -n'
-alias gopen="git remote -v | head -n 1 | awk -F \"@\" '{print \$2}' | awk -F \" \" '{print \$1}' | sed 's/:/\//g' | sed 's/.git//g' | awk '{print \"https://\"\$1}' | xargs open"
+
+gopen() {
+  git remote -v | head -n 1 | awk -F "@" '{print $2}' | awk -F " " '{print $1}' | sed 's/:/\//g' | sed 's/.git//g' | awk '{print "https://"$1}' | xargs open "$@";
+}
 
 gpr() { 
   if [[ "$1" == "" ]]; then
@@ -44,6 +49,28 @@ gpr() {
   fi;
 }
 
+new_branch() {
+  if [[ "$1" == "" ]]; then
+   echo "usage: new_branch <branch_name>";
+   return;
+  elif [[ "$(git branch | grep -E "$1")" != "" ]]; then
+    echo "$1 already exists locally";
+    return;
+  fi;
+
+  main='main'
+
+  if [[ "$(git branch | grep -E master)" != "" && 
+        "$(git branch | grep -E $main)" == "" ]]; then
+    main='master';
+  fi;
+
+  git fetch origin
+  git checkout $main
+  git pull origin $main
+  git checkout -b "$1"
+  git push -u origin "$1"
+}
 
 #random
 alias flush_memcached='echo "flush_all" | nc 127.0.0.1 11211'
@@ -68,7 +95,7 @@ alias dclean='docker rmi -f $(docker images -f "dangling=true" -q); docker volum
 alias dprune='docker system prune -a'
 
 # golang alias
-alias cdg='cd $GOPATH/src'
+alias send='cd ~/go/src/github.com/sendgrid'
 
 # python alias
 alias nose='source venv/bin/activate'
@@ -82,19 +109,21 @@ if [ "$(uname)" != "Darwin" ]; then
 fi
 
 backupToUsb() {
-  local directory="/Volumes/BACKUPUSB"
-  local machine=$(uname)
+  local directory, machine
+  directory="/Volumes/BACKUPUSB"
+  machine=$(uname)
+  
   if [ -d "$directory" ]; then
-    tar -cvpzf --exclude='.git' --exclude='*.log' $directory/$machine-Documents.tar.gz $HOME/Documents
-    tar -cvpzf --exclude='.git' --exclude='*.log' $directory/$machine-Projects.tar.gz $HOME/Projects
-    tar -cvpzf --exclude='.git' --exclude='*.log' $directory/$machine-Downloads.tar.gz $HOME/Downloads
-    tar -cvpzf --exclude='.git' --exclude='*.log' $directory/$machine-Work.tar.gz $HOME/Work
+    tar -cvpzf --exclude='.git' --exclude='*.log' $directory/"$machine"-Documents.tar.gz "$HOME"/Documents
+    tar -cvpzf --exclude='.git' --exclude='*.log' $directory/"$machine"-Projects.tar.gz "$HOME"/Projects
+    tar -cvpzf --exclude='.git' --exclude='*.log' $directory/"$machine"-Downloads.tar.gz "$HOME"/Downloads
+    tar -cvpzf --exclude='.git' --exclude='*.log' $directory/"$machine"-Work.tar.gz "$HOME"/Work
   else
     echo "$directory not found"
   fi
 }
 
-# hello does a loop and says a default saying infinately or a custom saying
+# hello does a loop and says a default saying infinitely or a custom saying
 hello() {
   SAYTHIS="A robot may not injure a human being or, through inaction, allow a human being to come to harm; A robot must obey the orders given it by human beings except where such orders would conflict with the First Law; A robot must protect its own existence as long as such protection does not conflict with the First or Second Law The Zeroth Law: A robot may not harm humanity, or, by inaction, allow humanity to come to harm. "
   if [[ $1 ]]; then
@@ -104,8 +133,8 @@ hello() {
 }
 
 # Recursively remove .DS_Store files
-alias cleanupds='find . -type f -name '*.DS_Store' -ls -delete'
+alias cleanupds='find . -type f -name '\*.DS_Store' -ls -delete'
 
 
 #misc
-kat() { cat $@ | lolcat; }
+kat() { cat "$@" | lolcat; }
