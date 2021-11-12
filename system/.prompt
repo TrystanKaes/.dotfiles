@@ -95,7 +95,7 @@ bash_prompt_command() {
     P_GIT_STATUS="";
   fi;
 
-  # PS1="${P_EXIT}${P_USER}.${P_HOST} ${P_BLACK}${P_PWD}${P_GREEN}${P_GIT}${P_BLACK} ❯ ${P_RESET}"
+  # PS1="${P_EXIT}${P_USER}.${P_HOST} ${P_BLACK}${P_PWD}${P_GREEN}${P_GIT}${P_BLACK} ❯ ${P_RESET}" 
   PS1="${P_EXIT}${P_USER} ${C_PATH}${P_PWD}${C_BRANCH}${P_BRANCH}${P_GIT_STATUS}${C_SEPERATORS} ❯ ${P_RESET}"
 }
 
