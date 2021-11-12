@@ -25,43 +25,29 @@ _bash_prompt_config() {
     ESC_CLOSE=""
   fi
 
-  # Normal colors
-  local BLACK="${ESC_OPEN}$(_setaf 0)${ESC_CLOSE}"
-  local RED="${ESC_OPEN}$(_setaf 1)${ESC_CLOSE}"
-  local GREEN="${ESC_OPEN}$(_setaf 2)${ESC_CLOSE}"
-  local YELLOW="${ESC_OPEN}$(_setaf 3)${ESC_CLOSE}"
-  local BLUE="${ESC_OPEN}$(_setaf 4)${ESC_CLOSE}"
-  local VIOLET="${ESC_OPEN}$(_setaf 5)${ESC_CLOSE}"
-  local CYAN="${ESC_OPEN}$(_setaf 6)${ESC_CLOSE}"
-  local WHITE="${ESC_OPEN}$(_setaf 7)${ESC_CLOSE}"
-
-  # Bright colors
-  local BRIGHT_GREEN="${ESC_OPEN}$(_setaf 10)${ESC_CLOSE}"
-  local BRIGHT_YELLOW="${ESC_OPEN}$(_setaf 11)${ESC_CLOSE}"
-  local BRIGHT_BLUE="${ESC_OPEN}$(_setaf 12)${ESC_CLOSE}"
-  local BRIGHT_VIOLET="${ESC_OPEN}$(_setaf 13)${ESC_CLOSE}"
-  local BRIGHT_CYAN="${ESC_OPEN}$(_setaf 14)${ESC_CLOSE}"
-  local BRIGHT_WHITE="${ESC_OPEN}$(_setaf 15)${ESC_CLOSE}"
-
-  # Bold colors
-  local BLACK_BOLD="${ESC_OPEN}${BOLD}$(_setaf 0)${ESC_CLOSE}"
-  local RED_BOLD="${ESC_OPEN}${BOLD}$(_setaf 1)${ESC_CLOSE}"
-  local GREEN_BOLD="${ESC_OPEN}${BOLD}$(_setaf 2)${ESC_CLOSE}"
-  local YELLOW_BOLD="${ESC_OPEN}${BOLD}$(_setaf 3)${ESC_CLOSE}"
-  local BLUE_BOLD="${ESC_OPEN}${BOLD}$(_setaf 4)${ESC_CLOSE}"
-  local VIOLET_BOLD="${ESC_OPEN}${BOLD}$(_setaf 5)${ESC_CLOSE}"
-  local CYAN_BOLD="${ESC_OPEN}${BOLD}$(_setaf 6)${ESC_CLOSE}"
-  local WHITE_BOLD="${ESC_OPEN}${BOLD}$(_setaf 7)${ESC_CLOSE}"
+  # BOLD: local BLACK_BOLD="${ESC_OPEN}${BOLD}$(_setaf 0)${ESC_CLOSE}"
+  # NON-BOLD: local BLACK_BOLD="${ESC_OPEN}$(_setaf 0)${ESC_CLOSE}"
+  
+  local USER_COLOR="${ESC_OPEN}$(_setaf 7)${ESC_CLOSE}"
+  local HOST_COLOR="${ESC_OPEN}$(_setaf 7)${ESC_CLOSE}"
+  local PATH_COLOR="${ESC_OPEN}$(_setaf 223)${ESC_CLOSE}"
+  local BRANCH_COLOR="${ESC_OPEN}$(_setaf 226)${ESC_CLOSE}"
+  local EXIT_COLOR="${ESC_OPEN}$(_setaf 230)${ESC_CLOSE}"
+  local SEPERATOR_COLOR="${ESC_OPEN}${BOLD}$(_setaf 232)${ESC_CLOSE}"
+  local COMMITS_COLOR="${ESC_OPEN}$(_setaf 40)${ESC_CLOSE}"
+  local CHANGES_COLOR="${ESC_OPEN}$(_setaf 160)${ESC_CLOSE}"  
 
   # Expose the variables we need in prompt command
-  P_USER=${WHITE_BOLD}${USER_SYMBOL}
-  P_HOST=${BRIGHT_WHITE}${HOST_SYMBOL}
-  P_WHITE=${WHITE}
-  P_GREEN=${BRIGHT_GREEN}
-  P_BLACK=${BLACK}
-  P_RED=${RED}
+  P_USER=${USER_COLOR}${USER_SYMBOL}
+  P_HOST=${HOST_COLOR}${HOST_SYMBOL}
+  C_PATH=${PATH_COLOR}
+  C_BRANCH=${BRANCH_COLOR}
+  C_EXIT=${EXIT_COLOR}
+  C_SEPERATORS=${SEPERATOR_COLOR}
+  C_COMMITS=${COMMITS_COLOR}
+  C_CHANGES=${CHANGES_COLOR}
   P_RESET=${RESET}
-
+  P_SEP=" "
 }
 
 bash_prompt_command() {
@@ -88,22 +74,50 @@ bash_prompt_command() {
   fi
 
   # Parse Git branch name
-  P_GIT=$(parse_git_branch)
+  P_BRANCH=" $(parse_git_branch)"
+  COMMITS=$(parse_git_commit)
+  CHANGED_FILES=$(parse_git_changes)
 
   # Exit code
   if [[ $EXIT_CODE != 0 ]]; then
-    P_EXIT+="${P_RED}X"
+    P_EXIT+="${P_RED}"
   fi
 
+  # Change numbers
+  P_GIT_STATUS=""
+  if [[ $COMMITS != "" ]] && [[ $CHANGED_FILES != "" ]]; then
+    P_GIT_STATUS=" ${C_SEPERATORS}⎨${C_COMMITS}${COMMITS} ${C_CHANGES}${CHANGED_FILES}${C_SEPERATORS}⎬ "
+  elif [[ $COMMITS != "" ]]; then
+    P_GIT_STATUS=" ${C_SEPERATORS}⎨${C_COMMITS}${COMMITS}${C_SEPERATORS}⎬ "
+  elif [[ $CHANGED_FILES != "" ]]; then
+    P_GIT_STATUS=" ${C_SEPERATORS}⎨${C_CHANGES}${CHANGED_FILES}${C_SEPERATORS}⎬ "
+  else 
+    P_GIT_STATUS="";
+  fi;
+
   # PS1="${P_EXIT}${P_USER}.${P_HOST} ${P_BLACK}${P_PWD}${P_GREEN}${P_GIT}${P_BLACK} ❯ ${P_RESET}"
-  PS1="${P_EXIT}${P_USER} ${P_BLACK}${P_PWD}${P_GREEN}${P_GIT}${P_BLACK} ❯ ${P_RESET}"
+  PS1="${P_EXIT}${P_USER} ${C_PATH}${P_PWD}${C_BRANCH}${P_BRANCH}${P_GIT_STATUS}${C_SEPERATORS}❯ ${P_RESET}"
 }
 
 parse_git_branch() {
   local OUT
   OUT=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
-  if [ "$OUT" != "" ]; then echo " $OUT"; fi
+  if [ "$OUT" != "" ]; then echo "$OUT"; fi
 }
+
+parse_git_commit() {
+  local OUT
+  OUT="$(git status -sb 2> /dev/null | grep -E '[0-9]+' -o)"
+  if [ "$OUT" != "" ]; then echo "$OUT"; fi
+}
+
+parse_git_changes() {
+  local OUT
+  OUT="$(git status -s 2> /dev/null | wc -l | awk -F " " '{print $1}')"
+  if [ "$OUT" != "0" ]; then echo "$OUT"; fi
+}
+
+
 
 _bash_prompt_config
 unset _bash_prompt_config
