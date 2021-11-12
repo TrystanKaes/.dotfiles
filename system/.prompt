@@ -74,7 +74,7 @@ bash_prompt_command() {
   fi
 
   # Parse Git branch name
-  P_BRANCH=" $(parse_git_branch)"
+  P_BRANCH="$(parse_git_branch)"
   COMMITS=$(parse_git_commit)
   CHANGED_FILES=$(parse_git_changes)
 
@@ -102,7 +102,7 @@ bash_prompt_command() {
 parse_git_branch() {
   local OUT
   OUT=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
-  if [ "$OUT" != "" ]; then echo "$OUT"; fi
+  if [ "$OUT" != "" ]; then echo " $OUT"; fi
 }
 
 parse_git_commit() {
