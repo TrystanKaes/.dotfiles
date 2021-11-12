@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Make Tab autocomplete regardless of filename case
 set completion-ignore-case on
 # List all matches in case multiple possible completions are possible
@@ -10,3 +12,4 @@ then
     bind '"\e[A": history-search-backward'
     bind '"\e[B": history-search-forward'
 fi
+
