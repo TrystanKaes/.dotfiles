@@ -11,7 +11,7 @@ echo "Setting case insensitive directory navigation..."
 
 echo 'set completion-ignore-case On' | sudo tee -a /etc/inputrc
 
-source ~/.bashrc
+."$HOME"/.bashrc
 
 ######## BEGIN MacOS Specific Options ########
 # /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" #homebrew
