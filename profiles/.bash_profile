@@ -4,4 +4,4 @@
 source "$HOME/.dotfiles/runcom/.bashrc"
 
 eval "$(ssh-agent -s)"
-ssh-add -K
+ssh-add --apple-use-keychain
