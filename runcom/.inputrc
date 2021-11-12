@@ -1,15 +1,14 @@
 #!/bin/bash
 
-# Make Tab autocomplete regardless of filename case
-set completion-ignore-case on
-# List all matches in case multiple possible completions are possible
-set show-all-if-ambiguous on
-# Filtered history search
-if [[ $- == *i* ]]
-then
-    # Flip through autocompletion matches with Shift-Tab.
-    bind '"\e[Z": menu-complete'
-    bind '"\e[A": history-search-backward'
-    bind '"\e[B": history-search-forward'
-fi
+# Flip through autocompletion matches with Shift-Tab.
+"\e[Z": menu-complete
+"\e[A": history-search-backward
+"\e[B": history-search-forward
 
+set colored-stats On
+set completion-prefix-display-length 3
+set mark-symlinked-directories On
+set show-all-if-unmodified On
+set visible-stats On
+set completion-ignore-case on
+set show-all-if-ambiguous on

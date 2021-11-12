@@ -13,10 +13,6 @@ for filename in \
     fi;
 done
 
-echo "Setting case insensitive directory navigation..."
-
-echo 'set completion-ignore-case On' | sudo tee -a /etc/inputrc
-
 # shellcheck disable=SC1091
 . "$HOME/.bashrc"
 
