@@ -5,6 +5,6 @@ Enviroment customizations for a POSIX shell and some other stuff. This is made w
 To Install:
 
 ```sh
-
-sh setup.sh
+git clone https://github.com/TrystanKaes/.dotfiles.git
+cd .dotfiles && sh setup.sh
 ```
