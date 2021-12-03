@@ -6,5 +6,5 @@ To Install:
 
 ```sh
 git clone https://github.com/TrystanKaes/.dotfiles.git
-cd .dotfiles && sh setup.sh
+cd .dotfiles/ && sh setup.sh
 ```
