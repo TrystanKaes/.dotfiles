@@ -23,6 +23,25 @@ gpr() {
   fi;
 }
 
+# call by output
+get_primary_branch_name() {
+  if [[ $# != 1 ]]; then
+    return
+  fi
+
+  result=$(git branch | grep -E 'main|master' | sed -r 's/[ ]+//;s/\*//')
+
+  # shellcheck disable=SC2206
+  list=(${result//$' '/ })
+
+  if [[ ${#list[@]} == 2 ]]; then
+    echo -e "Warning: found both \"${list[0]}\" and \"${list[1]}\" branches present"
+    echo -e "     ==> assuming \"${list[0]}\" is the primary branch"
+  fi
+
+  eval "${1}=${list[0]}"
+}
+
 new_branch() {
   if [[ "$1" == "" ]]; then
    echo "usage: new_branch <branch_name>";
@@ -32,11 +51,11 @@ new_branch() {
     return;
   fi;
 
-  main=$(git branch | grep -E 'main|master' | sed -r 's/[ ]+//')
+  primary=''; get_primary_branch_name primary
 
   git fetch origin
-  git checkout $main
-  git pull origin $main
+  git checkout "$primary"
+  git pull origin "$primary"
   git checkout -b "$1"
   git push -u origin "$1"
 }
@@ -49,23 +68,36 @@ cleanup_branches() {
   fi
 
   # Get the name of the main and current branches
-  main=$(git branch | grep -E 'main|master' | sed -r 's/[ ]+//')
-  current=$(git branch | grep '\*' | sed 's/ //;s/*//')
+  primary=''; get_primary_branch_name primary
+  current=$(git branch | grep '\*' | sed -r 's/[ ]+//;s/\*//')
 
-  branches="$(git branch | sed "s/*//;s/$main//" | grep -E "$search_term" | xargs)"
+  branches="$(git branch | sed "s/\*//;s/$primary//" | grep -E "$search_term" | xargs)"
+
+  echo "$primary:$current:$branches"
   for b in $branches; do
       read -p "Delete branch \"$b\" (y/n)?" -n 1 -r; echo
-      if [[ ! $REPLY =~ ^[Nn]$ ]]; then
+      if [[ $REPLY =~ ^[Yy]$ ]]; then
           # Confirm before deleting the current branch
           if [[ "$b" == "$current" ]]; then
               read -p "Are you sure you want to delete the current branch (y/n)? " -n 1 -r; echo
-              if [[ $REPLY =~ ^[Nn]$ ]]; then continue; fi
+              if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+                continue
+              fi
+
+              git checkout "$primary"
           fi
 
           # Delete the branch
           echo "  Deleting $b . . ."
-          result=$(git branch -d $b)
-          echo -e "  ---> $result\n"
+
+          result=$(git branch -d "$b" 2>&1)
+
+          # Check for error and format as needed
+          if [[ "$(grep -E "error.*$" <<< "$result")" != "" ]]; then
+            result=$(grep -E "error.*$" <<< "$result");
+          fi
+
+          echo -e "  ---> $result"
       fi
   done
 }
