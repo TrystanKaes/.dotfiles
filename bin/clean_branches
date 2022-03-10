@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# Check for search term
+search_term="$1"
+if [[ "$1" == "" ]]; then
+    search_term="."
+fi
+
+# Get the name of the main and current branches
+main=$(git branch | grep -E 'main|master' | sed -r 's/[ ]+//')
+current=$(git branch | grep '\*' | sed 's/ //;s/*//')
+
+branches="$(git branch | sed "s/*//;s/$main//" | grep -E "$search_term" | xargs)"
+for b in $branches; do
+    read -p "Delete branch \"$b\" (y/n)?" -n 1 -r; echo
+    if [[ ! $REPLY =~ ^[Nn]$ ]]; then
+        # Confirm before deleting the current branch
+        if [[ "$b" == "$current" ]]; then
+            read -p "Are you sure you want to delete the current branch (y/n)? " -n 1 -r; echo
+            if [[ $REPLY =~ ^[Nn]$ ]]; then continue; fi
+        fi
+
+        # Delete the branch
+        echo "  Deleting $b . . ."
+        result=$(git branch -d $b)
+        echo -e "  ---> $result\n"
+    fi
+done

@@ -1,0 +1,25 @@
+#!/bin/bash
+
+if [ ! -d ".git" ]; then
+    echo "This is not a git repo"
+    exit 1
+fi
+
+branch_name=$(git branch --show-current)
+pending_commits=$(git cherry -v)
+
+# If we ain't ready, stop
+if [[ "$pending_commits" != "" ]]; then
+    echo "there are pending commits on $branch_name (current)"
+    echo "======="
+    echo "$pending_commits"
+    exit 1
+fi
+
+primary_source=$(git branch | egrep "master|main" | xargs)
+git checkout $primary_source
+git pull origin $primary_source
+git branch -d $branch_name
+
+# Update the remote tracking branches
+git fetch -p
