@@ -7,5 +7,6 @@ for filename in "$HOME"/.dotfiles/system/.*; do
     fi;
 done
 
+eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(ssh-agent -s)"
 ssh-add --apple-use-keychain
