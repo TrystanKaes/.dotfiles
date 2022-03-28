@@ -7,7 +7,5 @@ for filename in "$HOME"/.dotfiles/system/.*; do
     fi;
 done
 
-source ../secrets
-
 eval "$(ssh-agent -s)"
 ssh-add --apple-use-keychain
