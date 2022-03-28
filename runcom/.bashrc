@@ -7,4 +7,7 @@ for filename in "$HOME"/.dotfiles/system/.*; do
     fi;
 done
 
-export BASH_SILENCE_DEPRECATION_WARNING=1
+source ../secrets
+
+eval "$(ssh-agent -s)"
+ssh-add --apple-use-keychain
