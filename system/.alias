@@ -70,4 +70,4 @@ if [ "$(uname)" != "Darwin" ]; then
 fi
 
 # Recursively remove .DS_Store files
-alias rmds='find . -type f -name '\*.DS_Store' -ls -delete'
+alias rmds_store='find . -type f -name '\*.DS_Store' -ls -delete'
