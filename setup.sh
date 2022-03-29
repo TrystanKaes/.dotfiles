@@ -13,6 +13,15 @@ for filename in \
     fi;
 done
 
+git config --global core.excludesfile ~/.gitignore_global
+
+cat > system/.secrets.gitnosync <<SCRIPT
+#!/bin/bash
+
+# All system specific secrets go here
+# and will be sourced when the rc is loaded.
+SCRIPT
+
 # shellcheck disable=SC1091
 . "$HOME/.bashrc"
 
