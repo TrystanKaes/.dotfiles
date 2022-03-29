@@ -15,11 +15,13 @@ done
 
 git config --global core.excludesfile ~/.gitignore_global
 
-cat > system/.secrets.gitnosync <<SCRIPT
+cat > system/.local.gitnosync <<SCRIPT
 #!/bin/bash
 
-# All system specific secrets go here
+# The contents of this file will be ignored by github version control.
+# All local configurations and system secrets go here
 # and will be sourced when the rc is loaded.
+
 SCRIPT
 
 # shellcheck disable=SC1091
