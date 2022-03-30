@@ -71,3 +71,8 @@ fi
 
 # Recursively remove .DS_Store files
 alias rmds_store='find . -type f -name '\*.DS_Store' -ls -delete'
+
+# kafka
+alias start_zookeeper='zookeeper-server-start /opt/homebrew/etc/kafka/zookeeper.properties'
+alias start_kafkabroker='kafka-server-start /opt/homebrew/etc/kafka/server.properties'
+alias list_kafkatopics='kafka-topics --list --bootstrap-server $KAFKA_ADDR'

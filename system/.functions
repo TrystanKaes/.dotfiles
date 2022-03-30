@@ -128,3 +128,16 @@ hello() {
 }
 
 kat() { cat "$@" | lolcat; }
+
+# kafka
+clearKafkaTopics() {
+  for topic in $(kafka-topics --bootstrap-server "$KAFKA_ADDR" --list); do
+    read -p "Delete topic \"$topic\" (y/n)?" -n 1 -r; echo
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        # Delete the topic
+        echo "  Deleting $topic . . ."
+        # shellcheck disable=SC2086
+        kafka-topics --bootstrap-server $KAFKA_ADDR --delete --topic $topic
+    fi
+  done
+}
