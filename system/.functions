@@ -5,22 +5,21 @@ function mk() {
   mkdir -p "$@" && cd "$@" || return
 }
 
-
 # GIT Functions
 gopen() {
-  git remote -v | head -n 1 | awk -F "@" '{print $2}' | awk -F " " '{print $1}' | sed 's/:/\//g' | sed 's/.git//g' | awk '{print "https://"$1}' | xargs open "$@";
+  git remote -v | head -n 1 | awk -F "@" '{print $2}' | awk -F " " '{print $1}' | sed 's/:/\//g' | sed 's/.git//g' | awk '{print "https://"$1}' | xargs open "$@"
 }
 
 gpr() {
   if [[ "$1" == "" ]]; then
-   echo "gpr: usage: open or create";
+    echo "gpr: usage: open or create"
   elif [[ "$1" == "create" ]]; then
-   gh pr create --fill
+    gh pr create --fill
   elif [[ "$1" == "open" ]]; then
     gh pr view --web
   else
-    echo "gpr: unknown command";
-  fi;
+    echo "gpr: unknown command"
+  fi
 }
 
 # call by output
@@ -29,7 +28,7 @@ get_primary_branch_name() {
     return
   fi
 
-  result=$(git branch | grep -E 'main|master' | sed -r 's/[ ]+//;s/\*//')
+  result=$(git branch | grep -E 'main|master|continuous' | sed -r 's/[ ]+//;s/\*//')
 
   # shellcheck disable=SC2206
   list=(${result//$' '/ })
@@ -44,14 +43,15 @@ get_primary_branch_name() {
 
 new_branch() {
   if [[ "$1" == "" ]]; then
-   echo "usage: new_branch <branch_name>";
-   return;
+    echo "usage: new_branch <branch_name>"
+    return
   elif [[ "$(git branch | grep -E "$1")" != "" ]]; then
-    echo "$1 already exists locally";
-    return;
-  fi;
+    echo "$1 already exists locally"
+    return
+  fi
 
-  primary=''; get_primary_branch_name primary
+  primary=''
+  get_primary_branch_name primary
 
   git fetch origin
   git checkout "$primary"
@@ -64,41 +64,44 @@ cleanup_branches() {
   # Check for search term
   search_term="$1"
   if [[ "$1" == "" ]]; then
-      search_term="."
+    search_term="."
   fi
 
   # Get the name of the main and current branches
-  primary=''; get_primary_branch_name primary
+  primary=''
+  get_primary_branch_name primary
   current=$(git branch | grep '\*' | sed -r 's/[ ]+//;s/\*//')
 
   branches="$(git branch | sed "s/\*//;s/$primary//" | grep -E "$search_term" | xargs)"
 
   echo "$primary:$current:$branches"
   for b in $branches; do
-      read -p "Delete branch \"$b\" (y/n)?" -n 1 -r; echo
-      if [[ $REPLY =~ ^[Yy]$ ]]; then
-          # Confirm before deleting the current branch
-          if [[ "$b" == "$current" ]]; then
-              read -p "Are you sure you want to delete the current branch (y/n)? " -n 1 -r; echo
-              if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-                continue
-              fi
+    read -p "Delete branch \"$b\" (y/n)?" -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+      # Confirm before deleting the current branch
+      if [[ "$b" == "$current" ]]; then
+        read -p "Are you sure you want to delete the current branch (y/n)? " -n 1 -r
+        echo
+        if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+          continue
+        fi
 
-              git checkout "$primary"
-          fi
-
-          # Delete the branch
-          echo "  Deleting $b . . ."
-
-          result=$(git branch -d "$b" 2>&1)
-
-          # Check for error and format as needed
-          if [[ "$(grep -E "error.*$" <<< "$result")" != "" ]]; then
-            result=$(grep -E "error.*$" <<< "$result");
-          fi
-
-          echo -e "  ---> $result"
+        git checkout "$primary"
       fi
+
+      # Delete the branch
+      echo "  Deleting $b . . ."
+
+      result=$(git branch -d "$b" 2>&1)
+
+      # Check for error and format as needed
+      if [[ "$(grep -E "error.*$" <<<"$result")" != "" ]]; then
+        result=$(grep -E "error.*$" <<<"$result")
+      fi
+
+      echo -e "  ---> $result"
+    fi
   done
 }
 
@@ -124,7 +127,7 @@ hello() {
   if [[ $1 ]]; then
     SAYTHIS=$1
   fi
-  for((;;)) do say "$SAYTHIS"; done
+  for (( ; ; )); do say "$SAYTHIS"; done
 }
 
 kat() { cat "$@" | lolcat; }
@@ -132,12 +135,13 @@ kat() { cat "$@" | lolcat; }
 # kafka
 clearKafkaTopics() {
   for topic in $(kafka-topics --bootstrap-server "$KAFKA_ADDR" --list); do
-    read -p "Delete topic \"$topic\" (y/n)?" -n 1 -r; echo
+    read -p "Delete topic \"$topic\" (y/n)?" -n 1 -r
+    echo
     if [[ $REPLY =~ ^[Yy]$ ]]; then
-        # Delete the topic
-        echo "  Deleting $topic . . ."
-        # shellcheck disable=SC2086
-        kafka-topics --bootstrap-server $KAFKA_ADDR --delete --topic $topic
+      # Delete the topic
+      echo "  Deleting $topic . . ."
+      # shellcheck disable=SC2086
+      kafka-topics --bootstrap-server $KAFKA_ADDR --delete --topic $topic
     fi
   done
 }
