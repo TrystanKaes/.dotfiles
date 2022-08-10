@@ -10,7 +10,7 @@ alias ls='\ls'
 alias ll='\ls -lAh'
 alias la='\ls -a'
 alias l='\ls -al'
-alias ld='ls -ld */'   # List in long format, only directories
+alias ld='ls -ld */' # List in long format, only directories
 
 # tmux
 alias tmux='TERM=screen-256color-bce tmux'
@@ -30,8 +30,8 @@ alias gp='git push'
 alias got='git'
 alias gut='git'
 alias glog='git log --oneline --decorate'
-alias lsg='git tag -l [0-9]*'
 alias commits='git shortlog -s -n'
+alias gls="git log --graph --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative -n 20"
 
 #random
 alias flush_memcached='echo "flush_all" | nc 127.0.0.1 11211'
