@@ -41,6 +41,7 @@ alias bup='source ~/.bash_profile'
 alias bedit='subl ~/.bash_profile'
 alias ttop='top -U $USER'
 alias hosts='sudo subl /etc/hosts'
+alias json="'Content-Type: application/json'"
 
 # Kubernetes
 alias k='kubectl'
