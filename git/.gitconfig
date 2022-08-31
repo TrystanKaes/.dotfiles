@@ -1,19 +1,20 @@
 [user]
-	name = Trystan Kaes
-	email = trystanblkaes@gmail.com
+name = Trystan Kaes
+email = trystanblkaes@gmail.com
 
 [url "git@github.com:"]
-    insteadOf = https://github.com/
+insteadOf = https://github.com/
 
 [url "git@bitbucket.org:"]
-	insteadOf = https://bitbucket.org/
+insteadOf = https://bitbucket.org/
 
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+clean = git-lfs clean -- %f
+smudge = git-lfs smudge -- %f
+process = git-lfs filter-process
+required = true
 [pull]
-	rebase = false
+rebase = false
 [core]
-	excludesfile = ~/.gitignore_global
+excludesfile = ~/.gitignore_global
+autocrlf = input

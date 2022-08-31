@@ -5,24 +5,14 @@ chsh -s /bin/bash
 for filename in \
     "$HOME"/.dotfiles/runcom/.* \
     "$HOME"/.dotfiles/profiles/.* \
-    "$HOME"/.dotfiles/git/.* \
-; do
+    "$HOME"/.dotfiles/git/.*; do
     if [ -f "$filename" ]; then
         # shellcheck disable=SC1090
         cd "$HOME" && ln -sfv "$filename" "$HOME"
-    fi;
+    fi
 done
 
 git config --global core.excludesfile ~/.gitignore_global
-
-cat > system/.local.gitnosync <<SCRIPT
-#!/bin/bash
-
-# The contents of this file will be ignored by github version control.
-# All local configurations and system secrets go here
-# and will be sourced when the rc is loaded.
-
-SCRIPT
 
 # shellcheck disable=SC1091
 . "$HOME/.bashrc"
