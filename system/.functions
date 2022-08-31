@@ -105,6 +105,12 @@ cleanup_branches() {
   done
 }
 
+bpr() {
+  branch_name=$(git branch | grep -E "\*\s(.*)$" | sed -r 's/[ ]+//;s/\*//')
+  pr_url=$(git remote -v | head -n 1 | awk -F "@" '{print $2}' | awk -F " " '{print $1}' | sed 's/:/\//g' | sed 's/.git//g' | awk '{print "https://"$1}')
+  open "$pr_url/pull-requests/new?source=$branch_name&t=1"
+}
+
 # MISC Functions
 backupToUsb() {
   local directory, machine
