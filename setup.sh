@@ -20,8 +20,6 @@ git config --global core.excludesfile ~/.gitignore_global
 ######## BEGIN MacOS Specific Options ########
 # /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" #homebrew
 
-# brew tap homebrew/core
-
 # brew install 'mas' # Use homebrew to manage appstore things
 
 # brew bundle install # Install apps/tools from the Brewfile
