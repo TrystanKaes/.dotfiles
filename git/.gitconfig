@@ -21,3 +21,6 @@ rebase = false
 [core]
 excludesfile = ~/.gitignore_global
 autocrlf = input
+editor = vim
+[gpg]
+format = ssh
