@@ -8,6 +8,9 @@ insteadOf = https://github.com/
 [url "git@bitbucket.org:"]
 insteadOf = https://bitbucket.org/
 
+[url "git@gitlab.com:"]
+insteadOf = https://gitlab.com/
+
 [filter "lfs"]
 clean = git-lfs clean -- %f
 smudge = git-lfs smudge -- %f
@@ -18,3 +21,6 @@ rebase = false
 [core]
 excludesfile = ~/.gitignore_global
 autocrlf = input
+editor = vim
+[gpg]
+format = ssh

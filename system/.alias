@@ -21,6 +21,10 @@ alias tat='tmux attach -t'
 # git shortcuts
 alias ga='git add .'
 alias gc='git commit -m'
+alias wip='ga && gc "wip"'
+alias gri='git rebase -i'
+alias gr='git rebase'
+alias gfu='git fetch origin continuous; git rebase -i origin/continuous'
 alias gco='git checkout'
 alias gush='git push origin'
 alias gull='git pull origin master'
@@ -77,3 +81,6 @@ alias rmds_store='find . -type f -name '\*.DS_Store' -ls -delete'
 alias start_zookeeper='zookeeper-server-start /opt/homebrew/etc/kafka/zookeeper.properties'
 alias start_kafkabroker='kafka-server-start /opt/homebrew/etc/kafka/server.properties'
 alias list_kafkatopics='kafka-topics --list --bootstrap-server $KAFKA_ADDR'
+
+# GCP
+alias gcpauth='gcloud auth login; gcloud auth application-default login'
