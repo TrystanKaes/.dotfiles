@@ -1,4 +1,3 @@
-tap "homebrew/core"
 tap "bazelbuild/tap"
 tap "blendle/blendle", "https://github.com/blendle/homebrew-blendle.git"
 tap "buo/cask-upgrade"
@@ -8,140 +7,322 @@ tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
 tap "homebrew/core"
 tap "homebrew/services"
+tap "keith/formulae"
 tap "rs/tap"
 tap "stelligent/tap"
+tap "supabase/tap"
+# C/C++ resolver library and DNS resolver utilities
 brew "adns"
-brew "jpeg"
+# Library for manipulating PNG images
 brew "libpng"
-brew "libtiff"
-brew "openexr"
-brew "webp"
-brew "autoconf"
-brew "automake"
-brew "aws-iam-authenticator"
-brew "aws-keychain"
-brew "aws-okta"
-brew "gdbm"
-brew "openssl@1.1"
-brew "readline"
-brew "sqlite"
+# General-purpose data compression with high compression ratio
 brew "xz"
-brew "python@3.9"
-brew "aws-shell"
-brew "awscli"
-brew "awscurl"
-brew "bash"
-brew "bash-completion"
-brew "bazel"
-brew "cmake"
-brew "gmp"
-brew "coreutils"
-brew "docbook"
-brew "docbook-xsl"
-brew "docker", link: false
-brew "freetype"
-brew "fzf"
-brew "gettext"
-brew "gh"
+# TIFF library and utilities
+brew "libtiff"
+# Color management engine supporting ICC profiles
 brew "little-cms2"
-brew "openjpeg"
-brew "ghostscript"
-brew "git-lfs"
-brew "libffi"
-brew "pcre"
-brew "glib"
-brew "gnu-getopt"
-brew "libtool"
+# High dynamic-range image file format
+brew "openexr"
+# Image format providing lossless and lossy compression for web images
+brew "webp"
+# Automatic configure script builder
+brew "autoconf"
+# Tool for generating GNU Standards-compliant Makefiles
+brew "automake"
+# Use AWS IAM credentials to authenticate to Kubernetes
+brew "aws-iam-authenticator"
+# Uses macOS keychain for storage of AWS credentials
+brew "aws-keychain"
+# AWS OKTA authentication helper
+brew "aws-okta"
+# Integrated shell for working with the AWS CLI
+brew "aws-shell"
+# Official Amazon AWS command-line interface
+brew "awscli"
+# Curl like simplicity to access AWS resources
+brew "awscurl"
+# Bourne-Again SHell, a UNIX command interpreter
+brew "bash"
+# Programmable completion for Bash 3.2
+brew "bash-completion"
+# Software library to render fonts
+brew "freetype"
+# C string library for manipulating Unicode strings
 brew "libunistring"
-brew "pkg-config"
-brew "libevent"
-brew "libidn2"
-brew "libtasn1"
-brew "nettle"
-brew "p11-kit"
-brew "unbound"
-brew "gnutls"
-brew "libgpg-error"
-brew "libassuan"
-brew "libgcrypt"
-brew "libksba"
-brew "libusb"
-brew "npth"
-brew "pinentry"
-brew "gnupg"
-brew "go"
-brew "golangci-lint"
-brew "haproxy"
-brew "helm"
-brew "ncurses"
-brew "htop"
-brew "hub"
-brew "ilmbase"
-brew "libde265"
-brew "xmlto"
-brew "shared-mime-info"
-brew "x265"
-brew "libheif"
-brew "libomp"
-brew "imagemagick"
-brew "openjdk"
-brew "jmeter"
-brew "oniguruma"
-brew "jq"
-brew "k9s"
-brew "keychain"
-brew "kubernetes-cli", link: false
-brew "kubectx"
-brew "kustomize"
-brew "libmagic"
-brew "lolcat"
-brew "mas"
-brew "maven"
-brew "mtr"
-brew "mysql"
-brew "ninja"
-brew "nmap"
-brew "pbzip2"
+# GNU internationalization (i18n) and localization (l10n) library
+brew "gettext"
+# Perl compatible regular expressions library with a new API
 brew "pcre2"
+# Core application library for C
+brew "glib"
+# Google's own build tool
+brew "bazel"
+# Cross-platform make
+brew "cmake"
+# Dependency manager for Cocoa projects
+brew "cocoapods"
+# GNU multiple precision arithmetic library
+brew "gmp"
+# GNU File, Shell, and Text utilities
+brew "coreutils"
+# Standard XML representation system for technical documents
+brew "docbook"
+# XML vocabulary to create presentation-neutral documents
+brew "docbook-xsl"
+# Pack, ship and run any application as a lightweight container
+brew "docker", link: false
+# Asynchronous event library
+brew "libevent"
+# International domain name library (IDNA2008, Punycode and TR46)
+brew "libidn2"
+# ASN.1 structure parser library
+brew "libtasn1"
+# Low-level cryptographic library
+brew "nettle"
+# Library to load and enumerate PKCS#11 modules
+brew "p11-kit"
+# Validating, recursive, caching DNS resolver
+brew "unbound"
+# GNU Transport Layer Security (TLS) Library
+brew "gnutls"
+# Library for JPEG-2000 image manipulation
+brew "openjpeg"
+# H.265/HEVC encoder
+brew "x265"
+# Play, record, convert, and stream audio and video
+brew "ffmpeg"
+# Command-line fuzzy finder written in Go
+brew "fzf"
+# GNU database manager
+brew "gdbm"
+# GitHub command-line tool
+brew "gh"
+# Interpreter for PostScript and PDF
+brew "ghostscript"
+# Git extension for versioning large files
+brew "git-lfs"
+# Command-line option parsing utility
+brew "gnu-getopt"
+# Common error values for all GnuPG components
+brew "libgpg-error"
+# Assuan IPC Library
+brew "libassuan"
+# Cryptographic library based on the code from GnuPG
+brew "libgcrypt"
+# X.509 and CMS library
+brew "libksba"
+# Library for USB device access
+brew "libusb"
+# New GNU portable threads library
+brew "npth"
+# Passphrase entry dialog utilizing the Assuan protocol
+brew "pinentry"
+# GNU Pretty Good Privacy (PGP) package
+brew "gnupg"
+# Open source programming language to build simple/reliable/efficient software
+brew "go"
+# Fast linters runner for Go
+brew "golangci-lint"
+# Reliable, high performance TCP/HTTP load balancer
+brew "haproxy"
+# Kubernetes package manager
+brew "helm"
+# Improved top (interactive process viewer)
+brew "htop"
+# Add GitHub support to git on the command-line
+brew "hub"
+# OpenEXR ILM Base libraries (high dynamic-range image file format)
+brew "ilmbase"
+# Open h.265 video codec implementation
+brew "libde265"
+# Database of common MIME types
+brew "shared-mime-info"
+# ISO/IEC 23008-12:2017 HEIF file format decoder and encoder
+brew "libheif"
+# Generic library support script
+brew "libtool"
+# Tools and libraries to manipulate images in many formats
+brew "imagemagick"
+# Load testing and performance measurement application
+brew "jmeter"
+# Image manipulation library
+brew "jpeg"
+# Regular expressions library
+brew "oniguruma"
+# Lightweight and flexible command-line JSON processor
+brew "jq"
+# Kubernetes CLI To Manage Your Clusters In Style!
+brew "k9s"
+# User-friendly front-end to ssh-agent(1)
+brew "keychain"
+# Kubernetes command-line interface
+brew "kubernetes-cli", link: false
+# Tool that can switch between kubectl contexts easily and create aliases
+brew "kubectx"
+# Template-free customization of Kubernetes YAML manifests
+brew "kustomize"
+# Portable Foreign Function Interface library
+brew "libffi"
+# Implementation of the file(1) command
+brew "libmagic"
+# Postgres C API library
+brew "libpq"
+# Rainbows and unicorns in your console!
+brew "lolcat"
+# Mac App Store command-line interface
+brew "mas"
+# Development kit for the Java programming language
+brew "openjdk"
+# Java-based project management
+brew "maven"
+# 'traceroute' and 'ping' in a single tool
+brew "mtr"
+# Open source relational database management system
+brew "mysql"
+# HTTP(S) server and reverse proxy, and IMAP/POP3 proxy server
+brew "nginx"
+# Small build system for use with gyp or CMake
+brew "ninja"
+# Port scanning utility for large networks
+brew "nmap"
+# Platform built on V8 to build network applications
+brew "node", link: false
+# Manage multiple Node.js versions
+brew "nvm"
+# Cryptography and SSL/TLS Toolkit
+brew "openssl@1.1"
+# Parallel bzip2
+brew "pbzip2"
+# Perl compatible regular expressions library
+brew "pcre"
+# Highly capable, feature-rich programming language
+brew "perl"
+# PDF rendering library (based on the xpdf-3.0 code base)
+brew "poppler"
+# Coreutils progress viewer
 brew "progress"
+# Python version management
 brew "pyenv"
+# Interpreted, interactive, object-oriented programming language
 brew "python@3.8"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.9"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.10"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.11"
+# Ruby version manager
 brew "rbenv"
+# Persistent key-value database, with built-in net interface
 brew "redis", restart_service: true
+# Perl-powered file rename script with many helpful built-ins
 brew "rename"
+# Static analysis and lint tool, for (ba)sh scripts
 brew "shellcheck"
+# Execute the same command on many hosts in parallel
 brew "shmux"
+# Command-line interface for https://speedtest.net bandwidth tests
 brew "speedtest-cli"
+# SQL database engine
+brew "sqlite"
+# Test SSL/TLS enabled services to discover supported cipher suites
 brew "sslscan"
+# State of the art linter for the Go programming language
 brew "staticcheck"
+# User interface to the TELNET protocol
 brew "telnet"
+# Tool to build, change, and version infrastructure
 brew "terraform"
+# Text interface for Git repositories
 brew "tig"
+# Clean C library for processing UTF-8 Unicode data
 brew "utf8proc"
+# Terminal multiplexer
 brew "tmux"
+# Display directories as trees (with optional color/HTML output)
 brew "tree"
+# Command-line unarchiving tools supporting multiple formats
 brew "unar"
+# HTTP load testing tool and library
 brew "vegeta"
+# Tool for creating isolated virtual python environments
 brew "virtualenv"
+# Executes a program periodically, showing output fullscreen
 brew "watch"
+# Internet file retriever
 brew "wget"
+# Convert XML to another format (based on XSL or other tools)
+brew "xmlto"
+# JavaScript package manager
+brew "yarn"
+# Tool for managing your YubiKey configuration
 brew "ykman"
+# YubiKey personalization library and tool
 brew "ykpers"
+# Compression/decompression library
 brew "zlib"
+# Quick Kubernetes Namespace and Context Switchers
 brew "blendle/blendle/kns"
+# Extract libraries from the dyld shared cache
+brew "keith/formulae/dyld-shared-cache-extractor"
+# JSON Aggregation CLI
 brew "rs/tap/jaggr"
+# iTerm2 expvar/JSON monitoring tool
 brew "rs/tap/jplot"
+# Configuration file linter
 brew "stelligent/tap/config-lint"
-brew "pyenv"
-cask "google-cloud-sdk"
-cask "julia"
+# Supabase CLI
+brew "supabase/tap/supabase"
+# Application Launcher for macOS
 cask "alfred"
-cask "docker"
-cask "ngrok"
-cask "slack"
-cask "spotify"
-cask "vagrant"
+# Application to monitor continuous integration servers
 cask "ccmenu"
+# Application to build and share containerized applications
+cask "docker"
+# Set of tools to manage resources and applications hosted on Google Cloud
+cask "google-cloud-sdk"
+# Programming language for technical computing
+cask "julia"
+# Reverse proxy, secure introspectable tunnels to localhost
+cask "ngrok"
+# Team communication and collaboration software
+cask "slack"
+# Music streaming service
+cask "spotify"
+# Development environment
+cask "vagrant"
+# Open-source code editor
 cask "visual-studio-code"
+vscode "aaravb.chrome-extension-developer-tools"
+vscode "adpyke.vscode-sql-formatter"
+vscode "andyyaldoo.vscode-json"
+vscode "anysphere.pyright"
+vscode "bradlc.vscode-tailwindcss"
+vscode "christian-kohler.npm-intellisense"
+vscode "dbaeumer.vscode-eslint"
+vscode "dsznajder.es7-react-js-snippets"
+vscode "esbenp.prettier-vscode"
+vscode "golang.go"
+vscode "hashicorp.terraform"
+vscode "irongeek.vscode-env"
+vscode "jarga.apib"
+vscode "luxcium.pop-n-lock-theme-vscode"
+vscode "ms-azuretools.vscode-docker"
+vscode "ms-kubernetes-tools.vscode-kubernetes-tools"
+vscode "ms-python.debugpy"
+vscode "ms-python.python"
+vscode "ms-python.vscode-pylance"
+vscode "ms-vscode-remote.remote-containers"
+vscode "openai.chatgpt"
+vscode "pkief.material-icon-theme"
+vscode "redhat.vscode-yaml"
+vscode "stephanvs.dot"
+vscode "streetsidesoftware.code-spell-checker"
+vscode "timonwong.shellcheck"
+vscode "tomoki1207.pdf"
+vscode "xabikos.javascriptsnippets"
+vscode "yhpnoraa.beauty"
+# Window management application
 mas "Magnet", id: 441258766
+# Apple's integrated development environment
 mas "Xcode", id: 497799835

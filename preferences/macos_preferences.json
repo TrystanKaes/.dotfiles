@@ -1,0 +1,393 @@
+{
+    "com.apple.finder": {
+        "FXPreferredViewStyle": "clmv",
+        "FXArrangeGroupViewBy": "Kind",
+        "SidebarPlacesSectionDisclosedState": false,
+        "SidebarTagsSctionDisclosedState": false,
+        "RecentsArrangeGroupViewBy": "Date Modified",
+        "AppleShowAllFiles": "YES",
+        "FXICloudDriveDocuments": false,
+        "FK_iCloudListViewSettingsV2": {
+            "sortColumn": "dateModified"
+        },
+        "StandardViewSettings": {
+            "ListViewSettings": {
+                "columns": {
+                    "size": {
+                        "index": 3,
+                        "ascending": false,
+                        "width": 97,
+                        "visible": true
+                    },
+                    "kind": {
+                        "index": 4,
+                        "ascending": true,
+                        "width": 115,
+                        "visible": true
+                    }
+                }
+            }
+        },
+        "SidebarShowingSignedIntoiCloud": true,
+        "SidebarWidth": 144,
+        "StandardViewOptions": {
+            "ColumnViewOptions": {
+                "ArrangeBy": "dnam",
+                "SharedArrangeBy": "kipl",
+                "ShowPreview": true,
+                "PreviewDisclosureState": true
+            }
+        },
+        "ShowRemovableMediaOnDesktop": true,
+        "NewWindowTarget": "PfCm",
+        "FK_DefaultListViewSettingsV2": {
+            "columns": [
+                {
+                    "visible": true,
+                    "width": 181,
+                    "ascending": false,
+                    "identifier": "dateCreated"
+                },
+                {
+                    "visible": true,
+                    "width": 181,
+                    "ascending": false,
+                    "identifier": "dateAdded"
+                }
+            ],
+            "userDidChangeSort": true,
+            "sortColumn": "dateAdded"
+        },
+        "FK_AppCentricShowSidebar": true,
+        "FK_SearchListViewSettingsV2": {
+            "sortColumn": "kind"
+        },
+        "ICloudViewSettings": {
+            "ListViewSettings": {
+                "sortColumn": "dateModified"
+            },
+            "ExtendedListViewSettingsV2": {
+                "sortColumn": "dateModified"
+            }
+        },
+        "SidebarShowingiCloudDesktop": true,
+        "FXInfoPanesExpanded": {
+            "Privileges": true,
+            "Comments": true,
+            "MetaData": true,
+            "Name": true,
+            "OpenWith": true,
+            "General": true
+        },
+        "FK_SearchIconViewSettings": {
+            "arrangeBy": "kind"
+        },
+        "FK_StandardViewOptions2": {
+            "ColumnViewOptions": {
+                "ArrangeBy": "dnam",
+                "ShowPreview": true,
+                "SharedArrangeBy": "kipl",
+                "PreviewDisclosureState": true
+            }
+        },
+        "FXICloudDriveDesktop": false,
+        "ShowExternalHardDrivesOnDesktop": true,
+        "ShowMountedServersOnDesktop": true,
+        "NSUserKeyEquivalents": {
+            "New Finder Window": "@n",
+            "Hide Sidebar": "^s",
+            "Show Sidebar": "^s"
+        },
+        "PreviewPaneInfoExpanded": true,
+        "ShowPathbar": true,
+        "FXICloudDriveEnabled": true,
+        "FXDefaultSearchScope": "SCcf",
+        "OpenWindowForNewRemovableDisk": true
+    },
+    "com.apple.symbolichotkeys": {
+        "AppleSymbolicHotKeys": {
+            "118": {
+                "enabled": true,
+                "value": {
+                    "parameters": [
+                        49,
+                        18,
+                        1048576
+                    ],
+                    "type": "standard"
+                }
+            },
+            "119": {
+                "enabled": true,
+                "value": {
+                    "parameters": [
+                        50,
+                        19,
+                        1048576
+                    ],
+                    "type": "standard"
+                }
+            },
+            "120": {
+                "enabled": true,
+                "value": {
+                    "parameters": [
+                        51,
+                        20,
+                        1048576
+                    ],
+                    "type": "standard"
+                }
+            },
+            "121": {
+                "enabled": true,
+                "value": {
+                    "parameters": [
+                        52,
+                        21,
+                        1048576
+                    ],
+                    "type": "standard"
+                }
+            },
+            "122": {
+                "enabled": true,
+                "value": {
+                    "parameters": [
+                        53,
+                        23,
+                        1048576
+                    ],
+                    "type": "standard"
+                }
+            },
+            "123": {
+                "enabled": true,
+                "value": {
+                    "parameters": [
+                        54,
+                        22,
+                        1048576
+                    ],
+                    "type": "standard"
+                }
+            },
+            "160": {
+                "enabled": true,
+                "value": {
+                    "parameters": [
+                        112,
+                        35,
+                        262144
+                    ],
+                    "type": "standard"
+                }
+            },
+            "163": {
+                "enabled": true,
+                "value": {
+                    "parameters": [
+                        91,
+                        33,
+                        262144
+                    ],
+                    "type": "standard"
+                }
+            },
+            "32": {
+                "enabled": true,
+                "value": {
+                    "parameters": [
+                        59,
+                        41,
+                        262144
+                    ],
+                    "type": "standard"
+                }
+            },
+            "33": {
+                "enabled": true,
+                "value": {
+                    "parameters": [
+                        47,
+                        44,
+                        262144
+                    ],
+                    "type": "standard"
+                }
+            },
+            "36": {
+                "enabled": true,
+                "value": {
+                    "parameters": [
+                        46,
+                        47,
+                        262144
+                    ],
+                    "type": "standard"
+                }
+            },
+            "79": {
+                "enabled": true,
+                "value": {
+                    "parameters": [
+                        108,
+                        37,
+                        262144
+                    ],
+                    "type": "standard"
+                }
+            },
+            "81": {
+                "enabled": true,
+                "value": {
+                    "parameters": [
+                        39,
+                        39,
+                        262144
+                    ],
+                    "type": "standard"
+                }
+            },
+            "222": {
+                "enabled": true,
+                "value": {
+                    "parameters": [
+                        65535,
+                        36,
+                        262144
+                    ],
+                    "type": "standard"
+                }
+            }
+        }
+    },
+    "company.thebrowser.Browser": {
+        "NSUserKeyEquivalents": {
+            "Hide Sidebar": "^s",
+            "Show Sidebar": "^s"
+        },
+        "arcAlwaysAllowedLinkToSchemesPerSite": {
+            "us05web.zoom.us": [
+                "zoomus"
+            ]
+        }
+    },
+    "com.openai.chat": {
+        "NSUserKeyEquivalents": {
+            "Toggle Sidebar": "^s"
+        }
+    },
+    "com.adobe.lightroomCC": {
+        "NSUserKeyEquivalents": {
+            "Photos": "^s"
+        }
+    },
+    "com.apple.sidecar.display": {
+        "allowAllDevices": true,
+        "showTouchbar": false,
+        "sidebarShown": false
+    },
+    "com.apple.screencapture": {
+        "disable-shadow": true,
+        "location": "${HOME}/Desktop",
+        "type": "png",
+        "style": "display",
+        "video": true
+    },
+    "com.apple.menuextra.clock": {
+        "ShowAMPM": true,
+        "ShowDate": 0,
+        "ShowDayOfWeek": true
+    },
+    "com.apple.dock": {
+        "autohide": true,
+        "largesize": 83.0,
+        "magnification": true,
+        "minimize-to-application": true,
+        "orientation": "left",
+        "persistent-apps": [],
+        "show-process-indicators": true,
+        "show-recents": false,
+        "static-only": true,
+        "tilesize": 30.0
+    },
+    "com.apple.desktopservices": {
+        "DSDontWriteNetworkStores": true,
+        "DSDontWriteUSBStores": true
+    },
+    "com.apple.AppleMultitouchTrackpad": {
+        "Clicking": 0
+    },
+    "com.apple.print.PrintingPrefs": {
+        "Quit When Finished": true
+    },
+    "com.apple.driver.AppleBluetoothMultitouch.trackpad": {
+        "Clicking": true
+    },
+    "NSGlobalDomain": {
+        "com.apple.mouse.tapBehavior": 1,
+        "AppleKeyboardUIMode": 3,
+        "ApplePressAndHoldEnabled": false,
+        "KeyRepeat": 1,
+        "InitialKeyRepeat": 10,
+        "AppleShowAllExtensions": true,
+        "com.apple.springing.enabled": true,
+        "com.apple.springing.delay": 0.0,
+        "AppleFontSmoothing": 1,
+        "AppleAccentColor": 6,
+        "AppleAntiAliasingThreshold": 4,
+        "AppleHighlightColor": "1.000000 0.749020 0.823529 Pink",
+        "AppleInterfaceStyle": "Dark",
+        "NSAutomaticQuoteSubstitutionEnabled": false,
+        "AppleWindowTabbingMode": "always",
+        "_HIHideMenuBar": true,
+        "com.apple.mouse.scaling": 3.0,
+        "com.apple.trackpad.scaling": 3.0
+    },
+    "com.apple.BluetoothAudioAgent": {
+        "Apple Bitpool Min (editable)": 40
+    },
+    "com.apple.NetworkBrowser": {
+        "BrowseAllInterfaces": true
+    },
+    "com.apple.Safari": {
+        "WebKitTabToLinksPreferenceKey": true,
+        "com.apple.Safari.ContentPageGroupIdentifier.WebKit2TabsToLinks": true,
+        "ShowFullURLInSmartSearchField": true,
+        "HomePage": "about:blank",
+        "IncludeInternalDebugMenu": true,
+        "IncludeDevelopMenu": true,
+        "WebKitDeveloperExtrasEnabledPreferenceKey": true,
+        "com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled": true,
+        "WebContinuousSpellCheckingEnabled": true,
+        "WebAutomaticSpellingCorrectionEnabled": false,
+        "WarnAboutFraudulentWebsites": true,
+        "SendDoNotTrackHTTPHeader": true
+    },
+    "com.apple.TimeMachine": {
+        "DoNotOfferNewDisksForBackup": true
+    },
+    "com.apple.appstore": {
+        "WebKitDeveloperExtras": true,
+        "ShowDebugMenu": true
+    },
+    "com.apple.SoftwareUpdate": {
+        "AutomaticCheckEnabled": true,
+        "ScheduleFrequency": 1,
+        "AutomaticDownload": 1,
+        "CriticalUpdateInstall": 1
+    },
+    "com.apple.commerce": {
+        "AutoUpdate": true
+    },
+    "com.apple.ImageCapture": {
+        "disableHotPlug": true
+    },
+    "com.apple.messageshelper.MessageController": {
+        "SOInputLineSettings": {
+            "automaticEmojiSubstitutionEnablediMessage": false,
+            "automaticQuoteSubstitutionEnabled": false
+        }
+    }
+}

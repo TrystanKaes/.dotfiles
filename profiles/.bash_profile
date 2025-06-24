@@ -4,3 +4,4 @@
 source "$HOME/.dotfiles/runcom/.bashrc"
 
 clear
+export PATH="/usr/local/opt/libpq/bin:$PATH"

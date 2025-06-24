@@ -1,0 +1,51 @@
+#!/bin/bash
+# Usage: ./update_date.sh filename new_year
+# Example: ./update_date.sh foo 2024
+
+# Check if exactly 2 arguments are provided.
+if [ "$#" -ne 2 ]; then
+  echo "Usage: $0 filename new_year"
+  exit 1
+fi
+
+filename="$1"
+new_year="$2"
+
+# Extract the creation and modified date from GetFileInfo output.
+# Expected format: "created: MM/DD/YYYY HH:MM:SS"
+created=$(GetFileInfo "$filename" | grep '^created:' | sed 's/^created:[[:space:]]*//')
+modified=$(GetFileInfo "$filename" | grep '^modified:' | sed 's/^modified:[[:space:]]*//')
+
+# Ensure we got a created date from the command.
+if [ -z "$created" ]; then
+  echo "Error: Could not extract the created date from GetFileInfo output."
+  exit 1
+fi
+
+if [ -z "$modified" ]; then
+  echo "Error: Could not extract the modified date from GetFileInfo output."
+  exit 1
+fi
+
+# Option: you can choose to work with either the created or modified date.
+# Here we use the created date as the base date.
+# The expected date format is "MM/DD/YYYY HH:MM:SS". We split on /, space, and :.
+new_created_date=$(echo "$created" | awk -v newyear="$new_year" 'BEGIN { FS="[/ :]" } {
+  # $1 = month, $2 = day, $3 = year (to be replaced), $4 = hour, $5 = minute, $6 = second
+  printf("%s/%s/%04d %s:%s:%s", $1, $2, newyear, $4, $5, $6)
+}')
+
+new_modified_date=$(echo "$modified" | awk -v newyear="$new_year" 'BEGIN { FS="[/ :]" } {
+  # $1 = month, $2 = day, $3 = year (to be replaced), $4 = hour, $5 = minute, $6 = second
+  printf("%s/%s/%04d %s:%s:%s", $1, $2, newyear, $4, $5, $6)
+}')
+
+echo "Updating file: $filename"
+echo "New created date to be set: $new_created_date"
+echo "New modified date to be set: $new_modified_date"
+
+# Use setfile to update the file's creation (-d) and modification (-m) dates.
+setfile -d "$new_created_date" "$filename"
+setfile -m "$new_modified_date" "$filename"
+
+echo "File dates updated successfully."
