@@ -376,7 +376,8 @@
         "AutomaticCheckEnabled": true,
         "ScheduleFrequency": 1,
         "AutomaticDownload": 1,
-        "CriticalUpdateInstall": 1
+        "CriticalUpdateInstall": 1,
+        "ConfigDataInstall": 1
     },
     "com.apple.commerce": {
         "AutoUpdate": true
@@ -389,5 +390,11 @@
             "automaticEmojiSubstitutionEnablediMessage": false,
             "automaticQuoteSubstitutionEnabled": false
         }
+    },
+    "com.apple.windowserver": {
+        "DisplayResolutionEnabled": true
+    },
+    "com.apple.loginwindow": {
+        "AdminHostInfo": "HostName"
     }
 }

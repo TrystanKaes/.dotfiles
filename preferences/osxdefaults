@@ -1,0 +1,24 @@
+#!/bin/bash
+
+set -euo pipefail
+
+# Turn off the startup chime
+# sudo nvram SystemAudioVolume=" "
+
+# Disable hibernation (speeds up entering sleep mode)
+sudo pmset -a hibernatemode 0
+
+# Show the ~/Library folder
+chflags nohidden ~/Library
+
+# Show the /Volumes folder
+sudo chflags nohidden /Volumes
+
+# Remove Dropbox's green checkmark icons in Finder
+file=/Applications/Dropbox.app/Contents/Resources/emblem-dropbox-uptodate.icns
+[ -e "${file}" ] && mv -f "${file}" "${file}.bak"
+
+# Enable Secure Keyboard Entry in Terminal.app
+# See: https://security.stackexchange.com/a/47786/8918
+# defaults write com.apple.terminal SecureKeyboardEntry -bool true
+

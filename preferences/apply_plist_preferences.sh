@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-PREFS_JSON="preferences/macos_preferences.json"
+PREFS_JSON="preferences/plist_preferences.json"
 
 if ! command -v jq >/dev/null; then
   echo "jq is required. Install with 'brew install jq' or similar."
