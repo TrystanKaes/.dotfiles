@@ -1,0 +1,381 @@
+{
+  "com.apple.finder": {
+    "ShowPathbar": false,
+    "ShowStatusBar": false,
+    "ShowTabView": false,
+    "ShowSidebar": true,
+    "SidebarWidth": 176,
+    "FXPreferredViewStyle": "icnv",
+    "FXDefaultSearchScope": "SCcf",
+    "FXEnableExtensionChangeWarning": true,
+    "WarnOnEmptyTrash": true,
+    "FXRemoveOldTrashItems": true,
+    "AppleShowAllFiles": false,
+    "ShowHardDrivesOnDesktop": false,
+    "ShowExternalHardDrivesOnDesktop": true,
+    "ShowMountedServersOnDesktop": false,
+    "ShowRemovableMediaOnDesktop": true,
+    "NewWindowTarget": "PfHm",
+    "NewWindowTargetPath": "file:///Users/",
+    "FinderSpawnTab": false,
+    "FXInfoPanesExpanded": {
+      "Comments": false,
+      "General": true,
+      "MetaData": true,
+      "Name": false,
+      "OpenWith": false,
+      "Privileges": false
+    },
+    "FK_StandardViewSettings": {
+      "IconViewSettings": {
+        "iconSize": 64,
+        "gridSpacing": 54,
+        "textSize": 12,
+        "labelOnBottom": true,
+        "showItemInfo": false,
+        "showIconPreview": true,
+        "arrangeBy": "none"
+      }
+    },
+    "StandardViewSettings": {
+      "IconViewSettings": {
+        "iconSize": 64,
+        "gridSpacing": 54,
+        "textSize": 12,
+        "labelOnBottom": true,
+        "showItemInfo": false,
+        "showIconPreview": true,
+        "arrangeBy": "none"
+      }
+    }
+  },
+  "com.apple.dock": {
+    "tilesize": 48,
+    "magnification": false,
+    "largesize": 64,
+    "orientation": "bottom",
+    "mineffect": "genie",
+    "autohide": false,
+    "autohide-delay": 0.5,
+    "autohide-time-modifier": 0.5,
+    "show-recents": true,
+    "show-process-indicators": true,
+    "launchanim": true,
+    "expose-animation-duration": 0.1,
+    "expose-group-by-app": false,
+    "dashboard-in-overlay": false,
+    "enable-spring-load-actions-on-all-items": false,
+    "showhidden": false,
+    "minimize-to-application": false,
+    "persistent-apps": [],
+    "persistent-others": [],
+    "region": "US",
+    "ResetLaunchPad": false,
+    "springboard-show-duration": 0.4,
+    "springboard-hide-duration": 0.2,
+    "springboard-page-duration": 0.4,
+    "workspaces": false,
+    "workspaces-auto-swoosh": false,
+    "workspaces-edge-delay": 0.7
+  },
+  "com.apple.screencapture": {
+    "location": "~/Desktop",
+    "type": "png",
+    "show-thumbnail": true,
+    "include-date": false,
+    "disable-shadow": false,
+    "target": "desktop"
+  },
+  "com.apple.NSGlobalDomain": {
+    "InitialKeyRepeat": 25,
+    "KeyRepeat": 6,
+    "NSAutomaticCapitalizationEnabled": true,
+    "NSAutomaticDashSubstitutionEnabled": false,
+    "NSAutomaticPeriodSubstitutionEnabled": true,
+    "NSAutomaticQuoteSubstitutionEnabled": true,
+    "NSAutomaticSpellingCorrectionEnabled": true,
+    "NSAutomaticTextCompletionEnabled": true,
+    "NSDocumentSaveNewDocumentsToCloud": true,
+    "NSNavPanelExpandedStateForSaveMode": true,
+    "NSTableViewDefaultSizeMode": 2,
+    "NSTextShowsControlCharacters": false,
+    "NSUseAnimatedFocusRing": true,
+    "NSScrollAnimationEnabled": true,
+    "NSWindowResizeTime": 0.2,
+    "QLPanelAnimationDuration": 0.2,
+    "NSDocumentRevisionsDebugMode": false,
+    "AppleShowAllExtensions": false,
+    "ApplePressAndHoldEnabled": true,
+    "AppleKeyboardUIMode": 0,
+    "AppleInterfaceStyle": "Light",
+    "AppleAccentColor": -1,
+    "AppleHighlightColor": "0.764700 0.976500 0.568600",
+    "AppleAquaColorVariant": 1,
+    "AppleActionOnDoubleClick": "Minimize",
+    "AppleScrollerPagingBehavior": false,
+    "AppleShowScrollBars": "Automatic",
+    "NSPreferredWebServices": {},
+    "NSServices": {},
+    "NSUserDictionaryReplacementItems": [],
+    "WebKitDeveloperExtras": false,
+    "AppleLanguages": ["en-US"],
+    "AppleLocale": "en_US",
+    "AppleMeasurementUnits": "Inches",
+    "AppleMetricUnits": false,
+    "AppleTemperatureUnit": "Fahrenheit",
+    "AppleICUForce12HourTime": false,
+    "AppleICUForce24HourTime": false,
+    "NSLinguisticDataAssetsRequestTime": 0,
+    "NSPreferencePaneSearchMode": 1,
+    "PMPrintingExpandedStateForPrint2": false,
+    "com.apple.mouse.tapBehavior": 0,
+    "com.apple.trackpad.enableSecondaryClick": true,
+    "com.apple.trackpad.trackpadCornerClickBehavior": 1,
+    "com.apple.trackpad.twoFingerFromRightEdgeSwipeGesture": 0,
+    "com.apple.swipescrolldirection": true
+  },
+  "com.apple.menuextra.clock": {
+    "DateFormat": "EEE MMM d  h:mm a",
+    "FlashDateSeparators": false,
+    "IsAnalog": false,
+    "Show24Hour": false,
+    "ShowAMPM": true,
+    "ShowDate": 0,
+    "ShowDayOfMonth": true,
+    "ShowDayOfWeek": true,
+    "ShowSeconds": false
+  },
+  "com.apple.spotlight": {
+    "orderedItems": [
+      {
+        "enabled": true,
+        "name": "APPLICATIONS"
+      },
+      {
+        "enabled": true,
+        "name": "SYSTEM_PREFS"
+      },
+      {
+        "enabled": true,
+        "name": "DIRECTORIES"
+      },
+      {
+        "enabled": true,
+        "name": "PDF"
+      },
+      {
+        "enabled": true,
+        "name": "FONTS"
+      },
+      {
+        "enabled": true,
+        "name": "DOCUMENTS"
+      },
+      {
+        "enabled": true,
+        "name": "MESSAGES"
+      },
+      {
+        "enabled": true,
+        "name": "CONTACT"
+      },
+      {
+        "enabled": true,
+        "name": "EVENT_TODO"
+      },
+      {
+        "enabled": true,
+        "name": "IMAGES"
+      },
+      {
+        "enabled": true,
+        "name": "BOOKMARKS"
+      },
+      {
+        "enabled": true,
+        "name": "MUSIC"
+      },
+      {
+        "enabled": true,
+        "name": "MOVIES"
+      },
+      {
+        "enabled": true,
+        "name": "PRESENTATIONS"
+      },
+      {
+        "enabled": true,
+        "name": "SPREADSHEETS"
+      },
+      {
+        "enabled": true,
+        "name": "SOURCE"
+      },
+      {
+        "enabled": false,
+        "name": "MENU_DEFINITION"
+      },
+      {
+        "enabled": false,
+        "name": "MENU_OTHER"
+      },
+      {
+        "enabled": true,
+        "name": "MENU_CONVERSION"
+      },
+      {
+        "enabled": true,
+        "name": "MENU_EXPRESSION"
+      },
+      {
+        "enabled": false,
+        "name": "MENU_WEBSEARCH"
+      },
+      {
+        "enabled": false,
+        "name": "MENU_SPOTLIGHT_SUGGESTIONS"
+      }
+    ]
+  },
+  "com.apple.Safari": {
+    "ShowFavoritesBar": false,
+    "ShowSidebarInTopSites": false,
+    "HomePage": "about:blank",
+    "NewWindowBehavior": 0,
+    "NewTabBehavior": 1,
+    "AutoFillFromAddressBook": false,
+    "AutoFillPasswords": false,
+    "AutoFillCreditCardData": false,
+    "AutoFillMiscellaneousForms": false,
+    "WarnAboutFraudulentWebsites": true,
+    "SendDoNotTrackHTTPHeader": false,
+    "CanPromptForPushNotifications": false,
+    "ShowFullURLInSmartSearchField": false,
+    "SuppressSearchSuggestions": false,
+    "WebsiteSpecificSearchEnabled": true,
+    "PreloadTopHit": true,
+    "ShowDevelopMenu": false,
+    "IncludeDevelopMenu": false,
+    "WebKitDeveloperExtrasEnabledPreferenceKey": false,
+    "com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled": false,
+    "AlwaysRestoreSessionAtLaunch": false,
+    "OpenPrivateWindowWhenNotRestoringSessionAtLaunch": false,
+    "ExcludePrivateWindowWhenRestoringSessionAtLaunch": false
+  },
+  "com.apple.Terminal": {
+    "Default Window Settings": "Basic",
+    "Startup Window Settings": "Basic",
+    "Shell": "/bin/bash",
+    "StringEncodings": [4],
+    "CursorType": 2,
+    "FocusFollowsMouse": false,
+    "SecureKeyboardEntry": false,
+    "ShowLineMarks": false,
+    "ShowRepresentedURLInTitle": false,
+    "ShowWindowSettingsNameInTitle": true,
+    "ShowDimensionsInTitle": false,
+    "ShowShellCommandInTitle": false,
+    "ShowActiveProcessInTitle": true,
+    "ShowActiveProcessArgumentsInTitle": false,
+    "ShowTTYNameInTitle": false,
+    "ShowCommandKeyEquivalentsInContextualMenus": true,
+    "CheckWindowSizeOnProcessExit": true,
+    "SaveTextAsUTF8": true,
+    "StrictVTKeypad": false,
+    "ScrollAlternateScreen": true,
+    "VisualBell": false,
+    "AudibleBell": true
+  },
+  "com.apple.screensaver": {
+    "askForPassword": false,
+    "askForPasswordDelay": 0,
+    "moduleDict": {
+      "moduleName": "Flurry",
+      "path": "/System/Library/Screen Savers/Flurry.saver",
+      "type": 0
+    },
+    "showClock": false,
+    "tokenRemovalAction": 0,
+    "CleanExit": "YES"
+  },
+  "com.apple.loginwindow": {
+    "AdminHostInfo": "HostName",
+    "SHOWFULLNAME": false,
+    "HideLocalUsers": false,
+    "HideMobileAccounts": false,
+    "HideAdminUsers": false,
+    "IncludeNetworkUser": false,
+    "ShutDownDisabled": false,
+    "RestartDisabled": false,
+    "SleepDisabled": false,
+    "DisableConsoleAccess": false,
+    "EnableExternalAccounts": false,
+    "PowerOffDisabledWhileLoggedIn": false,
+    "RestartDisabledWhileLoggedIn": false,
+    "ScreenSaverDefault": "Computer Name",
+    "LoginHook": "",
+    "LogoutHook": ""
+  },
+  "com.apple.AppleMultitouchTrackpad": {
+    "Clicking": false,
+    "DragLock": false,
+    "Dragging": false,
+    "TrackpadCornerSecondaryClick": 0,
+    "TrackpadFiveFingerPinchGesture": 2,
+    "TrackpadFourFingerHorizSwipeGesture": 2,
+    "TrackpadFourFingerPinchGesture": 2,
+    "TrackpadFourFingerVertSwipeGesture": 2,
+    "TrackpadHandResting": true,
+    "TrackpadHorizScroll": true,
+    "TrackpadMomentumScroll": true,
+    "TrackpadPinch": true,
+    "TrackpadRightClick": true,
+    "TrackpadRotate": true,
+    "TrackpadScroll": true,
+    "TrackpadThreeFingerDrag": false,
+    "TrackpadThreeFingerHorizSwipeGesture": 2,
+    "TrackpadThreeFingerTapGesture": 0,
+    "TrackpadThreeFingerVertSwipeGesture": 2,
+    "TrackpadTwoFingerDoubleTapGesture": 1,
+    "TrackpadTwoFingerFromRightEdgeSwipeGesture": 3
+  },
+  "com.apple.universalaccess": {
+    "closeViewScrollWheelToggle": false,
+    "closeViewSmoothImages": false,
+    "closeViewScrollWheelModifiersInt": 262144,
+    "contrast": 0,
+    "flashScreen": false,
+    "mouseDriver": false,
+    "slowKey": false,
+    "stickyKey": false,
+    "voiceOverOnOffKey": false,
+    "whiteOnBlack": false,
+    "reduceMotion": false,
+    "buttonShapes": false,
+    "increaseContrast": false,
+    "reduceTransparency": false,
+    "differentiateWithoutColor": false,
+    "accessibilityEnabled": false
+  },
+  "com.apple.TextEdit": {
+    "RichText": true,
+    "PlainTextEncoding": 4,
+    "PlainTextEncodingForWrite": 4,
+    "ShowRuler": false,
+    "SmartCopyPaste": true,
+    "SmartQuotes": true,
+    "SmartDashes": false,
+    "SmartLinks": true,
+    "DataDetectors": true,
+    "TextReplacement": true,
+    "SpellingCorrection": false,
+    "CheckSpellingWhileTyping": false,
+    "CheckGrammarWithSpelling": false,
+    "CorrectSpellingAutomatically": false,
+    "ShowPageBreaks": true,
+    "DoWrap": true,
+    "CharacterEncoding": 4,
+    "SaveNewFilesAsStationeryPad": false,
+    "AddExtensionToNewPlainTextFiles": true
+  }
+}

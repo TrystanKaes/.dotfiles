@@ -1,0 +1,94 @@
+{
+  "com.apple.finder": {
+    "ShowPathbar": true,
+    "ShowStatusBar": true,
+    "AppleShowAllFiles": true,
+    "FXPreferredViewStyle": "Nlsv",
+    "NewWindowTarget": "PfDe",
+    "ShowHardDrivesOnDesktop": true,
+    "ShowExternalHardDrivesOnDesktop": true,
+    "ShowRemovableMediaOnDesktop": true,
+    "ShowMountedServersOnDesktop": true,
+    "_FXSortFoldersFirst": true,
+    "FXDefaultSearchScope": "SCcf"
+  },
+  "com.apple.dock": {
+    "tilesize": 32,
+    "autohide": true,
+    "show-recents": false,
+    "mineffect": "scale",
+    "autohide-delay": 0.1,
+    "autohide-time-modifier": 0.4,
+    "showhidden": true,
+    "minimize-to-application": true,
+    "enable-spring-load-actions-on-all-items": true
+  },
+  "com.apple.screencapture": {
+    "location": "~/Pictures/Screenshots",
+    "type": "png",
+    "show-thumbnail": false,
+    "disable-shadow": true
+  },
+  "com.apple.NSGlobalDomain": {
+    "InitialKeyRepeat": 15,
+    "KeyRepeat": 2,
+    "AppleShowAllExtensions": true,
+    "ApplePressAndHoldEnabled": false,
+    "AppleKeyboardUIMode": 3,
+    "AppleInterfaceStyle": "Dark",
+    "NSAutomaticCapitalizationEnabled": false,
+    "NSAutomaticDashSubstitutionEnabled": false,
+    "NSAutomaticPeriodSubstitutionEnabled": false,
+    "NSAutomaticQuoteSubstitutionEnabled": false,
+    "NSAutomaticSpellingCorrectionEnabled": false,
+    "NSDocumentSaveNewDocumentsToCloud": false,
+    "AppleShowScrollBars": "Always",
+    "com.apple.swipescrolldirection": false
+  },
+  "com.apple.menuextra.clock": {
+    "DateFormat": "MMM d  HH:mm:ss",
+    "FlashDateSeparators": false,
+    "Show24Hour": true,
+    "ShowAMPM": false,
+    "ShowDate": 1,
+    "ShowDayOfMonth": true,
+    "ShowDayOfWeek": false,
+    "ShowSeconds": true
+  },
+  "com.apple.Safari": {
+    "ShowFavoritesBar": true,
+    "ShowFullURLInSmartSearchField": true,
+    "IncludeDevelopMenu": true,
+    "ShowDevelopMenu": true,
+    "WebKitDeveloperExtrasEnabledPreferenceKey": true,
+    "com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled": true,
+    "AutoFillFromAddressBook": false,
+    "AutoFillPasswords": false,
+    "AutoFillCreditCardData": false,
+    "AutoFillMiscellaneousForms": false,
+    "SendDoNotTrackHTTPHeader": true,
+    "HomePage": "about:blank"
+  },
+  "com.apple.Terminal": {
+    "SecureKeyboardEntry": true,
+    "ShowLineMarks": true,
+    "StringEncodings": [4]
+  },
+  "com.apple.AppleMultitouchTrackpad": {
+    "Clicking": true,
+    "TrackpadThreeFingerDrag": true,
+    "TrackpadRightClick": true,
+    "TrackpadCornerSecondaryClick": 2
+  },
+  "com.apple.universalaccess": {
+    "reduceMotion": false,
+    "reduceTransparency": false
+  },
+  "com.apple.TextEdit": {
+    "RichText": false,
+    "ShowRuler": true,
+    "SmartQuotes": false,
+    "SmartDashes": false,
+    "CheckSpellingWhileTyping": true
+  }
+}
