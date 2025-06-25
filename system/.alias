@@ -64,7 +64,6 @@ alias dprune='docker system prune -a'
 alias send='cd ~/go/src/github.com/sendgrid'
 
 # python alias
-alias nose='source venv/bin/activate'
 alias p='python'
 alias p3='python3'
 

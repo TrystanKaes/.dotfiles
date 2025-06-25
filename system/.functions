@@ -1,5 +1,41 @@
 #!/bin/bash
 
+
+### BEGIN I HATE PYTHON
+# I hate pythons environment management.
+# Here is a dumb CLI to make me less sad.
+function ihp(){
+  if [[ "$1" == "init" ]]; then
+     [ ! -d .ihp ] && python3 -m venv .ihp || echo "ihp already initialized";
+  elif [[ "$1" == "kill" ]]; then
+     [ -d .ihp ] && rm -rf .ihp || echo "ihp not initialized";
+  elif [[ "$1" == "bam" ]]; then
+    [ ! -d .ihp ] && ihp init;
+    ihp start;
+    pip install -r requirements.txt;
+  elif [[ "$1" == "start" ]]; then
+    [ -d .ihp ] && source .ihp/bin/activate && ihp which || echo "ihp not initialized";
+  elif [[ "$1" == "stop" ]]; then
+    [ -d .ihp ] && deactivate > /dev/null 2>&1
+    ihp which
+  elif [[ "$1" == "which" ]]; then
+    [ -d .ihp ] && which python || which python3;
+  else
+    echo "Welcome to \"I Hate Python\""
+    echo ""
+    echo " usage: ihp <init|kill|start|stop|which|bam>"
+    echo ""
+    echo "  'init' - initialize the ihp environment"
+    echo "  'kill' - kill the ihp environment"
+    echo "  'start' - start the ihp environment"
+    echo "  'stop' - stop the ihp environment"
+    echo "  'which' - show the current python"
+    echo "  'bam' - init, start, and then install requirements.txt"
+    echo ""
+  fi
+}
+### END I HATE PYTHON
+
 # Create a new directory and enter it
 function mk() {
   mkdir -p "$@" && cd "$@" || return
