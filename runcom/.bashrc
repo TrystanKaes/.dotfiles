@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Source all the system things.
 for filename in "$HOME"/.dotfiles/system/.*; do
     if [ -f "$filename" ]; then
         # shellcheck disable=SC1090
@@ -7,7 +8,14 @@ for filename in "$HOME"/.dotfiles/system/.*; do
     fi
 done
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
+# Source the local-only things like secrets.
+for filename in "$HOME"/.dotfiles/local/.*; do
+    if [ -f "$filename" ]; then
+        # shellcheck disable=SC1090
+        source "$filename"
+    fi
+done
+
 eval "$(ssh-agent -s)"
 ssh-add --apple-use-keychain
 
