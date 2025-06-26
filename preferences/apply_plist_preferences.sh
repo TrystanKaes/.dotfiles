@@ -35,6 +35,12 @@ jq -r 'to_entries[] | "\(.key)"' "$PREFS_JSON" | while read -r domain; do
     value=$(jq -r --arg domain "$domain" --arg key "$key" '.[$domain][$key]' "$PREFS_JSON")
     type=$(jq -r --arg domain "$domain" --arg key "$key" '.[$domain][$key] | type' "$PREFS_JSON")
 
+    # Validate that we got a proper type
+    if [[ "$type" != "boolean" && "$type" != "number" && "$type" != "string" && "$type" != "object" && "$type" != "array" ]]; then
+      echo "  Skipping $key (invalid type: $type)"
+      continue
+    fi
+
     # If the value is an object or array, use PlistBuddy
     if [[ "$type" == "object" || "$type" == "array" ]]; then
       # Write the nested structure using PlistBuddy
@@ -48,6 +54,11 @@ jq -r 'to_entries[] | "\(.key)"' "$PREFS_JSON" | while read -r domain; do
         /usr/libexec/PlistBuddy -c "Add :$key dict" "$plist"
         # For each subkey, add it
         jq -r --arg domain "$domain" --arg key "$key" '.[$domain][$key] | to_entries[] | "\(.key)\t\(.value)\t\(.value|type)"' "$PREFS_JSON" | while IFS=$'\t' read -r subkey subval subtype; do
+          # Validate subtype
+          if [[ "$subtype" != "boolean" && "$subtype" != "number" && "$subtype" != "string" && "$subtype" != "object" && "$subtype" != "array" ]]; then
+            echo "    Skipping subkey $subkey (invalid type: $subtype)"
+            continue
+          fi
           plist_type=$(json_to_plist_type "$subval" "$subtype")
           /usr/libexec/PlistBuddy -c "Add :$key:$subkey $plist_type $subval" "$plist"
         done
