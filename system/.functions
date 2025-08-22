@@ -204,3 +204,9 @@ override_alias() {
   eval "${name}() { command ${target} \"\$@\"; }"
 }
 # ------------------ END: ALIAS OVERRIDE HELPERS ------------------
+
+# XXX: (Maybe temporary) Fix to get around the fact that VSCode-based editors can't be codesigned
+code () {
+    /usr/local/bin/code "$@" 2> \
+    >(grep -F -v 'SecCodeCheckValidity: Error Domain=NSOSStatusErrorDomain' >&2)
+}

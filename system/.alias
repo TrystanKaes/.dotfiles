@@ -47,7 +47,7 @@ alias bedit='subl ~/.bash_profile'
 alias ttop='top -U $USER'
 alias hosts='sudo subl /etc/hosts'
 alias curl='curl -H "Content-Type: application/json"'
-alias dotfiles='cd $HOME/.dotfiles'
+alias dot='cd $HOME/.dotfiles'
 
 # Kubernetes
 alias k='kubectl'
