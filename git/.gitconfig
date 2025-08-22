@@ -21,6 +21,6 @@ required = true
 rebase = false
 
 [core]
-excludesfile = ~/.gitignore_global
+excludesfile = ~/.dotfiles/git/.gitignore_global
 autocrlf = input
 editor = vim

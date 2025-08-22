@@ -172,18 +172,35 @@ hello() {
   for (( ; ; )); do say "$SAYTHIS"; done
 }
 
-kat() { cat "$@" | lolcat; }
+# ------------------ BEGIN: ALIAS OVERRIDE HELPERS ------------------
+# Overrides for npm and npx
+function override_warning() {
+  cmd="$1"
+  bypass="$2"
+  warningMsg="***********************************************"
+  warningMsg+="\n\t OVERRIDE: using \"${cmd}\" instead "
+  warningMsg+="\n***********************************************"
+  warningMsg+="\nUse \"${bypass}\" to clear this override.\n"
 
-# kafka
-clearKafkaTopics() {
-  for topic in $(kafka-topics --bootstrap-server "$KAFKA_ADDR" --list); do
-    read -p "Delete topic \"$topic\" (y/n)?" -n 1 -r
-    echo
-    if [[ $REPLY =~ ^[Yy]$ ]]; then
-      # Delete the topic
-      echo "  Deleting $topic . . ."
-      # shellcheck disable=SC2086
-      kafka-topics --bootstrap-server $KAFKA_ADDR --delete --topic $topic
-    fi
-  done
+  echo -e "$warningMsg"
+  return 0
 }
+
+
+# helpers
+override_alias() {
+  # Usage: override_alias <name> [target]
+  # Unalias <name> and create a function <name> that calls <target> (defaults to <name>)
+  local name target
+  name="$1"
+  target="${2:-$1}"
+
+  # Remove alias if it exists
+  if alias "$name" >/dev/null 2>&1; then
+    unalias "$name"
+  fi
+
+  # Create a function with the same name, calling the real command
+  eval "${name}() { command ${target} \"\$@\"; }"
+}
+# ------------------ END: ALIAS OVERRIDE HELPERS ------------------

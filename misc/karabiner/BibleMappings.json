@@ -1,0 +1,32 @@
+{
+    "description": "Hotkey remappings for Bible.app",
+    "manipulators": [
+        {
+            "conditions": [
+                {
+                    "bundle_identifiers": [
+                        "com.olivetree.BibleReaderMac"
+                    ],
+                    "type": "frontmost_application_if"
+                }
+            ],
+            "from": {
+                "key_code": "d",
+                "modifiers": {
+                    "mandatory": [
+                        "control"
+                    ]
+                }
+            },
+            "to": [
+                {
+                    "key_code": "t",
+                    "modifiers": [
+                        "command"
+                    ]
+                }
+            ],
+            "type": "basic"
+        }
+    ]
+}

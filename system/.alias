@@ -40,28 +40,27 @@ alias gls="git log --graph --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%
 #random
 alias flush_memcached='echo "flush_all" | nc 127.0.0.1 11211'
 alias mem='sudo htop --sort-key PERCENT_MEM'
-# alias grep="GREP_COLOR='31' grep -in --color=auto 2>/dev/null"
+# XXX: Breaks my nice git terminal colors
+# alias grep="GREP_COLOR='10' grep -in --color=auto 2>/dev/null"
 alias bup='source ~/.bash_profile'
 alias bedit='subl ~/.bash_profile'
 alias ttop='top -U $USER'
 alias hosts='sudo subl /etc/hosts'
 alias curl='curl -H "Content-Type: application/json"'
+alias dotfiles='cd $HOME/.dotfiles'
 
 # Kubernetes
 alias k='kubectl'
 alias kc='kubectl config'
 
 # docker
-alias doc='docker'
+alias d='docker'
 alias dc='docker-compose'
-alias deef='docker-compose stop && docker-compose rm -svf && docker-compose up --build'
+alias dcr='docker-compose stop && docker-compose rm -svf && docker-compose up --build'
 alias drmi='docker rmi -f $(docker images -f "dangling=true" -q)'
 alias dvol='docker volume rm $(docker volume ls -qf dangling=true)'
 alias dclean='docker rmi -f $(docker images -f "dangling=true" -q); docker volume rm $(docker volume ls -qf dangling=true)'
 alias dprune='docker system prune -a'
-
-# golang alias
-alias send='cd ~/go/src/github.com/sendgrid'
 
 # python alias
 alias p='python'
@@ -83,3 +82,14 @@ alias list_kafkatopics='kafka-topics --list --bootstrap-server $KAFKA_ADDR'
 
 # GCP
 alias gcpauth='gcloud auth login; gcloud auth application-default login'
+
+# JS/TS
+alias n='pnpm'
+alias nx='pnpm dlx'
+alias dlx='pnpm dlx'
+
+alias reset_npm='override_alias npm npm'
+alias npm='override_warning "pnpm" "reset_npm" && pnpm'
+
+alias reset_npx='override_alias npx npx'
+alias npx='override_warning "pnpm dlx" "reset_npx" && pnpm dlx'

@@ -19,16 +19,16 @@ git config --global core.excludesfile ~/.gitignore_global
 
 
 ######## BEGIN MacOS Specific Options ########
-if [[ "$(uname)" == "Darwin" ]]; then
+if [ "$(uname)" = "Darwin" ]; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" #homebrew
 
   brew install 'mas' # Use homebrew to manage appstore things
 
   brew bundle install # Install apps/tools from the Brewfile
 
-  "$HOME"/.dotfiles/preferences/apply_plist_preferences.sh
+  # "$HOME"/.dotfiles/preferences/apply_plist_preferences.sh
 
-  "$HOME"/.dotfiles/preferences/osxdefaults
+  # "$HOME"/.dotfiles/preferences/osxdefaults
 fi
 
 # Optionally clear all (default) app icons from the Dock

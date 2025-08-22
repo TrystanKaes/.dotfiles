@@ -1,0 +1,33 @@
+{
+    "description": "Hotkey remappings for Slack.app",
+    "manipulators": [
+        {
+            "conditions": [
+                {
+                    "bundle_identifiers": [
+                        "com.tinyspeck.slackmacgap"
+                    ],
+                    "type": "frontmost_application_if"
+                }
+            ],
+            "from": {
+                "key_code": "s",
+                "modifiers": {
+                    "mandatory": [
+                        "control"
+                    ]
+                }
+            },
+            "to": [
+                {
+                    "key_code": "d",
+                    "modifiers": [
+                        "command",
+                        "shift"
+                    ]
+                }
+            ],
+            "type": "basic"
+        }
+    ]
+}

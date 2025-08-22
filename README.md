@@ -44,7 +44,6 @@ cd .dotfiles/ && sh setup.sh
   - IS THIS A DUPE?
 - **`backupToUsb`** - Backup Documents, Projects, Downloads, and Work to USB
 - **`hello`** - Infinite text-to-speech loop (with Asimov's Laws of Robotics)
-- **`kat`** - Cat files with rainbow colors (lolcat)
 - **`clearKafkaTopics`** - Interactive Kafka topic cleanup
 
 ### Aliases

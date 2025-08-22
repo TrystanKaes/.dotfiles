@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# XXX: This doesn't work yet.
+
 set -euo pipefail
 
 PREFS_JSON="preferences/plist_preferences.json"
@@ -26,71 +28,79 @@ json_to_plist_type() {
   esac
 }
 
+# Recursive function to process JSON structure
+process_json_value() {
+  local domain="$1"
+  local key_path="$2"
+  local value="$3"
+  local type="$4"
+  local plist="$HOME/Library/Preferences/$domain.plist"
+
+  # Validate that we got a proper type
+  if [[ "$type" != "boolean" && "$type" != "number" && "$type" != "string" && "$type" != "object" && "$type" != "array" ]]; then
+    echo "  Skipping $key_path (invalid type: $type)"
+    return
+  fi
+
+  # If we've reached a primitive type, apply the preference
+  if [[ "$type" == "boolean" || "$type" == "number" || "$type" == "string" ]]; then
+    echo "  Applying $key_path ($type): $value"
+    plist_type=$(json_to_plist_type "$value" "$type")
+    /usr/libexec/PlistBuddy -c "Set :$key_path $plist_type $value" "$plist" 2>/dev/null || \
+    /usr/libexec/PlistBuddy -c "Add :$key_path $plist_type $value" "$plist"
+    return
+  fi
+
+  # For objects, iterate over keys and recurse
+  if [[ "$type" == "object" ]]; then
+    echo "  Processing object: $key_path"
+    # Remove the key if it exists and add as dict
+    /usr/libexec/PlistBuddy -c "Delete :$key_path" "$plist" 2>/dev/null || true
+    /usr/libexec/PlistBuddy -c "Add :$key_path dict" "$plist"
+
+    # Get all keys in this object
+    jq -r --arg domain "$domain" --arg key_path "$key_path" 'getpath($key_path | split(".")) | to_entries[] | "\(.key)"' "$PREFS_JSON" | while read -r subkey; do
+      local subvalue
+      local subtype
+      subvalue=$(jq -r --arg domain "$domain" --arg key_path "$key_path" --arg subkey "$subkey" 'getpath($key_path | split("."))[$subkey]' "$PREFS_JSON")
+      subtype=$(jq -r --arg domain "$domain" --arg key_path "$key_path" --arg subkey "$subkey" 'getpath($key_path | split("."))[$subkey] | type' "$PREFS_JSON")
+
+      local new_key_path
+      if [[ "$key_path" == "" ]]; then
+        new_key_path="$subkey"
+      else
+        new_key_path="$key_path.$subkey"
+      fi
+
+      process_json_value "$domain" "$new_key_path" "$subvalue" "$subtype"
+    done
+  fi
+
+  # For arrays, add as array and add each item
+  if [[ "$type" == "array" ]]; then
+    echo "  Processing array: $key_path"
+    # Remove the key if it exists and add as array
+    /usr/libexec/PlistBuddy -c "Delete :$key_path" "$plist" 2>/dev/null || true
+    /usr/libexec/PlistBuddy -c "Add :$key_path array" "$plist"
+
+    # Add each item to the array
+    jq -r --arg domain "$domain" --arg key_path "$key_path" 'getpath($key_path | split("."))[]' "$PREFS_JSON" | while read -r item; do
+      /usr/libexec/PlistBuddy -c "Add :$key_path: string $item" "$plist"
+    done
+  fi
+}
+
 # Iterate over each domain in the JSON
 jq -r 'to_entries[] | "\(.key)"' "$PREFS_JSON" | while read -r domain; do
   echo "Processing domain: $domain"
+
   # For each key in the domain
   jq -r --arg domain "$domain" '.[$domain] | to_entries[] | "\(.key)"' "$PREFS_JSON" | while read -r key; do
     # Get the value and its type
     value=$(jq -r --arg domain "$domain" --arg key "$key" '.[$domain][$key]' "$PREFS_JSON")
     type=$(jq -r --arg domain "$domain" --arg key "$key" '.[$domain][$key] | type' "$PREFS_JSON")
 
-    # Validate that we got a proper type
-    if [[ "$type" != "boolean" && "$type" != "number" && "$type" != "string" && "$type" != "object" && "$type" != "array" ]]; then
-      echo "  Skipping $key (invalid type: $type)"
-      continue
-    fi
-
-    # If the value is an object or array, use PlistBuddy
-    if [[ "$type" == "object" || "$type" == "array" ]]; then
-      # Write the nested structure using PlistBuddy
-      # Write to ~/Library/Preferences/$domain.plist
-      plist="$HOME/Library/Preferences/$domain.plist"
-      echo "  Using PlistBuddy for nested key: $key"
-      # Remove the key if it exists
-      /usr/libexec/PlistBuddy -c "Delete :$key" "$plist" 2>/dev/null || true
-      # Add the key as a dict or array
-      if [[ "$type" == "object" ]]; then
-        /usr/libexec/PlistBuddy -c "Add :$key dict" "$plist"
-        # For each subkey, add it
-        jq -r --arg domain "$domain" --arg key "$key" '.[$domain][$key] | to_entries[] | "\(.key)\t\(.value)\t\(.value|type)"' "$PREFS_JSON" | while IFS=$'\t' read -r subkey subval subtype; do
-          # Validate subtype
-          if [[ "$subtype" != "boolean" && "$subtype" != "number" && "$subtype" != "string" && "$subtype" != "object" && "$subtype" != "array" ]]; then
-            echo "    Skipping subkey $subkey (invalid type: $subtype)"
-            continue
-          fi
-          plist_type=$(json_to_plist_type "$subval" "$subtype")
-          /usr/libexec/PlistBuddy -c "Add :$key:$subkey $plist_type $subval" "$plist"
-        done
-      else
-        /usr/libexec/PlistBuddy -c "Add :$key array" "$plist"
-        # For each item, add it
-        jq -r --arg domain "$domain" --arg key "$key" '.[$domain][$key][]' "$PREFS_JSON" | while read -r item; do
-          /usr/libexec/PlistBuddy -c "Add :$key: string $item" "$plist"
-        done
-      fi
-    else
-      # Use defaults write for flat keys
-      echo "  Using defaults write for $key ($type): $value"
-      case "$type" in
-        boolean)
-          if [[ "$value" == "true" ]]; then
-            defaults write "$domain" "$key" -bool true
-          else
-            defaults write "$domain" "$key" -bool false
-          fi
-          ;;
-        number)
-          defaults write "$domain" "$key" -int "$value"
-          ;;
-        string)
-          defaults write "$domain" "$key" "$value"
-          ;;
-        *)
-          echo "  Skipping $key (unsupported type: $type)"
-          ;;
-      esac
-    fi
+    process_json_value "$domain" "$key" "$value" "$type"
   done
 done
 
