@@ -93,3 +93,6 @@ alias npm='override_warning "pnpm" "reset_npm" && pnpm'
 
 alias reset_npx='override_alias npx npx'
 alias npx='override_warning "pnpm dlx" "reset_npx" && pnpm dlx'
+
+# NGROK
+alias jngrok='ngrok http --url=jrnli.ngrok.dev 3000'
