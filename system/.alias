@@ -24,6 +24,7 @@ alias gc='git commit -m'
 alias wip='ga && gc "wip"'
 alias gri='git rebase -i'
 alias gr='git rebase'
+alias gro='git rebase -X ours'
 alias gfu='git fetch origin continuous; git rebase -i origin/continuous'
 alias gco='git checkout'
 alias gush='git push origin'
@@ -36,6 +37,7 @@ alias gut='git'
 alias glog='git log --oneline --decorate'
 alias commits='git shortlog -s -n'
 alias gls="git log --graph --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative -n 20"
+alias grefl='git reflog --date=format:"%Y-%m-%d %H:%M:%S"'
 
 #random
 alias flush_memcached='echo "flush_all" | nc 127.0.0.1 11211'
@@ -85,7 +87,7 @@ alias gcpauth='gcloud auth login; gcloud auth application-default login'
 
 # JS/TS
 alias n='pnpm'
-alias nx='pnpm dlx'
+alias nx='pnpm nx'
 alias dlx='pnpm dlx'
 
 alias reset_npm='override_alias npm npm'
@@ -94,5 +96,4 @@ alias npm='override_warning "pnpm" "reset_npm" && pnpm'
 alias reset_npx='override_alias npx npx'
 alias npx='override_warning "pnpm dlx" "reset_npx" && pnpm dlx'
 
-# NGROK
-alias jngrok='ngrok http --url=jrnli.ngrok.dev 3000'
+alias tf='terraform'
