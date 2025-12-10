@@ -83,7 +83,7 @@ alias start_kafkabroker='kafka-server-start /opt/homebrew/etc/kafka/server.prope
 alias list_kafkatopics='kafka-topics --list --bootstrap-server $KAFKA_ADDR'
 
 # GCP
-alias gcpauth='gcloud auth login; gcloud auth application-default login'
+alias gauth='gcloud auth login && gcloud auth application-default login'
 
 # JS/TS
 alias n='pnpm'
@@ -97,3 +97,9 @@ alias reset_npx='override_alias npx npx'
 alias npx='override_warning "pnpm dlx" "reset_npx" && pnpm dlx'
 
 alias tf='terraform'
+
+
+alias ytaudio='yt-dlp -f "ba/bestaudio" -S "abr,acodec"   -x --audio-format m4a --audio-quality 0   --embed-metadata --embed-thumbnail --convert-thumbnails jpg   --split-chapters   --parse-metadata "title:(?P<artist>.+?)\s*[-–]\s*(?P<title>.+)"   -o "%(title)s.m4a"   --write-info-json --clean-info-json'
+
+
+alias n8n='docker run -it --rm  --name n8n  -p 5678:5678  -e GENERIC_TIMEZONE="MST"  -e TZ="MST"  -e N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true  -e N8N_RUNNERS_ENABLED=true  -e NODE_FUNCTION_ALLOW_EXTERNAL=* -e NODE_FUNCTION_ALLOW_BUILTIN=* -v n8n_data:/home/node/.n8n  docker.n8n.io/n8nio/n8n'
