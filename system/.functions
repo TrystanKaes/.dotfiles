@@ -96,6 +96,36 @@ new_branch() {
   git push -u origin "$1"
 }
 
+new_tree() {
+  if [[ "$1" == "" ]]; then
+    echo "usage: new_tree <branch_name>"
+    return
+  elif [[ "$(git branch | grep -E "$1")" != "" ]]; then
+    echo "$1 already exists locally"
+    return
+  fi
+
+  primary=''
+  get_primary_branch_name primary
+
+  # Get repository name from git root directory
+  repo_name=$(basename "$(git rev-parse --show-toplevel)")
+  worktree_path="$HOME/.git_trees/$repo_name/$1"
+
+  # Ensure .git_trees directory exists
+  mkdir -p "$HOME/.git_trees/$repo_name"
+
+  # Check if worktree path already exists
+  if [[ -d "$worktree_path" ]]; then
+    echo "Worktree path $worktree_path already exists"
+    return
+  fi
+
+  git fetch origin
+  git worktree add -b "$1" "$worktree_path" "origin/$primary"
+  echo "Created worktree at $worktree_path with branch $1"
+}
+
 cleanup_branches() {
   # Check for search term
   search_term="$1"
@@ -209,4 +239,49 @@ override_alias() {
 code () {
     /usr/local/bin/code "$@" 2> \
     >(grep -F -v 'SecCodeCheckValidity: Error Domain=NSOSStatusErrorDomain' >&2)
+}
+
+
+add_secret() {
+    local valid=true
+    local usage="         Usage: add_secret <project_id> <secret_name> <secret_value>"
+
+    if [ -z "${1:-}" ]; then
+      echo "Error: project_id is required"
+      valid=false
+    fi
+
+    if [ -z "${2:-}" ]; then
+      echo "Error: secret_name is required"
+      valid=false
+    fi
+
+    if [ -z "${3:-}" ]; then
+      echo "Error: secret_value is required"
+      valid=false
+    fi
+
+    if [ $valid != true ]; then
+      echo "$usage"
+      return;
+    fi
+
+    local project=$1
+    local secret_name=$2
+    local secret_value=$3
+
+    echo "  → Adding version to ${secret_name}..."
+    echo -n "${secret_value}" | gcloud secrets versions add "${secret_name}" \
+        --data-file=- \
+        --project="${project}" \
+        2>/dev/null || {
+        echo "    ⚠ Secret ${secret_name} may not exist yet. Creating..."
+        gcloud secrets create "${secret_name}" \
+            --project="${project}" \
+            --replication-policy="automatic" \
+            2>/dev/null || true
+        echo -n "${secret_value}" | gcloud secrets versions add "${secret_name}" \
+            --data-file=- \
+            --project="${project}"
+    }
 }

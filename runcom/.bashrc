@@ -34,3 +34,4 @@ esac
 
 
 export BUN_INSTALL="$HOME/.bun"
+export PATH="$PATH:/Users/trystankaes/.lmstudio/bin"
