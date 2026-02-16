@@ -24,6 +24,8 @@ export NVM_DIR="$HOME/.nvm"
   [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"
   [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
 
+complete -F _btca_bash_completions -o bashdefault -o default btca
+
 # pnpm
 export PNPM_HOME="/Users/trystankaes/Library/pnpm"
 case ":$PATH:" in

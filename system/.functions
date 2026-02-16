@@ -285,3 +285,268 @@ add_secret() {
             --project="${project}"
     }
 }
+
+function _btca_bash_completions() {
+    local i cur prev opts cmd
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD-1]}"
+    cmd=""
+    opts=""
+    for i in "${COMP_WORDS[@]}"; do
+        case "${cmd},${i}" in
+            ",$1")
+                cmd="btca"
+                ;;
+            btca,ask)
+                cmd="btca__ask"
+                ;;
+            btca,serve)
+                cmd="btca__serve"
+                ;;
+            btca,open)
+                cmd="btca__open"
+                ;;
+            btca,chat)
+                cmd="btca__chat"
+                ;;
+            btca,config)
+                cmd="btca__config"
+                ;;
+            btca,config,model)
+                cmd="btca__config__model"
+                ;;
+            btca,config,repos)
+                cmd="btca__config__repos"
+                ;;
+            btca,config,repos,list)
+                cmd="btca__config__repos__list"
+                ;;
+            btca,config,repos,add)
+                cmd="btca__config__repos__add"
+                ;;
+            btca,config,repos,remove)
+                cmd="btca__config__repos__remove"
+                ;;
+            btca,config,repos,clear)
+                cmd="btca__config__repos__clear"
+                ;;
+            *)
+                ;;
+        esac
+    done
+    case "${cmd}" in
+        btca)
+            opts="-h --completions --log-level --help --wizard --version ask chat config open serve"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 1 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+            *)
+                COMPREPLY=()
+                ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        btca__ask)
+            opts="-q -t -h --question --tech --completions --log-level --help --wizard --version"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                -q|--question)
+                    COMPREPLY=( $(compgen -f "${cur}") )
+                    return 0
+                    ;;
+                -t|--tech)
+                    COMPREPLY=( $(compgen -f "${cur}") )
+                    return 0
+                    ;;
+            *)
+                COMPREPLY=()
+                ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        btca__serve)
+            opts="-p -h --port --completions --log-level --help --wizard --version"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                -p|--port)
+                    COMPREPLY=( $(compgen -f "${cur}") )
+                    return 0
+                    ;;
+            *)
+                COMPREPLY=()
+                ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        btca__open)
+            opts="-h --completions --log-level --help --wizard --version"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+            *)
+                COMPREPLY=()
+                ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        btca__chat)
+            opts="-t -h --tech --completions --log-level --help --wizard --version"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                -t|--tech)
+                    COMPREPLY=( $(compgen -f "${cur}") )
+                    return 0
+                    ;;
+            *)
+                COMPREPLY=()
+                ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        btca__config)
+            opts="-h --completions --log-level --help --wizard --version model repos"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+            *)
+                COMPREPLY=()
+                ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        btca__config__model)
+            opts="-p -m -h --provider --model --completions --log-level --help --wizard --version"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                -p|--provider)
+                    COMPREPLY=( $(compgen -f "${cur}") )
+                    return 0
+                    ;;
+                -m|--model)
+                    COMPREPLY=( $(compgen -f "${cur}") )
+                    return 0
+                    ;;
+            *)
+                COMPREPLY=()
+                ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        btca__config__repos)
+            opts="-h --completions --log-level --help --wizard --version add clear list remove"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+            *)
+                COMPREPLY=()
+                ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        btca__config__repos__list)
+            opts="-h --completions --log-level --help --wizard --version"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+            *)
+                COMPREPLY=()
+                ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        btca__config__repos__add)
+            opts="-n -u -b -h --name --url --branch --notes --completions --log-level --help --wizard --version"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                -n|--name)
+                    COMPREPLY=( $(compgen -f "${cur}") )
+                    return 0
+                    ;;
+                -u|--url)
+                    COMPREPLY=( $(compgen -f "${cur}") )
+                    return 0
+                    ;;
+                -b|--branch)
+                    COMPREPLY=( $(compgen -f "${cur}") )
+                    return 0
+                    ;;
+                --notes)
+                    COMPREPLY=( $(compgen -f "${cur}") )
+                    return 0
+                    ;;
+            *)
+                COMPREPLY=()
+                ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        btca__config__repos__remove)
+            opts="-n -h --name --completions --log-level --help --wizard --version"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                -n|--name)
+                    COMPREPLY=( $(compgen -f "${cur}") )
+                    return 0
+                    ;;
+            *)
+                COMPREPLY=()
+                ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        btca__config__repos__clear)
+            opts="-h --completions --log-level --help --wizard --version"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+            *)
+                COMPREPLY=()
+                ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+    esac
+}
