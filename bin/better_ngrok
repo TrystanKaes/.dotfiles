@@ -1,0 +1,60 @@
+#!/bin/bash
+
+# Script to run ngrok in headless mode and extract specific output
+# This script will run ngrok in the background, wait for the output,
+# extract the relevant information, and then exit
+
+# Function to cleanup background processes
+cleanup() {
+    if [ ! -z "$NGROK_PID" ]; then
+        kill $NGROK_PID 2>/dev/null
+        wait $NGROK_PID 2>/dev/null
+    fi
+    exit 0
+}
+
+# Set up signal handlers to cleanup on exit
+trap cleanup SIGINT SIGTERM EXIT
+
+# Start ngrok in the background
+echo "Starting ngrok in headless mode..."
+ngrok http 3000 --log=stdout > /tmp/ngrok_output.log 2>&1 &
+NGROK_PID=$!
+
+# Wait a moment for ngrok to start up
+sleep 3
+
+# Function to extract and print the relevant information
+extract_ngrok_info() {
+    # Read the log file and extract the relevant sections
+    if [ -f "/tmp/ngrok_output.log" ]; then
+        # Look for the session status and forwarding information
+        grep -A 20 "Session Status" /tmp/ngrok_output.log | head -15
+    fi
+}
+
+# Wait for ngrok to be ready and extract info
+echo "Waiting for ngrok to initialize..."
+for i in {1..30}; do
+    if grep -q "Session Status.*online" /tmp/ngrok_output.log 2>/dev/null; then
+        echo "ngrok is ready!"
+        echo ""
+        extract_ngrok_info
+        echo ""
+        echo "ngrok is running in the background (PID: $NGROK_PID)"
+        echo "You can now close this terminal. ngrok will continue running."
+        echo "To stop ngrok later, run: kill $NGROK_PID"
+        echo ""
+        echo "Done!"
+
+        # Keep the script running but detach from terminal
+        # The cleanup function will handle termination
+        while true; do
+            sleep 60
+        done
+    fi
+    sleep 1
+done
+
+echo "Timeout waiting for ngrok to start"
+cleanup

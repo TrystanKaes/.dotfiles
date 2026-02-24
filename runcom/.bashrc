@@ -37,3 +37,6 @@ esac
 
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$PATH:/Users/trystankaes/.lmstudio/bin"
+
+# worktree-switcher
+eval "$(wt-bin init)"
