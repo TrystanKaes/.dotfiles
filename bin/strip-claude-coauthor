@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+# Rewrites git history on the current branch, stripping any
+# "Co-Authored-By: …Claude…" trailer lines from your commits.
+#
+# Usage: strip-claude-coauthor.sh [--dry-run]
+#
+# WARNING: This rewrites history. Don't use on shared branches
+# without coordinating with collaborators.
+
+set -euo pipefail
+
+DRY_RUN=false
+[[ "${1:-}" == "--dry-run" ]] && DRY_RUN=true
+
+AUTHOR_EMAIL=$(git config user.email)
+if [[ -z "$AUTHOR_EMAIL" ]]; then
+  echo "Error: could not determine git user.email" >&2
+  exit 1
+fi
+
+# Preview affected commits
+echo "Scanning for Co-Authored-By Claude lines (author: $AUTHOR_EMAIL)..."
+affected=()
+while IFS= read -r hash; do
+  msg=$(git log -1 --format="%B" "$hash")
+  if echo "$msg" | grep -qiE "^co-authored-by:.*claude"; then
+    affected+=("$hash")
+    echo "  $(git log -1 --format='%h %s' "$hash")"
+  fi
+done < <(git rev-list --all --author="$AUTHOR_EMAIL")
+
+echo "Found ${#affected[@]} commit(s) to rewrite."
+
+if [[ ${#affected[@]} -eq 0 ]]; then
+  echo "Nothing to do."
+  exit 0
+fi
+
+if $DRY_RUN; then
+  echo "Dry run — no changes made."
+  exit 0
+fi
+
+# Use FILTER_BRANCH_SQUELCH_WARNING to suppress the deprecation nag
+export FILTER_BRANCH_SQUELCH_WARNING=1
+
+git filter-branch -f --msg-filter '
+  sed "/^[Cc]o-[Aa]uthored-[Bb]y:.*[Cc]laude/d"
+' -- --all
+
+echo "Done. Review with 'git log' then force-push if needed."

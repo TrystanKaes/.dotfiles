@@ -1,0 +1,56 @@
+#!/bin/bash
+set -euo pipefail
+
+model_dir="$HOME/.cache/llama.cpp/models"
+model_file="$model_dir/gemma-4-26B-A4B-it-Q4_K_M.gguf"
+part_file="$model_file.part"
+model_url="https://huggingface.co/ggml-org/gemma-4-26B-A4B-it-GGUF/resolve/main/gemma-4-26B-A4B-it-Q4_K_M.gguf"
+
+mkdir -p "$model_dir"
+
+get_expected_size() {
+  curl -fsSLI "$model_url" | tr -d '\r' | awk '/^content-length:/ {print $2}' | tail -1
+}
+
+file_size() {
+  local path="$1"
+  if [[ -f "$path" ]]; then
+    stat -f %z "$path"
+  else
+    echo 0
+  fi
+}
+
+expected_size="$(get_expected_size)"
+
+if [[ -z "$expected_size" ]]; then
+  echo "Could not determine expected Gemma model size." >&2
+  exit 1
+fi
+
+if [[ -f "$model_file" ]] && [[ "$(file_size "$model_file")" != "$expected_size" ]]; then
+  mv "$model_file" "$part_file"
+fi
+
+if [[ ! -f "$model_file" ]]; then
+  echo "Ensuring Gemma model is fully downloaded..." >&2
+  curl -L --fail --retry 5 --continue-at - -o "$part_file" "$model_url"
+
+  if [[ "$(file_size "$part_file")" != "$expected_size" ]]; then
+    echo "Gemma download incomplete: $(file_size "$part_file") / $expected_size bytes" >&2
+    exit 1
+  fi
+
+  mv "$part_file" "$model_file"
+fi
+
+echo "Starting Gemma server on port 8004..." >&2
+exec /opt/homebrew/bin/llama-server \
+  -m "$model_file" \
+  --port 8004 \
+  -ngl 99 \
+  -fa on \
+  -ub 1024 \
+  -b 1024 \
+  --ctx-size 0 \
+  --cache-reuse 256

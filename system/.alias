@@ -39,6 +39,11 @@ alias commits='git shortlog -s -n'
 alias gls="git log --graph --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative -n 20"
 alias grefl='git reflog --date=format:"%Y-%m-%d %H:%M:%S"'
 
+# Agentic Coding
+alias yolo='claude --dangerously-skip-permissions --model=sonnet --effort=medium'
+alias cr='claude --resume'
+alias cco='claude --continue'
+
 #random
 alias flush_memcached='echo "flush_all" | nc 127.0.0.1 11211'
 alias mem='sudo htop --sort-key PERCENT_MEM'

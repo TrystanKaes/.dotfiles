@@ -1,0 +1,95 @@
+#!/bin/bash
+set -euo pipefail
+
+domain="gui/$(id -u)"
+agents_dir="$HOME/Library/LaunchAgents"
+
+log() {
+  printf '%s\n' "$*"
+}
+
+usage() {
+  echo "Usage: llm {start|stop|restart|status} {qwen|gemma|all}" >&2
+  exit 1
+}
+
+require_args() {
+  if [[ $# -ne 2 ]]; then
+    usage
+  fi
+}
+
+label_for() {
+  case "$1" in
+    qwen) echo "com.local.llama-server" ;;
+    gemma) echo "com.local.gemma4-server" ;;
+    *) return 1 ;;
+  esac
+}
+
+plist_for() {
+  case "$1" in
+    qwen) echo "$agents_dir/com.local.llama-server.plist" ;;
+    gemma) echo "$agents_dir/com.local.gemma4-server.plist" ;;
+    *) return 1 ;;
+  esac
+}
+
+operate_one() {
+  local action="$1"
+  local name="$2"
+  local label plist
+  label="$(label_for "$name")"
+  plist="$(plist_for "$name")"
+
+  case "$action" in
+    start)
+      log "Starting $name..."
+      launchctl enable "$domain/$label" 2>/dev/null || true
+      launchctl bootstrap "$domain" "$plist" 2>/dev/null || true
+      launchctl kickstart -k "$domain/$label"
+      log "$name start requested."
+      ;;
+    stop)
+      log "Stopping $name..."
+      launchctl bootout "$domain" "$plist" 2>/dev/null || launchctl bootout "$domain/$label" 2>/dev/null || true
+      log "$name stopped."
+      ;;
+    restart)
+      log "Restarting $name..."
+      launchctl bootout "$domain" "$plist" 2>/dev/null || launchctl bootout "$domain/$label" 2>/dev/null || true
+      launchctl bootstrap "$domain" "$plist"
+      launchctl enable "$domain/$label" 2>/dev/null || true
+      launchctl kickstart -k "$domain/$label"
+      log "$name restart requested."
+      ;;
+    status)
+      log "Status for $name:"
+      launchctl print "$domain/$label" | sed -n '1,40p'
+      ;;
+    *)
+      usage
+      ;;
+  esac
+}
+
+main() {
+  require_args "$@"
+  local action="$1"
+  local target="$2"
+
+  case "$target" in
+    qwen|gemma)
+      operate_one "$action" "$target"
+      ;;
+    all)
+      operate_one "$action" qwen
+      operate_one "$action" gemma
+      ;;
+    *)
+      usage
+      ;;
+  esac
+}
+
+main "$@"

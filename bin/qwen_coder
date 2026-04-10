@@ -1,0 +1,65 @@
+#!/bin/bash
+
+PORT=8012
+LOGFILE="/tmp/llama-server.log"
+
+_find_pid() {
+  pgrep -f "llama-server.*--port $PORT"
+}
+
+start() {
+  local pid
+  pid=$(_find_pid)
+  if [ -n "$pid" ]; then
+    echo "qwen_coder is already running (PID $pid)"
+    return 1
+  fi
+
+  llama-server \
+    -hf ggml-org/Qwen2.5-Coder-7B-Q8_0-GGUF \
+    --port "$PORT" -ngl 99 -fa auto -ub 1024 -b 1024 \
+    --ctx-size 0 --cache-reuse 256 \
+    > "$LOGFILE" 2>&1 &
+
+  sleep 1
+  pid=$(_find_pid)
+  if [ -n "$pid" ]; then
+    echo "llama-server started on :$PORT (PID $pid)"
+  else
+    echo "llama-server failed to start — check $LOGFILE"
+    return 1
+  fi
+}
+
+stop() {
+  local pid
+  pid=$(_find_pid)
+  if [ -z "$pid" ]; then
+    echo "qwen_coder is not running"
+    return 1
+  fi
+
+  kill "$pid"
+  # TODO: Wait for graceful shutdown, then force kill if needed
+  echo "qwen_coder stopped (PID $pid)"
+}
+
+status() {
+  local pid
+  pid=$(_find_pid)
+  if [ -n "$pid" ]; then
+    echo "qwen_coder is running (PID $pid) on :$PORT"
+  else
+    echo "qwen_coder is not running"
+  fi
+}
+
+case "${1:-start}" in
+  start)  start  ;;
+  stop)   stop   ;;
+  status) status ;;
+  *)
+    echo "Usage: qwen_coder {start|stop|status}"
+    exit 1
+    ;;
+esac

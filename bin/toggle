@@ -1,0 +1,24 @@
+#!/bin/bash
+# Usage: toggle <AppName>
+# Toggles visibility of a macOS application.
+# If not running: launch it. If frontmost: hide it. Otherwise: bring it forward.
+
+set -euo pipefail
+
+if [[ $# -lt 1 ]]; then
+  echo "Usage: toggle <AppName>" >&2
+  exit 1
+fi
+
+APP_NAME="$1"
+
+osascript \
+  -e "tell application \"System Events\"" \
+  -e "  if not (exists process \"$APP_NAME\") then" \
+  -e "    tell application \"$APP_NAME\" to activate" \
+  -e "  else if frontmost of process \"$APP_NAME\" then" \
+  -e "    set visible of process \"$APP_NAME\" to false" \
+  -e "  else" \
+  -e "    tell application \"$APP_NAME\" to activate" \
+  -e "  end if" \
+  -e "end tell"

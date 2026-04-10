@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Ghostty shell integration for Bash.
+if [ -n "${GHOSTTY_RESOURCES_DIR}" ]; then
+    builtin source "${GHOSTTY_RESOURCES_DIR}/shell-integration/bash/ghostty.bash"
+fi
+
 # Source all the system things.
 for filename in "$HOME"/.dotfiles/system/.*; do
     if [ -f "$filename" ]; then

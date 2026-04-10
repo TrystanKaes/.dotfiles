@@ -1,0 +1,311 @@
+{
+  "description": "Hotkey remappings for Magnet.app",
+  "manipulators": [
+    {
+      "conditions": [
+        {
+          "identifiers": [
+            {
+              "is_keyboard": true,
+              "product_id": 24926,
+              "vendor_id": 7504
+            }
+          ],
+          "type": "device_if"
+        }
+      ],
+      "description": "Magnet Left: ^⌥J",
+      "from": {
+        "key_code": "j",
+        "modifiers": {
+          "mandatory": [
+            "control",
+            "option"
+          ]
+        }
+      },
+      "to": [
+        {
+          "key_code": "l",
+          "modifiers": [
+            "control",
+            "option"
+          ]
+        }
+      ],
+      "type": "basic"
+    },
+    {
+      "conditions": [
+        {
+          "identifiers": [
+            {
+              "is_keyboard": true,
+              "product_id": 24926,
+              "vendor_id": 7504
+            }
+          ],
+          "type": "device_if"
+        }
+      ],
+      "description": "Magnet Right: ^⌥L",
+      "from": {
+        "key_code": "l",
+        "modifiers": {
+          "mandatory": [
+            "control",
+            "option"
+          ]
+        }
+      },
+      "to": [
+        {
+          "key_code": "quote",
+          "modifiers": [
+            "control",
+            "option"
+          ]
+        }
+      ],
+      "type": "basic"
+    },
+    {
+      "conditions": [
+        {
+          "identifiers": [
+            {
+              "is_keyboard": true,
+              "product_id": 24926,
+              "vendor_id": 7504
+            }
+          ],
+          "type": "device_if"
+        }
+      ],
+      "description": "Magnet Top Left: ^⌥U",
+      "from": {
+        "key_code": "u",
+        "modifiers": {
+          "mandatory": [
+            "control",
+            "option"
+          ]
+        }
+      },
+      "to": [
+        {
+          "key_code": "o",
+          "modifiers": [
+            "control",
+            "option"
+          ]
+        }
+      ],
+      "type": "basic"
+    },
+    {
+      "conditions": [
+        {
+          "identifiers": [
+            {
+              "is_keyboard": true,
+              "product_id": 24926,
+              "vendor_id": 7504
+            }
+          ],
+          "type": "device_if"
+        }
+      ],
+      "description": "Magnet Top: ^⌥I",
+      "from": {
+        "key_code": "i",
+        "modifiers": {
+          "mandatory": [
+            "control",
+            "option"
+          ]
+        }
+      },
+      "to": [
+        {
+          "key_code": "p",
+          "modifiers": [
+            "control",
+            "option"
+          ]
+        }
+      ],
+      "type": "basic"
+    },
+    {
+      "conditions": [
+        {
+          "identifiers": [
+            {
+              "is_keyboard": true,
+              "product_id": 24926,
+              "vendor_id": 7504
+            }
+          ],
+          "type": "device_if"
+        }
+      ],
+      "description": "Magnet Top Right: ^⌥O",
+      "from": {
+        "key_code": "o",
+        "modifiers": {
+          "mandatory": [
+            "control",
+            "option"
+          ]
+        }
+      },
+      "to": [
+        {
+          "key_code": "open_bracket",
+          "modifiers": [
+            "control",
+            "option"
+          ]
+        }
+      ],
+      "type": "basic"
+    },
+    {
+      "conditions": [
+        {
+          "identifiers": [
+            {
+              "is_keyboard": true,
+              "product_id": 24926,
+              "vendor_id": 7504
+            }
+          ],
+          "type": "device_if"
+        }
+      ],
+      "description": "Magnet Bottom Left: ^⌥M",
+      "from": {
+        "key_code": "m",
+        "modifiers": {
+          "mandatory": [
+            "control",
+            "option"
+          ]
+        }
+      },
+      "to": [
+        {
+          "key_code": "comma",
+          "modifiers": [
+            "control",
+            "option"
+          ]
+        }
+      ],
+      "type": "basic"
+    },
+    {
+      "conditions": [
+        {
+          "identifiers": [
+            {
+              "is_keyboard": true,
+              "product_id": 24926,
+              "vendor_id": 7504
+            }
+          ],
+          "type": "device_if"
+        }
+      ],
+      "description": "Magnet Bottom: ^⌥,",
+      "from": {
+        "key_code": "comma",
+        "modifiers": {
+          "mandatory": [
+            "control",
+            "option"
+          ]
+        }
+      },
+      "to": [
+        {
+          "key_code": "period",
+          "modifiers": [
+            "control",
+            "option"
+          ]
+        }
+      ],
+      "type": "basic"
+    },
+    {
+      "conditions": [
+        {
+          "identifiers": [
+            {
+              "is_keyboard": true,
+              "product_id": 24926,
+              "vendor_id": 7504
+            }
+          ],
+          "type": "device_if"
+        }
+      ],
+      "description": "Magnet Bottom Right: ^⌥.",
+      "from": {
+        "key_code": "period",
+        "modifiers": {
+          "mandatory": [
+            "control",
+            "option"
+          ]
+        }
+      },
+      "to": [
+        {
+          "key_code": "slash",
+          "modifiers": [
+            "control",
+            "option"
+          ]
+        }
+      ],
+      "type": "basic"
+    },
+    {
+      "conditions": [
+        {
+          "identifiers": [
+            {
+              "is_keyboard": true,
+              "product_id": 24926,
+              "vendor_id": 7504
+            }
+          ],
+          "type": "device_if"
+        }
+      ],
+      "description": "Magnet Maximize: ^⌥K",
+      "from": {
+        "key_code": "k",
+        "modifiers": {
+          "mandatory": [
+            "control",
+            "option"
+          ]
+        }
+      },
+      "to": [
+        {
+          "key_code": "semicolon",
+          "modifiers": [
+            "control",
+            "option"
+          ]
+        }
+      ],
+      "type": "basic"
+    }
+  ]
+}

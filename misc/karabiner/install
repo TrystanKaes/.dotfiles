@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+SOURCE="$HOME/.dotfiles/misc/karabiner/karabiner.json"
+TARGET="$HOME/.config/karabiner/karabiner.json"
+
+mkdir -p "$(dirname "$TARGET")"
+
+if [ ! -f "$SOURCE" ]; then
+  echo "Missing source config: $SOURCE" >&2
+  exit 1
+fi
+
+if [ -L "$TARGET" ]; then
+  rm "$TARGET"
+elif [ -e "$TARGET" ]; then
+  backup="$TARGET.pre-dotfiles-$(date +%Y%m%d%H%M%S)"
+  mv "$TARGET" "$backup"
+  echo "Backed up existing karabiner config to $backup"
+fi
+
+ln -s "$SOURCE" "$TARGET"
+echo "Linked $TARGET -> $SOURCE"

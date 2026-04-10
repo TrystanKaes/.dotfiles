@@ -93,195 +93,11 @@
         "FXICloudDriveDesktop": false,
         "ShowExternalHardDrivesOnDesktop": true,
         "ShowMountedServersOnDesktop": true,
-        "NSUserKeyEquivalents": {
-            "New Finder Window": "@n",
-            "Hide Sidebar": "^s",
-            "Show Sidebar": "^s"
-        },
         "PreviewPaneInfoExpanded": true,
         "ShowPathbar": true,
         "FXICloudDriveEnabled": true,
         "FXDefaultSearchScope": "SCcf",
         "OpenWindowForNewRemovableDisk": true
-    },
-    "com.apple.symbolichotkeys": {
-        "AppleSymbolicHotKeys": {
-            "118": {
-                "enabled": true,
-                "value": {
-                    "parameters": [
-                        49,
-                        18,
-                        1048576
-                    ],
-                    "type": "standard"
-                }
-            },
-            "119": {
-                "enabled": true,
-                "value": {
-                    "parameters": [
-                        50,
-                        19,
-                        1048576
-                    ],
-                    "type": "standard"
-                }
-            },
-            "120": {
-                "enabled": true,
-                "value": {
-                    "parameters": [
-                        51,
-                        20,
-                        1048576
-                    ],
-                    "type": "standard"
-                }
-            },
-            "121": {
-                "enabled": true,
-                "value": {
-                    "parameters": [
-                        52,
-                        21,
-                        1048576
-                    ],
-                    "type": "standard"
-                }
-            },
-            "122": {
-                "enabled": true,
-                "value": {
-                    "parameters": [
-                        53,
-                        23,
-                        1048576
-                    ],
-                    "type": "standard"
-                }
-            },
-            "123": {
-                "enabled": true,
-                "value": {
-                    "parameters": [
-                        54,
-                        22,
-                        1048576
-                    ],
-                    "type": "standard"
-                }
-            },
-            "160": {
-                "enabled": true,
-                "value": {
-                    "parameters": [
-                        112,
-                        35,
-                        262144
-                    ],
-                    "type": "standard"
-                }
-            },
-            "163": {
-                "enabled": true,
-                "value": {
-                    "parameters": [
-                        91,
-                        33,
-                        262144
-                    ],
-                    "type": "standard"
-                }
-            },
-            "32": {
-                "enabled": true,
-                "value": {
-                    "parameters": [
-                        59,
-                        41,
-                        262144
-                    ],
-                    "type": "standard"
-                }
-            },
-            "33": {
-                "enabled": true,
-                "value": {
-                    "parameters": [
-                        47,
-                        44,
-                        262144
-                    ],
-                    "type": "standard"
-                }
-            },
-            "36": {
-                "enabled": true,
-                "value": {
-                    "parameters": [
-                        46,
-                        47,
-                        262144
-                    ],
-                    "type": "standard"
-                }
-            },
-            "79": {
-                "enabled": true,
-                "value": {
-                    "parameters": [
-                        108,
-                        37,
-                        262144
-                    ],
-                    "type": "standard"
-                }
-            },
-            "81": {
-                "enabled": true,
-                "value": {
-                    "parameters": [
-                        39,
-                        39,
-                        262144
-                    ],
-                    "type": "standard"
-                }
-            },
-            "222": {
-                "enabled": true,
-                "value": {
-                    "parameters": [
-                        65535,
-                        36,
-                        262144
-                    ],
-                    "type": "standard"
-                }
-            }
-        }
-    },
-    "company.thebrowser.Browser": {
-        "NSUserKeyEquivalents": {
-            "Hide Sidebar": "^s",
-            "Show Sidebar": "^s"
-        },
-        "arcAlwaysAllowedLinkToSchemesPerSite": {
-            "us05web.zoom.us": [
-                "zoomus"
-            ]
-        }
-    },
-    "com.openai.chat": {
-        "NSUserKeyEquivalents": {
-            "Toggle Sidebar": "^s"
-        }
-    },
-    "com.adobe.lightroomCC": {
-        "NSUserKeyEquivalents": {
-            "Photos": "^s"
-        }
     },
     "com.apple.sidecar.display": {
         "allowAllDevices": true,
@@ -317,7 +133,7 @@
         "DSDontWriteUSBStores": true
     },
     "com.apple.AppleMultitouchTrackpad": {
-        "Clicking": 0
+        "Clicking": true
     },
     "com.apple.print.PrintingPrefs": {
         "Quit When Finished": true
@@ -344,9 +160,6 @@
         "_HIHideMenuBar": true,
         "com.apple.mouse.scaling": 3.0,
         "com.apple.trackpad.scaling": 3.0
-    },
-    "com.apple.BluetoothAudioAgent": {
-        "Apple Bitpool Min (editable)": 40
     },
     "com.apple.NetworkBrowser": {
         "BrowseAllInterfaces": true
@@ -384,12 +197,6 @@
     },
     "com.apple.ImageCapture": {
         "disableHotPlug": true
-    },
-    "com.apple.messageshelper.MessageController": {
-        "SOInputLineSettings": {
-            "automaticEmojiSubstitutionEnablediMessage": false,
-            "automaticQuoteSubstitutionEnabled": false
-        }
     },
     "com.apple.windowserver": {
         "DisplayResolutionEnabled": true
