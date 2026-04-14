@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+SOURCE_PLIST="$HOME/.dotfiles/misc/bartender/com.surteesstudios.Bartender.plist"
+TARGET_PLIST="$HOME/Library/Preferences/com.surteesstudios.Bartender.plist"
+BUNDLE_ID="com.surteesstudios.Bartender"
+
+if [ ! -f "$SOURCE_PLIST" ]; then
+  echo "Missing source plist: $SOURCE_PLIST" >&2
+  exit 1
+fi
+
+# Quit Bartender if running so the plist isn't locked
+if pgrep -xq "Bartender 5" 2>/dev/null || pgrep -xq "Bartender" 2>/dev/null; then
+  echo "Quitting Bartender..."
+  osascript -e 'tell application "Bartender 5" to quit' 2>/dev/null \
+    || osascript -e 'tell application "Bartender" to quit' 2>/dev/null \
+    || true
+  sleep 1
+fi
+
+# Kill cfprefsd so it flushes cached preferences before we replace the file
+killall cfprefsd 2>/dev/null || true
+
+if [ -e "$TARGET_PLIST" ]; then
+  backup="$TARGET_PLIST.pre-dotfiles-$(date +%Y%m%d%H%M%S)"
+  cp "$TARGET_PLIST" "$backup"
+  echo "Backed up existing plist to $backup"
+fi
+
+cp "$SOURCE_PLIST" "$TARGET_PLIST"
+echo "Installed $BUNDLE_ID preferences"
+echo "Open Bartender to apply settings."

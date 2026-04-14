@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# Run this after changing Bartender settings to save them back to dotfiles.
+
+set -euo pipefail
+
+SOURCE_PLIST="$HOME/Library/Preferences/com.surteesstudios.Bartender.plist"
+DEST_PLIST="$HOME/.dotfiles/misc/bartender/com.surteesstudios.Bartender.plist"
+
+if [ ! -f "$SOURCE_PLIST" ]; then
+  echo "No Bartender plist found at $SOURCE_PLIST" >&2
+  exit 1
+fi
+
+# Flush in-memory prefs to disk before copying
+killall cfprefsd 2>/dev/null || true
+sleep 0.5
+
+cp "$SOURCE_PLIST" "$DEST_PLIST"
+echo "Synced Bartender preferences to dotfiles."
+echo "Remember to commit: git -C ~/.dotfiles add misc/bartender && git -C ~/.dotfiles commit -m 'sync bartender prefs'"
