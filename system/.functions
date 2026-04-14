@@ -1,6 +1,35 @@
 #!/bin/bash
 
 
+# Surgical fix via Claude headless — fix "error message"
+fix() {
+  local GREEN='\033[0;32m'
+  local YELLOW='\033[1;33m'
+  local RED='\033[0;31m'
+  local BOLD='\033[1m'
+  local DIM='\033[2m'
+  local RESET='\033[0m'
+
+  printf "${DIM}fixing...${RESET}"
+
+  local output
+  output=$(claude -p "$*" \
+    --system-prompt "You are a surgical code fixer. Make the minimal change only — no refactoring, no style changes. Your entire response MUST be exactly one line starting with either 'Fixed:' or 'No fix:' — nothing before it, nothing after it. Example: 'Fixed: removed extra semicolon on line 12'" \
+    --dangerously-skip-permissions \
+    --allowedTools "Edit,Read,Write,Bash" \
+    --model haiku 2>&1)
+
+  printf "\r\033[2K"  # clear "fixing..." line
+
+  if echo "$output" | grep -qi "^fixed:"; then
+    echo -e "${GREEN}${BOLD}✓ ${output}${RESET}"
+  elif echo "$output" | grep -qi "^no fix:"; then
+    echo -e "${YELLOW}${BOLD}⚠ ${output}${RESET}"
+  else
+    echo -e "${RED}${BOLD}✗ ${output}${RESET}"
+  fi
+}
+
 ### BEGIN I HATE PYTHON
 # I hate pythons environment management.
 # Here is a dumb CLI to make me less sad.

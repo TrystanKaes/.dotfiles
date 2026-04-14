@@ -2,7 +2,7 @@
 
 # Ghostty shell integration for Bash.
 if [ -n "${GHOSTTY_RESOURCES_DIR}" ]; then
-    builtin source "${GHOSTTY_RESOURCES_DIR}/shell-integration/bash/ghostty.bash"
+  builtin source "${GHOSTTY_RESOURCES_DIR}/shell-integration/bash/ghostty.bash"
 fi
 
 # Source all the system things.
@@ -23,6 +23,7 @@ done
 
 eval "$(ssh-agent -s)"
 ssh-add --apple-use-keychain
+eval "$(worktree-switcher init)"
 
 # Load NVM and add bash_completions
 export NVM_DIR="$HOME/.nvm"
@@ -43,5 +44,10 @@ esac
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$PATH:/Users/trystankaes/.lmstudio/bin"
 
-# worktree-switcher
-eval "$(wt-bin init)"
+eval "$(zoxide init bash)"
+
+# Re-emit OSC 7 after Ghostty's 133;C clears it, so splits inherit CWD during TUI sessions.
+claude() {
+  printf '\033]7;file://%s%s\007' "$HOSTNAME" "$PWD"
+  command claude "$@"
+}

@@ -26,6 +26,7 @@ if is_macos; then
   # Set up app configs
   "$HOME/.dotfiles/misc/karabiner/install"
   "$HOME/.dotfiles/misc/magnet/install"
+  "$HOME/.dotfiles/misc/bartender/install"
 
   # Optionally clear all (default) app icons from the Dock
   read -rp "Do you want to clear all Dock apps? (y/n): " clear_dock || true

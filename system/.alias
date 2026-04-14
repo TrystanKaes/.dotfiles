@@ -1,9 +1,8 @@
 #!/bin/bash
 
-# cd shortcuts
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
+# Zoxide (cd) shortcuts
+alias cd='z'
+alias cdi='zi'
 
 # ls shortcuts
 alias ls='\ls'
@@ -25,7 +24,7 @@ alias wip='ga && gc "wip"'
 alias gri='git rebase -i'
 alias gr='git rebase'
 alias gro='git rebase -X ours'
-alias gfu='git fetch origin continuous; git rebase -i origin/continuous'
+alias gfu='git fetch origin main; git rebase origin/main'
 alias gco='git checkout'
 alias gush='git push origin'
 alias gull='git pull origin master'
