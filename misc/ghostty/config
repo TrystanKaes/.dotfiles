@@ -1,0 +1,2 @@
+window-inherit-working-directory = true
+shell-integration = detect
