@@ -33,6 +33,7 @@ if is_macos; then
   "$SYMLINK" misc/magnet/com.crowdcafe.windowmagnet.plist "$HOME/Library/Preferences/com.crowdcafe.windowmagnet.plist"
   "$SYMLINK" misc/ghostty/config "$HOME/.config/ghostty/config"
   "$HOME/.dotfiles/misc/bartender/install"  # copy + app-quit, not a symlink
+  "$HOME/.dotfiles/misc/claude/install"
 
   # Optionally clear all (default) app icons from the Dock
   read -rp "Do you want to clear all Dock apps? (y/n): " clear_dock || true

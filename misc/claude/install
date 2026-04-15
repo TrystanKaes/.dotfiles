@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+SYMLINK="$HOME/.dotfiles/bin/symlink"
+
+# Individual files
+"$SYMLINK" misc/claude/settings.json "$HOME/.claude/settings.json"
+"$SYMLINK" misc/claude/keybindings.json "$HOME/.claude/keybindings.json"
+"$SYMLINK" misc/claude/mcp.json "$HOME/.claude/mcp.json"
+"$SYMLINK" misc/claude/CLAUDE.md "$HOME/.claude/CLAUDE.md"
+
+# Directories
+"$SYMLINK" misc/claude/commands "$HOME/.claude/commands"
+"$SYMLINK" misc/claude/hooks "$HOME/.claude/hooks"
+"$SYMLINK" misc/claude/agents "$HOME/.claude/agents"
