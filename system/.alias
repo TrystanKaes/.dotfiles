@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# Zoxide (cd) shortcuts
-alias cd='z'
-alias cdi='zi'
-
 # ls shortcuts
 alias ls='\ls'
 alias ll='\ls -lAh'
@@ -40,8 +36,10 @@ alias grefl='git reflog --date=format:"%Y-%m-%d %H:%M:%S"'
 
 # Agentic Coding
 alias yolo='claude --dangerously-skip-permissions --model=sonnet --effort=medium'
-alias cr='claude --resume'
-alias cco='claude --continue'
+alias cl='claude'
+alias clp='claude -p'
+alias clr='claude --resume'
+alias clc='claude --continue'
 
 #random
 alias flush_memcached='echo "flush_all" | nc 127.0.0.1 11211'

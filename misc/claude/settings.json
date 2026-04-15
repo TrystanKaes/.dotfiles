@@ -78,28 +78,9 @@
       "git"
     ]
   },
-  "model": "sonnet",
   "hooks": {
-    "SessionStart": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash ~/.claude/hooks/caveman-session.sh"
-          }
-        ]
-      }
-    ],
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "echo '💤 Claude fell asleep.' >&2; exit 1"
-          }
-        ]
-      }
-    ],
+    "SessionStart": [],
+    "Stop": [],
     "PreCompact": [
       {
         "matcher": "",
