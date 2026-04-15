@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+# Usage: symlink <source> <target>
+#   source — path relative to ~/.dotfiles, or absolute
+#   target — absolute path where the symlink should live
+#
+# Works for both files and directories. Backs up any existing real
+# file/dir before replacing it.
+
+set -euo pipefail
+
+if [[ $# -ne 2 ]]; then
+  echo "Usage: symlink <source> <target>" >&2
+  exit 1
+fi
+
+DOTFILES="$HOME/.dotfiles"
+
+src="$1"
+tgt="$2"
+
+[[ "$src" != /* ]] && src="$DOTFILES/$src"
+
+mkdir -p "$(dirname "$tgt")"
+
+if [ -L "$tgt" ] && [ "$(readlink "$tgt")" = "$src" ]; then
+  echo "Already linked: $tgt -> $src"
+  exit 0
+fi
+
+if [ -L "$tgt" ]; then
+  rm "$tgt"
+elif [ -e "$tgt" ]; then
+  backup="$tgt.pre-dotfiles-$(date +%Y%m%d%H%M%S)"
+  mv "$tgt" "$backup"
+  echo "Backed up: $backup"
+fi
+
+ln -s "$src" "$tgt"
+echo "Linked $tgt -> $src"
