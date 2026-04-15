@@ -45,7 +45,7 @@ if [[ ! -f "$model_file" ]]; then
 fi
 
 echo "Starting Gemma server on port 8004..." >&2
-exec /opt/homebrew/bin/llama-server \
+exec "$(brew --prefix)/bin/llama-server" \
   -m "$model_file" \
   --port 8004 \
   -ngl 99 \

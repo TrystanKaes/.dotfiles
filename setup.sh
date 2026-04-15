@@ -7,17 +7,21 @@ is_macos() { [ "$(uname)" = "Darwin" ]; }
 ######## macOS-specific setup ########
 if is_macos; then
 
-  # Change default shell to bash (only if needed)
-  if [ "$SHELL" != "/bin/bash" ]; then
-    chsh -s /bin/bash
-  fi
-
   # Install Homebrew if not already present
   if ! command -v brew &>/dev/null; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   fi
 
   brew bundle install  # Install apps/tools from the Brewfile
+
+  # Change default shell to Homebrew bash (only if needed)
+  HOMEBREW_BASH="$(brew --prefix)/bin/bash"
+  if ! grep -qF "$HOMEBREW_BASH" /etc/shells; then
+    echo "$HOMEBREW_BASH" | sudo tee -a /etc/shells
+  fi
+  if [ "$SHELL" != "$HOMEBREW_BASH" ]; then
+    chsh -s "$HOMEBREW_BASH"
+  fi
 
   # Apply macOS system preferences (sudo required for some settings in osxdefaults)
   "$HOME/.dotfiles/preferences/apply_plist_preferences.sh"
