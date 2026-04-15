@@ -1,873 +1,1227 @@
 {
-  "global": { "show_in_menu_bar": false },
-  "profiles": [
-    {
-      "complex_modifications": {
-        "rules": [
-          {
-            "description": "Toggle app show/hide",
-            "manipulators": [
-              {
-                "description": "Quick ChatGPT: ⌘^⌥_",
-                "from": {
-                  "key_code": "spacebar",
-                  "modifiers": { "mandatory": ["command", "option"] }
-                },
-                "to": [
-                  {
-                    "key_code": "1",
-                    "modifiers": ["control", "option", "command"]
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "description": "Toggle Dia: ⌘^0",
-                "from": {
-                  "key_code": "0",
-                  "modifiers": { "mandatory": ["command", "control", "option"] }
-                },
-                "to": [{ "shell_command": "~/.dotfiles/bin/toggle Dia" }],
-                "type": "basic"
-              },
-              {
-                "description": "Toggle Claude: ⌘^⌥5",
-                "from": {
-                  "key_code": "5",
-                  "modifiers": { "mandatory": ["command", "control", "option"] }
-                },
-                "to": [{ "shell_command": "~/.dotfiles/bin/toggle Claude" }],
-                "type": "basic"
-              },
-              {
-                "description": "Toggle Codex: ⌘^⌥6",
-                "from": {
-                  "key_code": "6",
-                  "modifiers": { "mandatory": ["command", "control", "option"] }
-                },
-                "to": [{ "shell_command": "~/.dotfiles/bin/toggle Codex" }],
-                "type": "basic"
-              },
-              {
-                "description": "Toggle Visual Studio Code: ⌘^⌥2",
-                "from": {
-                  "key_code": "2",
-                  "modifiers": { "mandatory": ["command", "control", "option"] }
-                },
-                "to": [{ "shell_command": "~/.dotfiles/bin/toggle Code" }],
-                "type": "basic"
-              },
-
-              {
-                "description": "Toggle Ghostty: ⌘^⌥3",
-                "from": {
-                  "key_code": "3",
-                  "modifiers": { "mandatory": ["command", "control", "option"] }
-                },
-                "to": [{ "shell_command": "~/.dotfiles/bin/toggle Ghostty" }],
-                "type": "basic"
-              }
-            ]
-          },
-          {
-            "description": "Hotkey remappings for Magnet (Kinesis 360 Pro)",
-            "manipulators": [
-              {
-                "conditions": [
-                  {
-                    "identifiers": [
-                      {
-                        "is_keyboard": true,
-                        "product_id": 24926,
-                        "vendor_id": 7504
-                      }
-                    ],
-                    "type": "device_if"
-                  }
-                ],
-                "description": "Magnet Left: ^⌥J",
-                "from": {
-                  "key_code": "j",
-                  "modifiers": { "mandatory": ["control", "option"] }
-                },
-                "to": [
-                  {
-                    "key_code": "l",
-                    "modifiers": ["control", "option"]
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "identifiers": [
-                      {
-                        "is_keyboard": true,
-                        "product_id": 24926,
-                        "vendor_id": 7504
-                      }
-                    ],
-                    "type": "device_if"
-                  }
-                ],
-                "description": "Magnet Right: ^⌥L",
-                "from": {
-                  "key_code": "l",
-                  "modifiers": { "mandatory": ["control", "option"] }
-                },
-                "to": [
-                  {
-                    "key_code": "quote",
-                    "modifiers": ["control", "option"]
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "identifiers": [
-                      {
-                        "is_keyboard": true,
-                        "product_id": 24926,
-                        "vendor_id": 7504
-                      }
-                    ],
-                    "type": "device_if"
-                  }
-                ],
-                "description": "Magnet Top Left: ^⌥U",
-                "from": {
-                  "key_code": "u",
-                  "modifiers": { "mandatory": ["control", "option"] }
-                },
-                "to": [
-                  {
-                    "key_code": "o",
-                    "modifiers": ["control", "option"]
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "identifiers": [
-                      {
-                        "is_keyboard": true,
-                        "product_id": 24926,
-                        "vendor_id": 7504
-                      }
-                    ],
-                    "type": "device_if"
-                  }
-                ],
-                "description": "Magnet Top: ^⌥I",
-                "from": {
-                  "key_code": "i",
-                  "modifiers": { "mandatory": ["control", "option"] }
-                },
-                "to": [
-                  {
-                    "key_code": "p",
-                    "modifiers": ["control", "option"]
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "identifiers": [
-                      {
-                        "is_keyboard": true,
-                        "product_id": 24926,
-                        "vendor_id": 7504
-                      }
-                    ],
-                    "type": "device_if"
-                  }
-                ],
-                "description": "Magnet Top Right: ^⌥O",
-                "from": {
-                  "key_code": "o",
-                  "modifiers": { "mandatory": ["control", "option"] }
-                },
-                "to": [
-                  {
-                    "key_code": "open_bracket",
-                    "modifiers": ["control", "option"]
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "identifiers": [
-                      {
-                        "is_keyboard": true,
-                        "product_id": 24926,
-                        "vendor_id": 7504
-                      }
-                    ],
-                    "type": "device_if"
-                  }
-                ],
-                "description": "Magnet Bottom Left: ^⌥M",
-                "from": {
-                  "key_code": "m",
-                  "modifiers": { "mandatory": ["control", "option"] }
-                },
-                "to": [
-                  {
-                    "key_code": "comma",
-                    "modifiers": ["control", "option"]
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "identifiers": [
-                      {
-                        "is_keyboard": true,
-                        "product_id": 24926,
-                        "vendor_id": 7504
-                      }
-                    ],
-                    "type": "device_if"
-                  }
-                ],
-                "description": "Magnet Bottom: ^⌥,",
-                "from": {
-                  "key_code": "comma",
-                  "modifiers": { "mandatory": ["control", "option"] }
-                },
-                "to": [
-                  {
-                    "key_code": "period",
-                    "modifiers": ["control", "option"]
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "identifiers": [
-                      {
-                        "is_keyboard": true,
-                        "product_id": 24926,
-                        "vendor_id": 7504
-                      }
-                    ],
-                    "type": "device_if"
-                  }
-                ],
-                "description": "Magnet Bottom Right: ^⌥.",
-                "from": {
-                  "key_code": "period",
-                  "modifiers": { "mandatory": ["control", "option"] }
-                },
-                "to": [
-                  {
-                    "key_code": "slash",
-                    "modifiers": ["control", "option"]
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "identifiers": [
-                      {
-                        "is_keyboard": true,
-                        "product_id": 24926,
-                        "vendor_id": 7504
-                      }
-                    ],
-                    "type": "device_if"
-                  }
-                ],
-                "description": "Magnet Maximize: ^⌥K",
-                "from": {
-                  "key_code": "k",
-                  "modifiers": { "mandatory": ["control", "option"] }
-                },
-                "to": [
-                  {
-                    "key_code": "semicolon",
-                    "modifiers": ["control", "option"]
-                  }
-                ],
-                "type": "basic"
-              }
-            ]
-          },
-          {
-            "description": "Hotkey remappings for Music.app",
-            "manipulators": [
-              {
-                "conditions": [
-                  {
-                    "bundle_identifiers": ["com.apple.Music"],
-                    "type": "frontmost_application_if"
-                  }
-                ],
-                "from": {
-                  "key_code": "v",
-                  "modifiers": { "mandatory": ["control"] }
-                },
-                "to": [
-                  {
-                    "key_code": "t",
-                    "modifiers": ["command"]
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "bundle_identifiers": ["com.apple.Music"],
-                    "type": "frontmost_application_if"
-                  }
-                ],
-                "from": {
-                  "key_code": "m",
-                  "modifiers": { "mandatory": ["control"] }
-                },
-                "to": [
-                  {
-                    "key_code": "m",
-                    "modifiers": ["command", "shift"]
-                  }
-                ],
-                "type": "basic"
-              }
-            ]
-          },
-          {
-            "description": "Native MacBook system shortcuts",
-            "manipulators": [
-              {
-                "conditions": [
-                  {
-                    "identifiers": [
-                      {
-                        "is_keyboard": true,
-                        "product_id": 24926,
-                        "vendor_id": 7504
-                      }
-                    ],
-                    "type": "device_if"
-                  }
-                ],
-                "description": "Mission Control: ^K",
-                "from": {
-                  "key_code": "k",
-                  "modifiers": { "mandatory": ["control"] }
-                },
-                "to": [{ "apple_vendor_keyboard_key_code": "mission_control" }],
-                "type": "basic"
-              },
-              {
-                "description": "Mission Control: ^;",
-                "from": {
-                  "key_code": "semicolon",
-                  "modifiers": { "mandatory": ["control"] }
-                },
-                "to": [{ "apple_vendor_keyboard_key_code": "mission_control" }],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "identifiers": [
-                      {
-                        "is_keyboard": true,
-                        "product_id": 24926,
-                        "vendor_id": 7504
-                      }
-                    ],
-                    "type": "device_if"
-                  }
-                ],
-                "description": "Move left a space: ^J",
-                "from": {
-                  "key_code": "j",
-                  "modifiers": { "mandatory": ["control"] }
-                },
-                "to": [{ "key_code": "left_arrow", "modifiers": ["control"] }],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "identifiers": [
-                      {
-                        "is_keyboard": true,
-                        "product_id": 24926,
-                        "vendor_id": 7504
-                      }
-                    ],
-                    "type": "device_if"
-                  }
-                ],
-                "description": "Move right a space: ^L",
-                "from": {
-                  "key_code": "l",
-                  "modifiers": { "mandatory": ["control"] }
-                },
-                "to": [{ "key_code": "right_arrow", "modifiers": ["control"] }],
-                "type": "basic"
-              },
-              {
-                "description": "Move left a space: ^L",
-                "from": {
-                  "key_code": "l",
-                  "modifiers": { "mandatory": ["control"] }
-                },
-                "to": [
-                  {
-                    "key_code": "left_arrow",
-                    "modifiers": ["control"]
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "description": "Move right a space: ^'",
-                "from": {
-                  "key_code": "quote",
-                  "modifiers": { "mandatory": ["control"] }
-                },
-                "to": [
-                  {
-                    "key_code": "right_arrow",
-                    "modifiers": ["control"]
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "identifiers": [
-                      {
-                        "is_keyboard": true,
-                        "product_id": 24926,
-                        "vendor_id": 7504
-                      }
-                    ],
-                    "type": "device_if"
-                  }
-                ],
-                "description": "Show Apps: ^I",
-                "from": {
-                  "key_code": "i",
-                  "modifiers": { "mandatory": ["control"] }
-                },
-                "to": [{ "apple_vendor_keyboard_key_code": "launchpad" }],
-                "type": "basic"
-              },
-              {
-                "description": "Show Apps: ^P",
-                "from": {
-                  "key_code": "p",
-                  "modifiers": { "mandatory": ["control"] }
-                },
-                "to": [{ "apple_vendor_keyboard_key_code": "launchpad" }],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "identifiers": [
-                      {
-                        "is_keyboard": true,
-                        "product_id": 24926,
-                        "vendor_id": 7504
-                      }
-                    ],
-                    "type": "device_if"
-                  }
-                ],
-                "description": "Show Notification Center: ^O",
-                "from": {
-                  "key_code": "o",
-                  "modifiers": { "mandatory": ["control"] }
-                },
-                "to": [
-                  {
-                    "shell_command": "osascript -e 'tell application \"System Events\" to tell process \"ControlCenter\" to click (first menu bar item of menu bar 1 whose description is \"Clock\")'"
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "description": "Show Notification Center: ^[",
-                "from": {
-                  "key_code": "open_bracket",
-                  "modifiers": { "mandatory": ["control"] }
-                },
-                "to": [
-                  {
-                    "shell_command": "osascript -e 'tell application \"System Events\" to tell process \"ControlCenter\" to click (first menu bar item of menu bar 1 whose description is \"Clock\")'"
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "identifiers": [
-                      {
-                        "is_keyboard": true,
-                        "product_id": 24926,
-                        "vendor_id": 7504
-                      }
-                    ],
-                    "type": "device_if"
-                  }
-                ],
-                "description": "Application Windows: ^,",
-                "from": {
-                  "key_code": "comma",
-                  "modifiers": { "mandatory": ["control"] }
-                },
-                "to": [{ "key_code": "down_arrow", "modifiers": ["control"] }],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "identifiers": [
-                      {
-                        "is_keyboard": true,
-                        "product_id": 24926,
-                        "vendor_id": 7504
-                      }
-                    ],
-                    "type": "device_if"
-                  }
-                ],
-                "description": "Show Desktop: ^.",
-                "from": {
-                  "key_code": "period",
-                  "modifiers": { "mandatory": ["control"] }
-                },
-                "to": [
-                  {
-                    "shell_command": "osascript -e 'tell application \"System Events\" to key code 160 using {command down}'"
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "description": "Application windows: ^.",
-                "from": {
-                  "key_code": "period",
-                  "modifiers": { "mandatory": ["control"] }
-                },
-                "to": [
-                  {
-                    "key_code": "down_arrow",
-                    "modifiers": ["control"]
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "description": "Show Desktop: ^/",
-                "from": {
-                  "key_code": "slash",
-                  "modifiers": { "mandatory": ["control"] }
-                },
-                "to": [
-                  {
-                    "shell_command": "osascript -e 'tell application \"System Events\" to key code 160 using {command down}'"
-                  }
-                ],
-                "type": "basic"
-              }
-            ]
-          },
-          {
-            "description": "Coerce all sidebars to be the same",
-            "manipulators": [
-              {
-                "conditions": [
-                  {
-                    "bundle_identifiers": ["com.openai.codex"],
-                    "type": "frontmost_application_if"
-                  }
-                ],
-                "description": "Codex - Toggle sidebar",
-                "from": {
-                  "key_code": "s",
-                  "modifiers": { "mandatory": ["control"] }
-                },
-                "to": [{ "key_code": "b", "modifiers": ["command"] }],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "bundle_identifiers": ["company.thebrowser.dia"],
-                    "type": "frontmost_application_if"
-                  }
-                ],
-                "description": "Dia - Toggle sidebar",
-                "from": {
-                  "key_code": "s",
-                  "modifiers": { "mandatory": ["control"] }
-                },
-                "to": [{ "key_code": "s", "modifiers": ["command"] }],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "bundle_identifiers": ["com.anthropic.claudefordesktop"],
-                    "type": "frontmost_application_if"
-                  }
-                ],
-                "description": "Claude - Toggle sidebar",
-                "from": {
-                  "key_code": "s",
-                  "modifiers": { "mandatory": ["control"] }
-                },
-                "to": [
-                  {
-                    "shell_command": "~/.dotfiles/bin/click-frontmost-menu-item.sh 'Claude' 'Open sidebar' 'Close sidebar'"
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "bundle_identifiers": ["com.olivetree.BibleReaderMac"],
-                    "type": "frontmost_application_if"
-                  }
-                ],
-                "description": "Bible Study - Toggle sidebar",
-                "from": {
-                  "key_code": "s",
-                  "modifiers": { "mandatory": ["control"] }
-                },
-                "to": [
-                  {
-                    "shell_command": "~/.dotfiles/bin/click-frontmost-menu-item.sh 'Bible Study' 'Toggle Sidebar'"
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "bundle_identifiers": ["com.tinyspeck.slackmacgap"],
-                    "type": "frontmost_application_if"
-                  }
-                ],
-                "description": "Slack - Toggle sidebar",
-                "from": {
-                  "key_code": "s",
-                  "modifiers": { "mandatory": ["control"] }
-                },
-                "to": [{ "key_code": "d", "modifiers": ["command", "shift"] }],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "bundle_identifiers": ["com.apple.Music"],
-                    "type": "frontmost_application_if"
-                  }
-                ],
-                "description": "Music - Toggle sidebar",
-                "from": {
-                  "key_code": "s",
-                  "modifiers": { "mandatory": ["control"] }
-                },
-                "to": [{ "key_code": "u", "modifiers": ["command", "option"] }],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "bundle_identifiers": ["^com\\.apple\\.Preview$"],
-                    "type": "frontmost_application_if"
-                  }
-                ],
-                "description": "Preview - Toggle sidebar",
-                "from": {
-                  "key_code": "s",
-                  "modifiers": { "mandatory": ["control"] }
-                },
-                "to": [
-                  { "key_code": "1", "modifiers": ["command", "option"] },
-                  { "key_code": "2", "modifiers": ["command", "option"] }
-                ],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "bundle_identifiers": ["com.linear"],
-                    "type": "frontmost_application_if"
-                  }
-                ],
-                "description": "Linear - Toggle sidebar",
-                "from": {
-                  "key_code": "s",
-                  "modifiers": { "mandatory": ["control"] }
-                },
-                "to": [
-                  {
-                    "shell_command": "~/.dotfiles/bin/click-frontmost-menu-item.sh 'Linear' 'Toggle left sidebar'"
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "bundle_identifiers": ["com.openai.chat"],
-                    "type": "frontmost_application_if"
-                  }
-                ],
-                "description": "ChatGPT - Toggle sidebar",
-                "from": {
-                  "key_code": "s",
-                  "modifiers": { "mandatory": ["control"] }
-                },
-                "to": [
-                  {
-                    "shell_command": "~/.dotfiles/bin/click-frontmost-menu-item.sh 'ChatGPT' 'Toggle Sidebar'"
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "bundle_identifiers": ["com.apple.Safari"],
-                    "type": "frontmost_application_if"
-                  }
-                ],
-                "description": "Safari - Toggle sidebar",
-                "from": {
-                  "key_code": "s",
-                  "modifiers": { "mandatory": ["control"] }
-                },
-                "to": [
-                  {
-                    "shell_command": "~/.dotfiles/bin/click-frontmost-menu-item.sh 'Safari' 'Hide Sidebar' 'Show Sidebar'"
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "bundle_identifiers": ["com.apple.finder"],
-                    "type": "frontmost_application_if"
-                  }
-                ],
-                "description": "Finder - Toggle sidebar",
-                "from": {
-                  "key_code": "s",
-                  "modifiers": { "mandatory": ["control"] }
-                },
-                "to": [
-                  {
-                    "shell_command": "~/.dotfiles/bin/click-frontmost-menu-item.sh 'Finder' 'Hide Sidebar' 'Show Sidebar'"
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "bundle_identifiers": ["com.apple.Notes"],
-                    "type": "frontmost_application_if"
-                  }
-                ],
-                "description": "Notes - Toggle sidebar",
-                "from": {
-                  "key_code": "s",
-                  "modifiers": { "mandatory": ["control"] }
-                },
-                "to": [
-                  {
-                    "shell_command": "~/.dotfiles/bin/click-frontmost-menu-item.sh 'Notes' 'Hide Folders' 'Show Folders'"
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "bundle_identifiers": ["com.adobe.lightroomCC"],
-                    "type": "frontmost_application_if"
-                  }
-                ],
-                "description": "Adobe Lightroom - Toggle sidebar",
-                "from": {
-                  "key_code": "s",
-                  "modifiers": { "mandatory": ["control"] }
-                },
-                "to": [
-                  {
-                    "shell_command": "~/.dotfiles/bin/click-frontmost-menu-item.sh 'Adobe Lightroom' 'Photos'"
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "bundle_identifiers": ["com.apple.iCal"],
-                    "type": "frontmost_application_if"
-                  }
-                ],
-                "description": "Calendar - Toggle sidebar",
-                "from": {
-                  "key_code": "s",
-                  "modifiers": { "mandatory": ["control"] }
-                },
-                "to": [
-                  {
-                    "shell_command": "~/.dotfiles/bin/click-frontmost-menu-item.sh 'Calendar' 'Show Calendar List' 'Hide Calendar List'"
-                  }
-                ],
-                "type": "basic"
-              }
-            ]
-          }
-        ]
-      },
-      "devices": [
+    "global": { "show_in_menu_bar": false },
+    "profiles": [
         {
-          "identifiers": {
-            "is_keyboard": true,
-            "is_pointing_device": true,
-            "product_id": 24926,
-            "vendor_id": 7504
-          },
-          "ignore": false,
-          "ignore_vendor_events": true
+            "complex_modifications": {
+                "rules": [
+                    {
+                        "description": "Toggle app show/hide",
+                        "manipulators": [
+                            {
+                                "description": "Quick ChatGPT: ⌘^⌥_",
+                                "from": {
+                                    "key_code": "spacebar",
+                                    "modifiers": { "mandatory": ["command", "option"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "1",
+                                        "modifiers": ["control", "option", "command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "description": "Toggle Dia: ⌘^0",
+                                "from": {
+                                    "key_code": "0",
+                                    "modifiers": { "mandatory": ["command", "control", "option"] }
+                                },
+                                "to": [{ "shell_command": "~/.dotfiles/bin/toggle Dia" }],
+                                "type": "basic"
+                            },
+                            {
+                                "description": "Toggle Claude: ⌘^⌥5",
+                                "from": {
+                                    "key_code": "5",
+                                    "modifiers": { "mandatory": ["command", "control", "option"] }
+                                },
+                                "to": [{ "shell_command": "~/.dotfiles/bin/toggle Claude" }],
+                                "type": "basic"
+                            },
+                            {
+                                "description": "Toggle Codex: ⌘^⌥6",
+                                "from": {
+                                    "key_code": "6",
+                                    "modifiers": { "mandatory": ["command", "control", "option"] }
+                                },
+                                "to": [{ "shell_command": "~/.dotfiles/bin/toggle Codex" }],
+                                "type": "basic"
+                            },
+                            {
+                                "description": "Toggle Visual Studio Code: ⌘^⌥2",
+                                "from": {
+                                    "key_code": "2",
+                                    "modifiers": { "mandatory": ["command", "control", "option"] }
+                                },
+                                "to": [{ "shell_command": "~/.dotfiles/bin/toggle Code" }],
+                                "type": "basic"
+                            },
+                            {
+                                "description": "Toggle Ghostty: ⌘^⌥3",
+                                "from": {
+                                    "key_code": "3",
+                                    "modifiers": { "mandatory": ["command", "control", "option"] }
+                                },
+                                "to": [{ "shell_command": "~/.dotfiles/bin/toggle Ghostty" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Hotkey remappings for Magnet (Kinesis 360 Pro)",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "is_keyboard": true,
+                                                "product_id": 24926,
+                                                "vendor_id": 7504
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    }
+                                ],
+                                "description": "Magnet Left: ^⌥J",
+                                "from": {
+                                    "key_code": "j",
+                                    "modifiers": { "mandatory": ["control", "option"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "l",
+                                        "modifiers": ["control", "option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "is_keyboard": true,
+                                                "product_id": 24926,
+                                                "vendor_id": 7504
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    }
+                                ],
+                                "description": "Magnet Right: ^⌥L",
+                                "from": {
+                                    "key_code": "l",
+                                    "modifiers": { "mandatory": ["control", "option"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "quote",
+                                        "modifiers": ["control", "option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "is_keyboard": true,
+                                                "product_id": 24926,
+                                                "vendor_id": 7504
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    }
+                                ],
+                                "description": "Magnet Top Left: ^⌥U",
+                                "from": {
+                                    "key_code": "u",
+                                    "modifiers": { "mandatory": ["control", "option"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "o",
+                                        "modifiers": ["control", "option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "is_keyboard": true,
+                                                "product_id": 24926,
+                                                "vendor_id": 7504
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    }
+                                ],
+                                "description": "Magnet Top: ^⌥I",
+                                "from": {
+                                    "key_code": "i",
+                                    "modifiers": { "mandatory": ["control", "option"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "p",
+                                        "modifiers": ["control", "option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "is_keyboard": true,
+                                                "product_id": 24926,
+                                                "vendor_id": 7504
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    }
+                                ],
+                                "description": "Magnet Top Right: ^⌥O",
+                                "from": {
+                                    "key_code": "o",
+                                    "modifiers": { "mandatory": ["control", "option"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "open_bracket",
+                                        "modifiers": ["control", "option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "is_keyboard": true,
+                                                "product_id": 24926,
+                                                "vendor_id": 7504
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    }
+                                ],
+                                "description": "Magnet Bottom Left: ^⌥M",
+                                "from": {
+                                    "key_code": "m",
+                                    "modifiers": { "mandatory": ["control", "option"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "comma",
+                                        "modifiers": ["control", "option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "is_keyboard": true,
+                                                "product_id": 24926,
+                                                "vendor_id": 7504
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    }
+                                ],
+                                "description": "Magnet Bottom: ^⌥,",
+                                "from": {
+                                    "key_code": "comma",
+                                    "modifiers": { "mandatory": ["control", "option"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "period",
+                                        "modifiers": ["control", "option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "is_keyboard": true,
+                                                "product_id": 24926,
+                                                "vendor_id": 7504
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    }
+                                ],
+                                "description": "Magnet Bottom Right: ^⌥.",
+                                "from": {
+                                    "key_code": "period",
+                                    "modifiers": { "mandatory": ["control", "option"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "slash",
+                                        "modifiers": ["control", "option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "is_keyboard": true,
+                                                "product_id": 24926,
+                                                "vendor_id": 7504
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    }
+                                ],
+                                "description": "Magnet Maximize: ^⌥K",
+                                "from": {
+                                    "key_code": "k",
+                                    "modifiers": { "mandatory": ["control", "option"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "semicolon",
+                                        "modifiers": ["control", "option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Ghostty split focus mappings",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "is_keyboard": true,
+                                                "product_id": 24926,
+                                                "vendor_id": 7504
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "com.mitchellh.ghostty"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "description": "Ghostty focus left (Kinesis): ⌘⌥J",
+                                "from": {
+                                    "key_code": "j",
+                                    "modifiers": { "mandatory": ["command", "option"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_arrow",
+                                        "modifiers": ["command", "option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "is_keyboard": true,
+                                                "product_id": 24926,
+                                                "vendor_id": 7504
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "com.mitchellh.ghostty"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "description": "Ghostty focus right (Kinesis): ⌘⌥L",
+                                "from": {
+                                    "key_code": "l",
+                                    "modifiers": { "mandatory": ["command", "option"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": ["command", "option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "is_keyboard": true,
+                                                "product_id": 24926,
+                                                "vendor_id": 7504
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "com.mitchellh.ghostty"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "description": "Ghostty focus up (Kinesis): ⌘⌥I",
+                                "from": {
+                                    "key_code": "i",
+                                    "modifiers": { "mandatory": ["command", "option"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "up_arrow",
+                                        "modifiers": ["command", "option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "is_keyboard": true,
+                                                "product_id": 24926,
+                                                "vendor_id": 7504
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "com.mitchellh.ghostty"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "description": "Ghostty focus down (Kinesis): ⌘⌥,",
+                                "from": {
+                                    "key_code": "comma",
+                                    "modifiers": { "mandatory": ["command", "option"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "down_arrow",
+                                        "modifiers": ["command", "option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "com.mitchellh.ghostty"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "description": "Ghostty focus left: ⌘⌥L",
+                                "from": {
+                                    "key_code": "l",
+                                    "modifiers": { "mandatory": ["command", "option"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_arrow",
+                                        "modifiers": ["command", "option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "com.mitchellh.ghostty"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "description": "Ghostty focus right: ⌘⌥'",
+                                "from": {
+                                    "key_code": "quote",
+                                    "modifiers": { "mandatory": ["command", "option"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": ["command", "option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "com.mitchellh.ghostty"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "description": "Ghostty focus up: ⌘⌥P",
+                                "from": {
+                                    "key_code": "p",
+                                    "modifiers": { "mandatory": ["command", "option"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "up_arrow",
+                                        "modifiers": ["command", "option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "com.mitchellh.ghostty"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "description": "Ghostty focus down: ⌘⌥.",
+                                "from": {
+                                    "key_code": "period",
+                                    "modifiers": { "mandatory": ["command", "option"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "down_arrow",
+                                        "modifiers": ["command", "option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Ghostty split creation mappings",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "is_keyboard": true,
+                                                "product_id": 24926,
+                                                "vendor_id": 7504
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "com.mitchellh.ghostty"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "description": "Ghostty split right (Kinesis): ⌘⌥O → ⌘D",
+                                "from": {
+                                    "key_code": "o",
+                                    "modifiers": { "mandatory": ["command", "option"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "d",
+                                        "modifiers": ["command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "is_keyboard": true,
+                                                "product_id": 24926,
+                                                "vendor_id": 7504
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "com.mitchellh.ghostty"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "description": "Ghostty split down (Kinesis): ⌘⌥K → ⌘⇧D",
+                                "from": {
+                                    "key_code": "k",
+                                    "modifiers": { "mandatory": ["command", "option"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "d",
+                                        "modifiers": ["command", "shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "com.mitchellh.ghostty"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "description": "Ghostty split right: ⌘⌥[ → ⌘D",
+                                "from": {
+                                    "key_code": "open_bracket",
+                                    "modifiers": { "mandatory": ["command", "option"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "d",
+                                        "modifiers": ["command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "com.mitchellh.ghostty"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "description": "Ghostty split down: ⌘⌥; → ⌘⇧D",
+                                "from": {
+                                    "key_code": "semicolon",
+                                    "modifiers": { "mandatory": ["command", "option"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "d",
+                                        "modifiers": ["command", "shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Hotkey remappings for Music.app",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "com.apple.Music"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "v",
+                                    "modifiers": { "mandatory": ["control"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "t",
+                                        "modifiers": ["command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "com.apple.Music"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "m",
+                                    "modifiers": { "mandatory": ["control"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "m",
+                                        "modifiers": ["command", "shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Native MacBook system shortcuts",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "is_keyboard": true,
+                                                "product_id": 24926,
+                                                "vendor_id": 7504
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    }
+                                ],
+                                "description": "Mission Control: ^K",
+                                "from": {
+                                    "key_code": "k",
+                                    "modifiers": { "mandatory": ["control"] }
+                                },
+                                "to": [{ "apple_vendor_keyboard_key_code": "mission_control" }],
+                                "type": "basic"
+                            },
+                            {
+                                "description": "Mission Control: ^;",
+                                "from": {
+                                    "key_code": "semicolon",
+                                    "modifiers": { "mandatory": ["control"] }
+                                },
+                                "to": [{ "apple_vendor_keyboard_key_code": "mission_control" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "is_keyboard": true,
+                                                "product_id": 24926,
+                                                "vendor_id": 7504
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    }
+                                ],
+                                "description": "Move left a space: ^J",
+                                "from": {
+                                    "key_code": "j",
+                                    "modifiers": { "mandatory": ["control"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_arrow",
+                                        "modifiers": ["control"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "is_keyboard": true,
+                                                "product_id": 24926,
+                                                "vendor_id": 7504
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    }
+                                ],
+                                "description": "Move right a space: ^L",
+                                "from": {
+                                    "key_code": "l",
+                                    "modifiers": { "mandatory": ["control"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": ["control"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "description": "Move left a space: ^L",
+                                "from": {
+                                    "key_code": "l",
+                                    "modifiers": { "mandatory": ["control"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_arrow",
+                                        "modifiers": ["control"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "description": "Move right a space: ^'",
+                                "from": {
+                                    "key_code": "quote",
+                                    "modifiers": { "mandatory": ["control"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": ["control"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "is_keyboard": true,
+                                                "product_id": 24926,
+                                                "vendor_id": 7504
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    }
+                                ],
+                                "description": "Show Apps: ^I",
+                                "from": {
+                                    "key_code": "i",
+                                    "modifiers": { "mandatory": ["control"] }
+                                },
+                                "to": [{ "apple_vendor_keyboard_key_code": "launchpad" }],
+                                "type": "basic"
+                            },
+                            {
+                                "description": "Show Apps: ^P",
+                                "from": {
+                                    "key_code": "p",
+                                    "modifiers": { "mandatory": ["control"] }
+                                },
+                                "to": [{ "apple_vendor_keyboard_key_code": "launchpad" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "is_keyboard": true,
+                                                "product_id": 24926,
+                                                "vendor_id": 7504
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    }
+                                ],
+                                "description": "Show Notification Center: ^O",
+                                "from": {
+                                    "key_code": "o",
+                                    "modifiers": { "mandatory": ["control"] }
+                                },
+                                "to": [{ "shell_command": "osascript -e 'tell application \"System Events\" to tell process \"ControlCenter\" to click (first menu bar item of menu bar 1 whose description is \"Clock\")'" }],
+                                "type": "basic"
+                            },
+                            {
+                                "description": "Show Notification Center: ^[",
+                                "from": {
+                                    "key_code": "open_bracket",
+                                    "modifiers": { "mandatory": ["control"] }
+                                },
+                                "to": [{ "shell_command": "osascript -e 'tell application \"System Events\" to tell process \"ControlCenter\" to click (first menu bar item of menu bar 1 whose description is \"Clock\")'" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "is_keyboard": true,
+                                                "product_id": 24926,
+                                                "vendor_id": 7504
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    }
+                                ],
+                                "description": "Application Windows: ^,",
+                                "from": {
+                                    "key_code": "comma",
+                                    "modifiers": { "mandatory": ["control"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "down_arrow",
+                                        "modifiers": ["control"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "is_keyboard": true,
+                                                "product_id": 24926,
+                                                "vendor_id": 7504
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    }
+                                ],
+                                "description": "Show Desktop: ^.",
+                                "from": {
+                                    "key_code": "period",
+                                    "modifiers": { "mandatory": ["control"] }
+                                },
+                                "to": [{ "shell_command": "osascript -e 'tell application \"System Events\" to key code 160 using {command down}'" }],
+                                "type": "basic"
+                            },
+                            {
+                                "description": "Application windows: ^.",
+                                "from": {
+                                    "key_code": "period",
+                                    "modifiers": { "mandatory": ["control"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "down_arrow",
+                                        "modifiers": ["control"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "description": "Show Desktop: ^/",
+                                "from": {
+                                    "key_code": "slash",
+                                    "modifiers": { "mandatory": ["control"] }
+                                },
+                                "to": [{ "shell_command": "osascript -e 'tell application \"System Events\" to key code 160 using {command down}'" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Coerce all sidebars to be the same",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "com.openai.codex"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "description": "Codex - Toggle sidebar",
+                                "from": {
+                                    "key_code": "s",
+                                    "modifiers": { "mandatory": ["control"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "b",
+                                        "modifiers": ["command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "company.thebrowser.dia"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "description": "Dia - Toggle sidebar",
+                                "from": {
+                                    "key_code": "s",
+                                    "modifiers": { "mandatory": ["control"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "s",
+                                        "modifiers": ["command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "com.anthropic.claudefordesktop"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "description": "Claude - Toggle sidebar",
+                                "from": {
+                                    "key_code": "s",
+                                    "modifiers": { "mandatory": ["control"] }
+                                },
+                                "to": [{ "shell_command": "~/.dotfiles/bin/click-frontmost-menu-item.sh 'Claude' 'Open sidebar' 'Close sidebar'" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "com.olivetree.BibleReaderMac"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "description": "Bible Study - Toggle sidebar",
+                                "from": {
+                                    "key_code": "s",
+                                    "modifiers": { "mandatory": ["control"] }
+                                },
+                                "to": [{ "shell_command": "~/.dotfiles/bin/click-frontmost-menu-item.sh 'Bible Study' 'Toggle Sidebar'" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "com.tinyspeck.slackmacgap"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "description": "Slack - Toggle sidebar",
+                                "from": {
+                                    "key_code": "s",
+                                    "modifiers": { "mandatory": ["control"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "d",
+                                        "modifiers": ["command", "shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "com.apple.Music"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "description": "Music - Toggle sidebar",
+                                "from": {
+                                    "key_code": "s",
+                                    "modifiers": { "mandatory": ["control"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "u",
+                                        "modifiers": ["command", "option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.apple\\.Preview$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "description": "Preview - Toggle sidebar",
+                                "from": {
+                                    "key_code": "s",
+                                    "modifiers": { "mandatory": ["control"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "1",
+                                        "modifiers": ["command", "option"]
+                                    },
+                                    {
+                                        "key_code": "2",
+                                        "modifiers": ["command", "option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "com.linear"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "description": "Linear - Toggle sidebar",
+                                "from": {
+                                    "key_code": "s",
+                                    "modifiers": { "mandatory": ["control"] }
+                                },
+                                "to": [{ "shell_command": "~/.dotfiles/bin/click-frontmost-menu-item.sh 'Linear' 'Toggle left sidebar'" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "com.openai.chat"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "description": "ChatGPT - Toggle sidebar",
+                                "from": {
+                                    "key_code": "s",
+                                    "modifiers": { "mandatory": ["control"] }
+                                },
+                                "to": [{ "shell_command": "~/.dotfiles/bin/click-frontmost-menu-item.sh 'ChatGPT' 'Toggle Sidebar'" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "com.apple.Safari"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "description": "Safari - Toggle sidebar",
+                                "from": {
+                                    "key_code": "s",
+                                    "modifiers": { "mandatory": ["control"] }
+                                },
+                                "to": [{ "shell_command": "~/.dotfiles/bin/click-frontmost-menu-item.sh 'Safari' 'Hide Sidebar' 'Show Sidebar'" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "com.apple.finder"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "description": "Finder - Toggle sidebar",
+                                "from": {
+                                    "key_code": "s",
+                                    "modifiers": { "mandatory": ["control"] }
+                                },
+                                "to": [{ "shell_command": "~/.dotfiles/bin/click-frontmost-menu-item.sh 'Finder' 'Hide Sidebar' 'Show Sidebar'" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "com.apple.Notes"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "description": "Notes - Toggle sidebar",
+                                "from": {
+                                    "key_code": "s",
+                                    "modifiers": { "mandatory": ["control"] }
+                                },
+                                "to": [{ "shell_command": "~/.dotfiles/bin/click-frontmost-menu-item.sh 'Notes' 'Hide Folders' 'Show Folders'" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "com.adobe.lightroomCC"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "description": "Adobe Lightroom - Toggle sidebar",
+                                "from": {
+                                    "key_code": "s",
+                                    "modifiers": { "mandatory": ["control"] }
+                                },
+                                "to": [{ "shell_command": "~/.dotfiles/bin/click-frontmost-menu-item.sh 'Adobe Lightroom' 'Photos'" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "com.apple.iCal"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "description": "Calendar - Toggle sidebar",
+                                "from": {
+                                    "key_code": "s",
+                                    "modifiers": { "mandatory": ["control"] }
+                                },
+                                "to": [{ "shell_command": "~/.dotfiles/bin/click-frontmost-menu-item.sh 'Calendar' 'Show Calendar List' 'Hide Calendar List'" }],
+                                "type": "basic"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "devices": [
+                {
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": true,
+                        "product_id": 24926,
+                        "vendor_id": 7504
+                    },
+                    "ignore": false,
+                    "ignore_vendor_events": true
+                }
+            ],
+            "name": "Default profile",
+            "selected": true,
+            "virtual_hid_keyboard": { "keyboard_type_v2": "ansi" }
         }
-      ],
-      "name": "Default profile",
-      "selected": true,
-      "virtual_hid_keyboard": { "keyboard_type_v2": "ansi" }
-    }
-  ]
+    ]
 }
