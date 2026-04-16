@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+# Usage: plist-sync <install|save> <dir> <bundle-id> <app-name>
+#
+#   install — import dotfiles plist → macOS preferences (new machine)
+#   save    — export macOS preferences → dotfiles plist (capture changes)
+#
+#   dir       — subdirectory under ~/.dotfiles/misc/ (e.g. "bartender")
+#   bundle-id — com.example.App (preference domain)
+#   app-name  — process/app name for quitting (e.g. "Bartender 5")
+
+set -euo pipefail
+
+if [[ $# -ne 4 ]]; then
+  echo "Usage: plist-sync <install|save> <dir> <bundle-id> <app-name>" >&2
+  exit 1
+fi
+
+ACTION="$1"
+DIR="$2"
+BUNDLE_ID="$3"
+APP_NAME="$4"
+
+DOTFILES_PLIST="$HOME/.dotfiles/misc/$DIR/$BUNDLE_ID.plist"
+
+# Quit the app if running so preferences flush to disk
+if pgrep -xq "$APP_NAME"; then
+  echo "Quitting $APP_NAME..."
+  osascript -e "tell application \"$APP_NAME\" to quit" || {
+    echo "Failed to quit $APP_NAME — aborting to protect prefs" >&2
+    exit 1
+  }
+  # Wait for app to actually exit
+  for i in {1..5}; do
+    pgrep -xq "$APP_NAME" || break
+    sleep 1
+    if [[ $i -eq 5 ]]; then
+      echo "$APP_NAME still running after 5s — aborting" >&2
+      exit 1
+    fi
+  done
+fi
+
+case "$ACTION" in
+  install)
+    if [ ! -f "$DOTFILES_PLIST" ]; then
+      echo "Missing source: $DOTFILES_PLIST" >&2
+      exit 1
+    fi
+    defaults import "$BUNDLE_ID" "$DOTFILES_PLIST"
+    echo "Installed $BUNDLE_ID prefs. Open $APP_NAME to apply."
+    ;;
+  save)
+    mkdir -p "$(dirname "$DOTFILES_PLIST")"
+    defaults export "$BUNDLE_ID" "$DOTFILES_PLIST"
+    echo "Saved $BUNDLE_ID prefs to dotfiles."
+    ;;
+  *)
+    echo "Unknown action: $ACTION (use install or save)" >&2
+    exit 1
+    ;;
+esac

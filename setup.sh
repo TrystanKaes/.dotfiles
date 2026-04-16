@@ -27,12 +27,15 @@ if is_macos; then
   "$HOME/.dotfiles/preferences/apply_plist_preferences.sh"
   "$HOME/.dotfiles/preferences/osxdefaults"
 
-  # Set up app configs
+  # Set up app configs (symlinks for config-file apps)
   SYMLINK="$HOME/.dotfiles/bin/symlink"
-  "$SYMLINK" misc/karabiner "$HOME/.config/karabiner"
-  "$SYMLINK" misc/magnet/com.crowdcafe.windowmagnet.plist "$HOME/Library/Preferences/com.crowdcafe.windowmagnet.plist"
-  "$SYMLINK" misc/ghostty/config "$HOME/.config/ghostty/config"
-  "$HOME/.dotfiles/misc/bartender/install"  # copy + app-quit, not a symlink
+  "$SYMLINK" misc/karabiner                              "$HOME/.config/karabiner"
+  "$SYMLINK" misc/ghostty/config                         "$HOME/.config/ghostty/config"
+
+  # Plist-based apps (copy, not symlink — cfprefsd and app writes break symlinks)
+  PLIST_SYNC="$HOME/.dotfiles/bin/plist-sync"
+  "$PLIST_SYNC" install bartender com.surteesstudios.Bartender "Bartender 5"
+  "$PLIST_SYNC" install magnet    com.crowdcafe.windowmagnet   Magnet
   "$HOME/.dotfiles/misc/claude/install"
 
   # Optionally clear all (default) app icons from the Dock

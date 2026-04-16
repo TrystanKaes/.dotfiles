@@ -20,7 +20,7 @@ alias wip='ga && gc "wip"'
 alias gri='git rebase -i'
 alias gr='git rebase'
 alias gro='git rebase -X ours'
-alias gfu='git fetch origin main; git rebase origin/main'
+# gfu moved to .functions (supports optional branch arg)
 alias gco='git checkout'
 alias gush='git push origin'
 alias gull='git pull origin master'
@@ -40,6 +40,7 @@ alias cl='claude'
 alias clp='claude -p'
 alias clr='claude --resume'
 alias clc='claude --continue'
+alias ask='claude --dangerously-skip-permissions --model=sonnet --effort=medium -p'
 
 #random
 alias flush_memcached='echo "flush_all" | nc 127.0.0.1 11211'
