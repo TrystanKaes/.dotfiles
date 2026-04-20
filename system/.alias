@@ -36,11 +36,14 @@ alias grefl='git reflog --date=format:"%Y-%m-%d %H:%M:%S"'
 
 # Agentic Coding
 alias yolo='claude --dangerously-skip-permissions --model=sonnet --effort=medium'
-alias cl='claude'
-alias clp='claude -p'
-alias clr='claude --resume'
-alias clc='claude --continue'
+alias x='claude'
+alias xop='claude --model=opus'
+alias xson='claude --model=sonnet'
+alias xp='claude -p'
+alias xr='claude --resume'
+alias xc='claude --continue'
 alias ask='claude --dangerously-skip-permissions --model=sonnet --effort=medium -p'
+alias askf='claude --dangerously-skip-permissions --model=sonnet --effort=low -p'
 
 #random
 alias flush_memcached='echo "flush_all" | nc 127.0.0.1 11211'

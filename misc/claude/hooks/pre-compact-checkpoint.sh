@@ -25,7 +25,7 @@ lossy and will damage your ability to resume cleanly from PROGRESS.md.
 Before doing anything else — before responding to the user, before continuing
 any in-progress step — you MUST:
 
-1. Read .claude/workflow/checkpoint-impl.md
+1. Read ~/.claude/workflow/checkpoint-impl.md
 2. Follow those instructions exactly to update PROGRESS.md with a full
    checkpoint, including the "Resume from" section and partial progress notes
    for the current step.

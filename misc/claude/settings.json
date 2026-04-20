@@ -127,7 +127,6 @@
       }
     }
   },
-  "effortLevel": "medium",
   "autoDreamEnabled": true,
   "skipDangerousModePermissionPrompt": true
 }

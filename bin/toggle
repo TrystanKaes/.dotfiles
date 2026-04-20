@@ -14,11 +14,15 @@ APP_NAME="$1"
 
 osascript \
   -e "tell application \"System Events\"" \
-  -e "  if not (exists process \"$APP_NAME\") then" \
-  -e "    tell application \"$APP_NAME\" to activate" \
-  -e "  else if frontmost of process \"$APP_NAME\" then" \
-  -e "    set visible of process \"$APP_NAME\" to false" \
-  -e "  else" \
-  -e "    tell application \"$APP_NAME\" to activate" \
+  -e "  set isRunning to exists process \"$APP_NAME\"" \
+  -e "  if isRunning then" \
+  -e "    set isFront to frontmost of process \"$APP_NAME\"" \
   -e "  end if" \
-  -e "end tell"
+  -e "end tell" \
+  -e "if not isRunning then" \
+  -e "  tell application \"$APP_NAME\" to activate" \
+  -e "else if isFront then" \
+  -e "  tell application \"System Events\" to set visible of process \"$APP_NAME\" to false" \
+  -e "else" \
+  -e "  tell application \"$APP_NAME\" to activate" \
+  -e "end if"

@@ -44,13 +44,13 @@ Then stop and wait for my response. Do not proceed without an explicit "go". The
 
 Handling responses:
 - "go" — continue with step N+1.
-- "checkpoint" — follow `.claude/workflow/checkpoint-impl.md` exactly, then tell me to `/clear` and `/resume`. Do not continue.
-- "stop" — follow `.claude/workflow/checkpoint-impl.md` exactly, then halt without recommending a resume.
+- "checkpoint" — follow `~/.claude/workflow/checkpoint-impl.md` exactly, then tell me to `/clear` and `/resume`. Do not continue.
+- "stop" — follow `~/.claude/workflow/checkpoint-impl.md` exactly, then halt without recommending a resume.
 - Anything else — treat as a question or instruction, answer it or apply it, then ask the approval question again.
 
 ## Auto-checkpoint triggers (tight)
 
-Even with the per-step gate, the automatic triggers still apply. After any step, if ANY of the following are true, checkpoint via `.claude/workflow/checkpoint-impl.md` immediately and then tell me to `/clear` and `/resume`. Do not ask for approval to continue — stop unconditionally:
+Even with the per-step gate, the automatic triggers still apply. After any step, if ANY of the following are true, checkpoint via `~/.claude/workflow/checkpoint-impl.md` immediately and then tell me to `/clear` and `/resume`. Do not ask for approval to continue — stop unconditionally:
 
 1. `Steps completed since last checkpoint` is 2 or more.
 2. `Files read since last checkpoint` is 10 or more.
@@ -65,4 +65,4 @@ Reset the counters to 0 after any checkpoint is written.
 
 `/launch` is optimized for safety, not speed. The per-step approval gate turns every step boundary into an explicit decision point, which lets you kill a run the moment you see it going sideways — exactly when you want to kill a run. The tight numeric triggers exist because models cannot reliably self-assess context fullness; counting files and steps is arithmetic you can actually trust. Together they make silent degradation very hard.
 
-If the per-step gate and the manual `/checkpoint` command wrote different state, later resumes would be inconsistent. That is why both paths route through `.claude/workflow/checkpoint-impl.md`.
+If the per-step gate and the manual `/checkpoint` command wrote different state, later resumes would be inconsistent. That is why both paths route through `~/.claude/workflow/checkpoint-impl.md`.

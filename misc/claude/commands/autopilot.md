@@ -43,7 +43,7 @@ Context-full self-assessment is unreliable, so use these concrete proxies instea
 6. You notice obvious degradation signs: forgetting earlier decisions, re-reading files you already read, asking yourself questions the plan already answered, or producing inconsistent naming from what you established in earlier steps.
 
 When any trigger fires:
-- Read `.claude/workflow/checkpoint-impl.md` and follow those instructions exactly to write the checkpoint. Do not improvise an abbreviated version.
+- Read `~/.claude/workflow/checkpoint-impl.md` and follow those instructions exactly to write the checkpoint. Do not improvise an abbreviated version.
 - Reset the "Files read" and "Steps completed" counters to 0 after the checkpoint is written.
 - Tell me: "Auto-checkpoint triggered by [which rule]. Run `/clear` then `/resume` to continue with a fresh context." Then stop. Do not begin the next step. Do not continue in the degraded session.
 
