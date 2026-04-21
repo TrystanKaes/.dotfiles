@@ -24,3 +24,5 @@ rebase = false
 excludesfile = ~/.dotfiles/git/.gitignore_global
 autocrlf = input
 editor = vim
+[pager]
+	diff = diffnav

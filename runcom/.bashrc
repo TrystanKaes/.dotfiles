@@ -31,6 +31,7 @@ done
 eval "$(ssh-agent -s)"
 ssh-add --apple-use-keychain
 eval "$(worktree-switcher init)"
+eval "$(diffnav completion bash)"
 
 # Load NVM and add bash_completions
 export NVM_DIR="$HOME/.nvm"
