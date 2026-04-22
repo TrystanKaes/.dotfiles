@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+DOTFILES_DIR="${DOTFILES_DIR:-$HOME/.dotfiles}"
+TRACKED_PROJECT_DIR="$DOTFILES_DIR/packages/pnpm-global"
+
+if ! command -v pnpm >/dev/null 2>&1; then
+  echo "pnpm is required to sync tracked global packages."
+  exit 1
+fi
+
+global_node_modules_dir="$(pnpm root -g)"
+global_project_dir="$(dirname "$global_node_modules_dir")"
+global_package_json="$global_project_dir/package.json"
+global_lockfile="$global_project_dir/pnpm-lock.yaml"
+
+if [ ! -f "$global_package_json" ]; then
+  echo "pnpm global package.json not found at $global_package_json."
+  exit 1
+fi
+
+mkdir -p "$TRACKED_PROJECT_DIR"
+
+tracked_package_json="$TRACKED_PROJECT_DIR/package.json"
+tracked_lockfile="$TRACKED_PROJECT_DIR/pnpm-lock.yaml"
+
+if [ "$global_package_json" != "$tracked_package_json" ] && [ ! "$global_package_json" -ef "$tracked_package_json" ]; then
+  cp "$global_package_json" "$tracked_package_json"
+fi
+
+if [ -f "$global_lockfile" ]; then
+  if [ "$global_lockfile" != "$tracked_lockfile" ] && [ ! "$global_lockfile" -ef "$tracked_lockfile" ]; then
+    cp "$global_lockfile" "$tracked_lockfile"
+  fi
+else
+  rm -f "$tracked_lockfile"
+fi

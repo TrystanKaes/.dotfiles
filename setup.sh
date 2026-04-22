@@ -48,6 +48,8 @@ if is_macos; then
 fi
 ######## end macOS-specific setup ########
 
+"$HOME/.dotfiles/bin/install-pnpm-globals"
+
 # Symlink dotfiles into $HOME
 for filename in \
     "$HOME"/.dotfiles/runcom/.* \

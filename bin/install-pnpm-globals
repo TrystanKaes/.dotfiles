@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+DOTFILES_DIR="${DOTFILES_DIR:-$HOME/.dotfiles}"
+ENSURE_LINKS="$DOTFILES_DIR/bin/ensure-pnpm-global-links"
+TRACKED_PROJECT_DIR="$DOTFILES_DIR/packages/pnpm-global"
+TRACKED_PACKAGE_JSON="$TRACKED_PROJECT_DIR/package.json"
+
+if ! command -v pnpm >/dev/null 2>&1; then
+  echo "pnpm not found; skipping tracked global package install."
+  exit 0
+fi
+
+if [ ! -f "$TRACKED_PACKAGE_JSON" ]; then
+  echo "Tracked pnpm package.json not found at $TRACKED_PACKAGE_JSON; skipping."
+  exit 0
+fi
+
+"$ENSURE_LINKS"
+
+global_node_modules_dir="$(pnpm root -g)"
+global_project_dir="$(dirname "$global_node_modules_dir")"
+pnpm install --dir "$global_project_dir" --config.confirmModulesPurge=false

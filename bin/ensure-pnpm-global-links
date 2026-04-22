@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+DOTFILES_DIR="${DOTFILES_DIR:-$HOME/.dotfiles}"
+TRACKED_PROJECT_DIR="$DOTFILES_DIR/packages/pnpm-global"
+TRACKED_PACKAGE_JSON="$TRACKED_PROJECT_DIR/package.json"
+TRACKED_LOCKFILE="$TRACKED_PROJECT_DIR/pnpm-lock.yaml"
+SYMLINK="$DOTFILES_DIR/bin/symlink"
+
+if ! command -v pnpm >/dev/null 2>&1; then
+  echo "pnpm not found; skipping pnpm global link repair."
+  exit 0
+fi
+
+if [ ! -f "$TRACKED_PACKAGE_JSON" ]; then
+  echo "Tracked pnpm package.json not found at $TRACKED_PACKAGE_JSON; skipping."
+  exit 0
+fi
+
+global_node_modules_dir="$(pnpm root -g)"
+global_project_dir="$(dirname "$global_node_modules_dir")"
+
+mkdir -p "$global_project_dir"
+"$SYMLINK" "$TRACKED_PACKAGE_JSON" "$global_project_dir/package.json"
+
+if [ -f "$TRACKED_LOCKFILE" ]; then
+  "$SYMLINK" "$TRACKED_LOCKFILE" "$global_project_dir/pnpm-lock.yaml"
+fi
+

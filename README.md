@@ -9,6 +9,18 @@ git clone https://github.com/TrystanKaes/.dotfiles.git
 cd .dotfiles/ && sh setup.sh
 ```
 
+## Global pnpm Packages
+
+Global `pnpm` packages are tracked as a real `pnpm` project in `packages/pnpm-global/`.
+
+`setup.sh` installs that project automatically by calling `bin/install-pnpm-globals`. The installer first runs `bin/ensure-pnpm-global-links`, which resolves the active global project directory dynamically from `pnpm root -g` and repairs the symlinks if needed, then runs `pnpm install`.
+
+When you add, remove, or update a global package manually, refresh the tracked project files with:
+
+```sh
+bin/sync-pnpm-globals
+```
+
 ## 📁 Repository Structure
 
 ### Core Configuration
