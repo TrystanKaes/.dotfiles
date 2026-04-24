@@ -96,8 +96,7 @@ alias n='pnpm'
 alias nx='pnpm nx'
 alias dlx='pnpm dlx'
 
-alias reset_npm='override_alias npm npm'
-alias npm='override_warning "pnpm" "reset_npm" && pnpm'
+alias reset_npm='unset -f npm; override_alias npm npm'
 
 alias reset_npx='override_alias npx npx'
 alias npx='override_warning "pnpm dlx" "reset_npx" && pnpm dlx'

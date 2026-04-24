@@ -6,6 +6,7 @@ DOTFILES_DIR="${DOTFILES_DIR:-$HOME/.dotfiles}"
 TRACKED_PROJECT_DIR="$DOTFILES_DIR/packages/pnpm-global"
 TRACKED_PACKAGE_JSON="$TRACKED_PROJECT_DIR/package.json"
 TRACKED_LOCKFILE="$TRACKED_PROJECT_DIR/pnpm-lock.yaml"
+TRACKED_NPMRC="$TRACKED_PROJECT_DIR/.npmrc"
 SYMLINK="$DOTFILES_DIR/bin/symlink"
 
 if ! command -v pnpm >/dev/null 2>&1; then
@@ -26,5 +27,9 @@ mkdir -p "$global_project_dir"
 
 if [ -f "$TRACKED_LOCKFILE" ]; then
   "$SYMLINK" "$TRACKED_LOCKFILE" "$global_project_dir/pnpm-lock.yaml"
+fi
+
+if [ -f "$TRACKED_NPMRC" ]; then
+  "$SYMLINK" "$TRACKED_NPMRC" "$global_project_dir/.npmrc"
 fi
 

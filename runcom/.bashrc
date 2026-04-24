@@ -38,8 +38,6 @@ export NVM_DIR="$HOME/.nvm"
   [ -s "${HOMEBREW_PREFIX}/opt/nvm/nvm.sh" ] && \. "${HOMEBREW_PREFIX}/opt/nvm/nvm.sh"
   [ -s "${HOMEBREW_PREFIX}/opt/nvm/etc/bash_completion.d/nvm" ] && \. "${HOMEBREW_PREFIX}/opt/nvm/etc/bash_completion.d/nvm"
 
-complete -F _btca_bash_completions -o bashdefault -o default btca
-
 # pnpm
 export PNPM_HOME="/Users/trystankaes/Library/pnpm"
 case ":$PATH:" in

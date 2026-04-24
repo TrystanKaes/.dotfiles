@@ -1,6 +1,6 @@
 {
 	"dependencies": {
-		"@mariozechner/pi-coding-agent": "^0.66.1",
+		"@mariozechner/pi-coding-agent": "*",
 		"@rynfar/meridian": "^1.24.1",
 		"firebase-tools": "^15.14.0",
 		"lnai": "^0.6.91",
