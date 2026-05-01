@@ -7,16 +7,16 @@ else
   export HOMEBREW_PREFIX="/usr/local"
 fi
 
-# Homebrew drops completions as *.sh, *.bash, extensionless scripts, etc.
-_bash_completion_d="${HOMEBREW_PREFIX}/etc/bash_completion.d"
-if [ -d "$_bash_completion_d" ]; then
-    for filename in "$_bash_completion_d"/*; do
-        [ -f "$filename" ] || continue
+# bash-completion: load the framework once; it enables extglob, defines helpers
+# like `have` while snippets load, then sources everything under bash_completion.d.
+if [[ $- == *i* ]] && [ -n "${BASH_VERSION}" ]; then
+    _bcf="${HOMEBREW_PREFIX}/etc/bash_completion"
+    if [ -r "$_bcf" ]; then
         # shellcheck disable=SC1090
-        source "$filename"
-    done
+        . "$_bcf"
+    fi
+    unset _bcf
 fi
-unset _bash_completion_d
 
 # Ghostty shell integration for Bash.
 if [ -n "${GHOSTTY_RESOURCES_DIR}" ]; then
