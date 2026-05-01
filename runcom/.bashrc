@@ -7,6 +7,17 @@ else
   export HOMEBREW_PREFIX="/usr/local"
 fi
 
+# Homebrew drops completions as *.sh, *.bash, extensionless scripts, etc.
+_bash_completion_d="${HOMEBREW_PREFIX}/etc/bash_completion.d"
+if [ -d "$_bash_completion_d" ]; then
+    for filename in "$_bash_completion_d"/*; do
+        [ -f "$filename" ] || continue
+        # shellcheck disable=SC1090
+        source "$filename"
+    done
+fi
+unset _bash_completion_d
+
 # Ghostty shell integration for Bash.
 if [ -n "${GHOSTTY_RESOURCES_DIR}" ]; then
   builtin source "${GHOSTTY_RESOURCES_DIR}/shell-integration/bash/ghostty.bash"
@@ -30,8 +41,11 @@ done
 
 eval "$(ssh-agent -s)"
 ssh-add --apple-use-keychain
+ssh-add --apple-use-keychain ~/.ssh/work_gitlab
+
 eval "$(worktree-switcher init)"
 eval "$(diffnav completion bash)"
+
 
 # Load NVM and add bash_completions
 export NVM_DIR="$HOME/.nvm"
@@ -57,3 +71,6 @@ claude() {
   printf '\033]7;file://%s%s\007' "$HOSTNAME" "$PWD"
   command claude "$@"
 }
+
+
+export ANTHROPIC_DEFAULT_OPUS_MODEL=claude-opus-4-6

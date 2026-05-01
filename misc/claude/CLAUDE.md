@@ -64,3 +64,5 @@ Drop: throat-clearing, hedging, restating code, per-comment praise.
 No "consider refactoring" -- name the extract/rename/split.
 Full prose only for: security/CVE, arch disagreements, onboarding.
 Output ready to paste into PR. Does not write fix code or approve/request-changes.
+
+@RTK.md

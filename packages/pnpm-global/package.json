@@ -1,9 +1,10 @@
 {
 	"dependencies": {
-		"@mariozechner/pi-coding-agent": "*",
+		"@mariozechner/pi-coding-agent": "^0.70.6",
 		"@rynfar/meridian": "^1.24.1",
 		"firebase-tools": "^15.14.0",
 		"lnai": "^0.6.91",
-		"next": "^16.0.10"
+		"next": "^16.0.10",
+		"pocone": "link:../../../../Developer/hypergrounded/pocone"
 	}
 }
