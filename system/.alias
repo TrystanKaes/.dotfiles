@@ -44,6 +44,7 @@ alias xr='claude --resume'
 alias xc='claude --continue'
 alias ask='claude --dangerously-skip-permissions --model=sonnet --effort=medium -p'
 alias askf='claude --dangerously-skip-permissions --model=sonnet --effort=low -p'
+alias cursor='cursor --classic'
 
 #random
 alias flush_memcached='echo "flush_all" | nc 127.0.0.1 11211'
