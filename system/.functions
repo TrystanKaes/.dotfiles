@@ -239,6 +239,27 @@ override_alias() {
 }
 # ------------------ END: ALIAS OVERRIDE HELPERS ------------------
 
+function npm() {
+  local args=("$@")
+  if [[ "${args[0]}" == "install" || "${args[0]}" == "i" || "${args[0]}" == "add" ]]; then
+    for arg in "${args[@]}"; do
+      if [[ "$arg" == "-g" || "$arg" == "--global" ]]; then
+        local pkgs=()
+        for a in "${args[@]:1}"; do
+          [[ "$a" != -* ]] && pkgs+=("$a")
+        done
+        if [[ ${#pkgs[@]} -gt 0 ]]; then
+          override_warning "pgadd" "reset_npm"
+          pgadd "${pkgs[@]}"
+          return
+        fi
+      fi
+    done
+  fi
+  override_warning "pnpm" "reset_npm"
+  command pnpm "$@"
+}
+
 # pnpm global package management — tracks packages in dotfiles
 function pgadd() {
   local DOTFILES_DIR="${DOTFILES_DIR:-$HOME/.dotfiles}"
@@ -271,27 +292,6 @@ with open('$pkg_json', 'w') as f:
   done
 
   install-pnpm-globals && sync-pnpm-globals
-}
-
-function npm() {
-  local args=("$@")
-  if [[ "${args[0]}" == "install" || "${args[0]}" == "i" || "${args[0]}" == "add" ]]; then
-    for arg in "${args[@]}"; do
-      if [[ "$arg" == "-g" || "$arg" == "--global" ]]; then
-        local pkgs=()
-        for a in "${args[@]:1}"; do
-          [[ "$a" != -* ]] && pkgs+=("$a")
-        done
-        if [[ ${#pkgs[@]} -gt 0 ]]; then
-          override_warning "pgadd" "reset_npm"
-          pgadd "${pkgs[@]}"
-          return
-        fi
-      fi
-    done
-  fi
-  override_warning "pnpm" "reset_npm"
-  command pnpm "$@"
 }
 
 # XXX: (Maybe temporary) Fix to get around the fact that VSCode-based editors can't be codesigned
