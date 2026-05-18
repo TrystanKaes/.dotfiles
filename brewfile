@@ -126,7 +126,6 @@ mas "Magnet", id: 441258766
 mas "MeetingBar", id: 1532419400
 mas "Take a Break", id: 1457158844
 mas "WhatsApp", id: 310633997
-mas "Xcode", id: 497799835
 vscode "aaravb.chrome-extension-developer-tools"
 vscode "adpyke.vscode-sql-formatter"
 vscode "andyyaldoo.vscode-json"
