@@ -5,119 +5,117 @@
 
 _bash_prompt_config() {
 
-  local USER_SYMBOL="\u"
-  local HOST_SYMBOL="\h"
-  local ESC_OPEN="\["
-  local ESC_CLOSE="\]"
+	local USER_SYMBOL="\u"
+	local HOST_SYMBOL="\h"
+	local ESC_OPEN="\["
+	local ESC_CLOSE="\]"
 
-  if tput setaf >/dev/null 2>&1 ; then
-    _setaf () { tput setaf "$1" ; }
-    local RESET
-    local BOLD
-    RESET="${ESC_OPEN}$( { tput sgr0 || tput me ; } 2>/dev/null )${ESC_CLOSE}"
-    BOLD="$( { tput bold || tput md ; } 2>/dev/null )"
-  else
-    # Fallback
-    _setaf () { echo "\033[0;$(($1+30))m" ; }
-    local RESET="\033[m"
-    local BOLD=""
-    ESC_OPEN=""
-    ESC_CLOSE=""
-  fi
+	if tput setaf >/dev/null 2>&1; then
+		_setaf() { tput setaf "$1"; }
+		local RESET
+		local BOLD
+		RESET="${ESC_OPEN}$({ tput sgr0 || tput me; } 2>/dev/null)${ESC_CLOSE}"
+		BOLD="$({ tput bold || tput md; } 2>/dev/null)"
+	else
+		# Fallback
+		_setaf() { echo "\033[0;$(($1 + 30))m"; }
+		local RESET="\033[m"
+		local BOLD=""
+		ESC_OPEN=""
+		ESC_CLOSE=""
+	fi
 
-  # BOLD: local BLACK_BOLD="${ESC_OPEN}${BOLD}$(_setaf 0)${ESC_CLOSE}"
-  # NON-BOLD: local BLACK_BOLD="${ESC_OPEN}$(_setaf 0)${ESC_CLOSE}"
-  
-  local USER_COLOR="${ESC_OPEN}$(_setaf 15)${ESC_CLOSE}"
-  local HOST_COLOR="${ESC_OPEN}$(_setaf 7)${ESC_CLOSE}"
-  local PATH_COLOR="${ESC_OPEN}$(_setaf 223)${ESC_CLOSE}"
-  local BRANCH_COLOR="${ESC_OPEN}$(_setaf 226)${ESC_CLOSE}"
-  local EXIT_COLOR="${ESC_OPEN}$(_setaf 230)${ESC_CLOSE}"
-  local SEPERATOR_COLOR="${ESC_OPEN}${BOLD}$(_setaf 232)${ESC_CLOSE}"
-  local COMMITS_COLOR="${ESC_OPEN}$(_setaf 40)${ESC_CLOSE}"
-  local CHANGES_COLOR="${ESC_OPEN}$(_setaf 160)${ESC_CLOSE}"  
+	# BOLD: local BLACK_BOLD="${ESC_OPEN}${BOLD}$(_setaf 0)${ESC_CLOSE}"
+	# NON-BOLD: local BLACK_BOLD="${ESC_OPEN}$(_setaf 0)${ESC_CLOSE}"
 
-  # Expose the variables we need in prompt command
-  P_USER=${USER_COLOR}${USER_SYMBOL}
-  P_HOST=${HOST_COLOR}${HOST_SYMBOL}
-  C_PATH=${PATH_COLOR}
-  C_BRANCH=${BRANCH_COLOR}
-  C_EXIT=${EXIT_COLOR}
-  C_SEPERATORS=${SEPERATOR_COLOR}
-  C_COMMITS=${COMMITS_COLOR}
-  C_CHANGES=${CHANGES_COLOR}
-  P_RESET=${RESET}
-  P_SEP=" "
+	local USER_COLOR="${ESC_OPEN}$(_setaf 15)${ESC_CLOSE}"
+	local HOST_COLOR="${ESC_OPEN}$(_setaf 7)${ESC_CLOSE}"
+	local PATH_COLOR="${ESC_OPEN}$(_setaf 223)${ESC_CLOSE}"
+	local BRANCH_COLOR="${ESC_OPEN}$(_setaf 226)${ESC_CLOSE}"
+	local EXIT_COLOR="${ESC_OPEN}$(_setaf 230)${ESC_CLOSE}"
+	local SEPERATOR_COLOR="${ESC_OPEN}${BOLD}$(_setaf 232)${ESC_CLOSE}"
+	local COMMITS_COLOR="${ESC_OPEN}$(_setaf 40)${ESC_CLOSE}"
+	local CHANGES_COLOR="${ESC_OPEN}$(_setaf 160)${ESC_CLOSE}"
+
+	# Expose the variables we need in prompt command
+	P_USER=${USER_COLOR}${USER_SYMBOL}
+	P_HOST=${HOST_COLOR}${HOST_SYMBOL}
+	C_PATH=${PATH_COLOR}
+	C_BRANCH=${BRANCH_COLOR}
+	C_EXIT=${EXIT_COLOR}
+	C_SEPERATORS=${SEPERATOR_COLOR}
+	C_COMMITS=${COMMITS_COLOR}
+	C_CHANGES=${CHANGES_COLOR}
+	P_RESET=${RESET}
+	P_SEP=" "
 }
 
 bash_prompt_command() {
 
-  local EXIT_CODE=$?
-  local P_EXIT=""
-  local MAXLENGTH=35
-  local TRUNC_SYMBOL=".."
-  local DIR=${PWD##*/}
-  local P_PWD=${PWD/#$HOME/\~}
+	local EXIT_CODE=$?
+	local P_EXIT=""
+	local MAXLENGTH=35
+	local TRUNC_SYMBOL=".."
+	local DIR=${PWD##*/}
+	local P_PWD=${PWD/#$HOME/\~}
 
-  MAXLENGTH=$(( ( MAXLENGTH < ${#DIR} ) ? ${#DIR} : MAXLENGTH ))
+	MAXLENGTH=$(((MAXLENGTH < ${#DIR}) ? ${#DIR} : MAXLENGTH))
 
-  local OFFSET=$(( ${#P_PWD} - MAXLENGTH ))
+	local OFFSET=$((${#P_PWD} - MAXLENGTH))
 
-  if [ ${OFFSET} -gt "0" ]; then
-    P_PWD=${P_PWD:$OFFSET:$MAXLENGTH}
-    P_PWD=${TRUNC_SYMBOL}/${P_PWD#*/}
-  fi
+	if [ ${OFFSET} -gt "0" ]; then
+		P_PWD=${P_PWD:$OFFSET:$MAXLENGTH}
+		P_PWD=${TRUNC_SYMBOL}/${P_PWD#*/}
+	fi
 
-  # Update terminal title
-  if [[ $TERM == xterm* ]]; then
-    echo -ne "\033]0;${P_PWD}\007"
-  fi
+	# Update terminal title
+	if [[ $TERM == xterm* ]]; then
+		echo -ne "\033]0;${P_PWD}\007"
+	fi
 
-  # Parse Git branch name
-  P_BRANCH="$(parse_git_branch)"
-  COMMITS=$(parse_git_commit)
-  CHANGED_FILES=$(parse_git_changes)
+	# Parse Git branch name
+	P_BRANCH="$(parse_git_branch)"
+	COMMITS=$(parse_git_commit)
+	CHANGED_FILES=$(parse_git_changes)
 
-  # Exit code
-  if [[ $EXIT_CODE != 0 ]]; then
-    P_EXIT+="${P_RED}"
-  fi
+	# Exit code
+	if [[ $EXIT_CODE != 0 ]]; then
+		P_EXIT+="${P_RED}"
+	fi
 
-  # Change numbers
-  P_GIT_STATUS=""
-  if [[ $COMMITS != "" ]] && [[ $CHANGED_FILES != "" ]]; then
-    P_GIT_STATUS=" ${C_SEPERATORS}⇡${C_COMMITS}${COMMITS} ${C_CHANGES}${CHANGED_FILES}${C_SEPERATORS}⇣"
-  elif [[ $COMMITS != "" ]]; then
-    P_GIT_STATUS=" ${C_SEPERATORS}⇡${C_COMMITS}${COMMITS}"
-  elif [[ $CHANGED_FILES != "" ]]; then
-    P_GIT_STATUS=" ${C_CHANGES}${CHANGED_FILES}${C_SEPERATORS}⇣"
-  else 
-    P_GIT_STATUS="";
-  fi;
+	# Change numbers
+	P_GIT_STATUS=""
+	if [[ $COMMITS != "" ]] && [[ $CHANGED_FILES != "" ]]; then
+		P_GIT_STATUS=" ${C_SEPERATORS}⇡${C_COMMITS}${COMMITS} ${C_CHANGES}${CHANGED_FILES}${C_SEPERATORS}⇣"
+	elif [[ $COMMITS != "" ]]; then
+		P_GIT_STATUS=" ${C_SEPERATORS}⇡${C_COMMITS}${COMMITS}"
+	elif [[ $CHANGED_FILES != "" ]]; then
+		P_GIT_STATUS=" ${C_CHANGES}${CHANGED_FILES}${C_SEPERATORS}⇣"
+	else
+		P_GIT_STATUS=""
+	fi
 
-  # PS1="${P_EXIT}${P_USER}.${P_HOST} ${P_BLACK}${P_PWD}${P_GREEN}${P_GIT}${P_BLACK} ❯ ${P_RESET}" 
-  PS1="${P_EXIT}${P_USER} ${C_PATH}${P_PWD}${C_BRANCH}${P_BRANCH}${P_GIT_STATUS}${C_SEPERATORS} ❯ ${P_RESET}"
+	# PS1="${P_EXIT}${P_USER}.${P_HOST} ${P_BLACK}${P_PWD}${P_GREEN}${P_GIT}${P_BLACK} ❯ ${P_RESET}"
+	PS1="${P_EXIT}${P_USER} ${C_PATH}${P_PWD}${C_BRANCH}${P_BRANCH}${P_GIT_STATUS}${C_SEPERATORS} ❯ ${P_RESET}"
 }
 
 parse_git_branch() {
-  local OUT
-  OUT=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
-  if [ "$OUT" != "" ]; then echo " $OUT"; fi
+	local OUT
+	OUT=$(git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
+	if [ "$OUT" != "" ]; then echo " $OUT"; fi
 }
 
 parse_git_commit() {
-  local OUT
-  OUT="$(git status -sb 2> /dev/null | grep -E '[0-9]+\]$' -o | awk -F "]" '{print $1}')"
-  if [ "$OUT" != "" ]; then echo "$OUT"; fi
+	local OUT
+	OUT="$(git status -sb 2>/dev/null | grep -E '[0-9]+\]$' -o | awk -F "]" '{print $1}')"
+	if [ "$OUT" != "" ]; then echo "$OUT"; fi
 }
 
 parse_git_changes() {
-  local OUT
-  OUT="$(git status -s 2> /dev/null | wc -l | awk -F " " '{print $1}')"
-  if [ "$OUT" != "0" ]; then echo "$OUT"; fi
+	local OUT
+	OUT="$(git status -s 2>/dev/null | wc -l | awk -F " " '{print $1}')"
+	if [ "$OUT" != "0" ]; then echo "$OUT"; fi
 }
-
-
 
 _bash_prompt_config
 unset _bash_prompt_config

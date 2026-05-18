@@ -33,19 +33,15 @@ done
 
 # Source the local-only things like secrets.
 for filename in "$HOME"/.dotfiles/local/.*; do
-    if [ -f "$filename" ]; then
+    if [ -f "$filename" ] && [ "$(basename "$filename")" != ".gitignore" ]; then
         # shellcheck disable=SC1090
         source "$filename"
     fi
 done
 
-eval "$(ssh-agent -s)"
+
 ssh-add --apple-use-keychain
 ssh-add --apple-use-keychain ~/.ssh/work_gitlab
-
-eval "$(worktree-switcher init)"
-eval "$(diffnav completion bash)"
-
 
 # Load NVM and add bash_completions
 export NVM_DIR="$HOME/.nvm"
