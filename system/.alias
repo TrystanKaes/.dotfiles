@@ -18,15 +18,11 @@ alias gls="git log --graph --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%
 alias gref='git reflog --date=format:"%Y-%m-%d %H:%M:%S"'
 
 # Agentic Coding
-alias yolo='claude --dangerously-skip-permissions --model=sonnet --effort=medium'
-alias x='claude'
-alias xop='claude --model=opus'
-alias xson='claude --model=sonnet'
-alias xp='claude -p'
-alias xr='claude --resume'
-alias xc='claude --continue'
-alias ask='claude --dangerously-skip-permissions --model=sonnet --effort=medium -p'
-alias askf='claude --dangerously-skip-permissions --model=sonnet --effort=low -p'
+alias yolo='codex --dangerously-bypass-approvals-and-sandbox'
+alias x='pi'
+alias xp='pi -p'
+alias xr='pi -r'
+alias xc='pi -c'
 alias cursor='cursor --classic'
 
 #random
