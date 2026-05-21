@@ -35,9 +35,9 @@ Code/commits/PRs: write normal. "stop caveman" or "normal mode": revert. Level p
 
 Two-step agent pattern:
 1. **Explore** agent (fast, read-only) gathers findings
-2. **General-purpose** agent writes report to `research/<topic>.md`
+2. **General-purpose** agent writes report to `.research/<topic>.md`
 
-Always write to `research/` unless told otherwise. Never explore inline. Topic name: short lowercase hyphenated slug (e.g. `auth-flow`, `db-schema`).
+Always write to `.research/` unless told otherwise. Never explore inline. Topic name: short lowercase hyphenated slug (e.g. `auth-flow`, `db-schema`).
 
 # Commits
 

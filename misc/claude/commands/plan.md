@@ -6,7 +6,7 @@ If the argument is a file path (starts with / or ./ or contains .md), read that 
 
 Deeply read all code relevant to this task. Read every file that touches the feature area. Read related tests. Read related utilities and shared code. Read the schema if database changes are involved. Be thorough — skim nothing.
 
-Write a plan file to plans/plan-[slugified-task-name].md with these sections:
+Write a plan file to .plans/plan-[slugified-task-name].md with these sections:
 
 ## Context
 What exists today. Current file structure, current data model, current behavior.
