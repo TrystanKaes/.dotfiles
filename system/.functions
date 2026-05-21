@@ -295,17 +295,7 @@ function pgadd() {
       name="${BASH_REMATCH[1]}"; spec="${BASH_REMATCH[2]}"
     else
       name="$pkg"; spec="*"
-    figash() {
-  local path="$1"
-  local message="$2"
-
-  if [ -z "$path" ]; then
-    echo "usage: gash <path> [message]"
-    return 1
-  fi
-
-  git stash push -m "${message:-stash $path}" -- "$path"
-}
+    fi
     python3 -c "
 import json
 with open('$pkg_json') as f:
