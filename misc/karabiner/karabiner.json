@@ -994,7 +994,12 @@
                                     "key_code": "s",
                                     "modifiers": { "mandatory": ["control"] }
                                 },
-                                "to": [{ "shell_command": "~/.dotfiles/bin/click-frontmost-menu-item.sh 'Claude' 'Open sidebar' 'Close sidebar'" }],
+                                "to": [
+                                    {
+                                        "key_code": "b",
+                                        "modifiers": ["command"]
+                                    }
+                                ],
                                 "type": "basic"
                             },
                             {
